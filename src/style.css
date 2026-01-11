@@ -1,0 +1,374 @@
+@import "tailwindcss";
+
+/* ============================================
+   BICAN Basal Ganglia Epigenome Portal
+   Colorblind-friendly Scientific Theme
+   Based on Wong (2011) Nature Methods palette
+   ============================================ */
+
+/* Prevent overscroll/rubber banding */
+html, body {
+  overscroll-behavior: none;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+
+@theme {
+  /* =============================================
+     COLORBLIND-FRIENDLY SCIENTIFIC PALETTE
+     Based on Wong (2011) Nature Methods
+     These colors are distinguishable by most color vision deficiencies
+     ============================================= */
+  
+  /* Primary: Deep Ocean Blue - accessible, professional */
+  --color-primary-50: #f0f6fa;
+  --color-primary-100: #dceaf4;
+  --color-primary-200: #b8d5e9;
+  --color-primary-300: #85b8d9;
+  --color-primary-400: #4d96c5;
+  --color-primary-500: #0072b2; /* Wong blue - main brand */
+  --color-primary-600: #005f94;
+  --color-primary-700: #004d78;
+  --color-primary-800: #003c5d;
+  --color-primary-900: #002d46;
+
+  /* Secondary: Vermillion/Orange - high visibility accent */
+  --color-accent-50: #fef5f0;
+  --color-accent-100: #fce8dc;
+  --color-accent-200: #f9cfb8;
+  --color-accent-300: #f4ae88;
+  --color-accent-400: #ed8451;
+  --color-accent-500: #e69f00; /* Wong orange */
+  --color-accent-600: #cc8c00;
+  --color-accent-700: #a67200;
+  --color-accent-800: #805800;
+  --color-accent-900: #594000;
+
+  /* Tertiary: Sky Blue - softer accent */
+  --color-sky-50: #f2fafd;
+  --color-sky-100: #e1f4fb;
+  --color-sky-200: #c2e8f6;
+  --color-sky-300: #9ad9f0;
+  --color-sky-400: #6bc7e8;
+  --color-sky-500: #56b4e9; /* Wong sky blue */
+  --color-sky-600: #449fce;
+  --color-sky-700: #3584ab;
+  --color-sky-800: #286886;
+  --color-sky-900: #1e4f65;
+
+  /* Success: Bluish Green - nature/success */
+  --color-success-50: #f0faf7;
+  --color-success-100: #dcf4ed;
+  --color-success-200: #b8e9db;
+  --color-success-300: #88d9c3;
+  --color-success-400: #4ec4a5;
+  --color-success-500: #009e73; /* Wong bluish green */
+  --color-success-600: #008560;
+  --color-success-700: #006c4e;
+  --color-success-800: #00533c;
+  --color-success-900: #003d2c;
+
+  /* Warning: Yellow - caution/highlight */
+  --color-warning-50: #fffce8;
+  --color-warning-100: #fff9c4;
+  --color-warning-200: #fff38c;
+  --color-warning-300: #ffec47;
+  --color-warning-400: #ffe300;
+  --color-warning-500: #f0e442; /* Wong yellow */
+  --color-warning-600: #d4c800;
+  --color-warning-700: #a69e00;
+  --color-warning-800: #7a7400;
+  --color-warning-900: #524e00;
+
+  /* Neutral: Scientific gray scale */
+  --color-science-50: #f8f9fa;
+  --color-science-100: #f1f3f5;
+  --color-science-200: #e9ecef;
+  --color-science-300: #dee2e6;
+  --color-science-400: #ced4da;
+  --color-science-500: #adb5bd;
+  --color-science-600: #868e96;
+  --color-science-700: #495057;
+  --color-science-800: #343a40;
+  --color-science-900: #212529;
+
+  /* Custom animations */
+  --animate-fade-in-up: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-fade-in: fadeIn 0.4s ease-out;
+  --animate-slide-in-left: slideInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slide-in-right: slideInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-glow: glow 3s ease-in-out infinite;
+}
+
+/* ============================================
+   KEYFRAME ANIMATIONS
+   ============================================ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 114, 178, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 114, 178, 0.5);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR (Professional dark theme)
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(33, 37, 41, 0.1);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #0072b2 0%, #004d78 100%);
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #56b4e9 0%, #0072b2 100%);
+}
+
+/* ============================================
+   GRADIENT BACKGROUNDS
+   ============================================ */
+
+.gradient-science {
+  background: linear-gradient(135deg, #0072b2 0%, #004d78 50%, #002d46 100%);
+}
+
+.gradient-primary {
+  background: linear-gradient(135deg, #0072b2 0%, #005f94 100%);
+}
+
+.gradient-accent {
+  background: linear-gradient(135deg, #e69f00 0%, #cc8c00 100%);
+}
+
+.gradient-dark {
+  background: linear-gradient(180deg, #0d1117 0%, #161b22 50%, #1c2128 100%);
+}
+
+.gradient-mesh {
+  background: 
+    radial-gradient(at 40% 20%, rgba(0, 114, 178, 0.15) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, rgba(86, 180, 233, 0.1) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, rgba(0, 158, 115, 0.08) 0px, transparent 50%),
+    radial-gradient(at 80% 50%, rgba(230, 159, 0, 0.06) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(0, 114, 178, 0.1) 0px, transparent 50%);
+}
+
+/* ============================================
+   ANIMATION UTILITY CLASSES
+   ============================================ */
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Staggered animation delays */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+
+/* ============================================
+   HOVER EFFECTS
+   ============================================ */
+
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.2);
+}
+
+.hover-glow {
+  transition: box-shadow 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(0, 114, 178, 0.4);
+}
+
+/* ============================================
+   SCIENTIFIC CARD STYLES
+   ============================================ */
+
+.card-science {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 114, 178, 0.1);
+  border-radius: 16px;
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 2px 4px -2px rgba(0, 0, 0, 0.05);
+}
+
+.card-science-dark {
+  background: rgba(22, 27, 34, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(86, 180, 233, 0.15);
+  border-radius: 16px;
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.2),
+    0 2px 4px -2px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================
+   TYPOGRAPHY ENHANCEMENTS
+   ============================================ */
+
+.text-science-heading {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.text-science-body {
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.7;
+}
+
+.text-science-label {
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+/* ============================================
+   BICAN BRAND PATTERNS
+   ============================================ */
+
+.pattern-neural {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230072b2' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3Ccircle cx='10' cy='10' r='2'/%3E%3Ccircle cx='50' cy='10' r='2'/%3E%3Ccircle cx='10' cy='50' r='2'/%3E%3Ccircle cx='50' cy='50' r='2'/%3E%3Cpath d='M30 30 L10 10 M30 30 L50 10 M30 30 L10 50 M30 30 L50 50' stroke='%230072b2' stroke-opacity='0.03' stroke-width='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.pattern-dna {
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230072b2' fill-opacity='0.02'%3E%3Cpath d='M0 20 Q10 10, 20 20 T40 20' stroke='%230072b2' stroke-opacity='0.04' fill='none'/%3E%3Cpath d='M0 25 Q10 15, 20 25 T40 25' stroke='%230072b2' stroke-opacity='0.04' fill='none'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Focus states for accessibility */
+:focus-visible {
+  outline: 2px solid #0072b2;
+  outline-offset: 2px;
+}/* Selection color */
+::selection {
+  background-color: rgba(0, 114, 178, 0.2);
+  color: inherit;
+}
