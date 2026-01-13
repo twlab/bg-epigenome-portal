@@ -99,7 +99,7 @@ urls = [
 ]
 
 
-allowed_file_types = ['bedgraph', 'bw', 'bedpe', 'hic', 'methylc', 'bigbed', 'bed6', 'lrtk']
+allowed_file_types = ['bedgraph', 'bw', 'bedpe', 'hic', 'methylc', 'bigbed', 'bed6', 'lrtk', 'bedcat']
 histone_assays = [
     "H3K9me3",
     "H3K27ac",
@@ -123,6 +123,7 @@ def file_type_to_track_type(ft):
         "bedpe": "longrange",
         "lrtk": "longrange",
         "bed6": "bed",
+        "bedcat": "categorical"
     }
     if ft in mapping:
         return mapping[ft]
@@ -415,6 +416,7 @@ with open("./tracks.tsv", "w") as f:
 
         # skip methylation.bigwig
         folder_des = {
+            "enhancers": ["snm3C-seq", "Activity by contacts annotation"],
             "ABC.links": ["snm3C-seq", "Activity by contacts from snm3C-seq"],
             # "atac": ["snm3C-seq", "Chromatin accessibility from snm3C-seq"],
             "domain": ["snm3C-seq", "The topologically associating domains from snm3C-seq"],
@@ -471,6 +473,15 @@ with open("./tracks.tsv", "w") as f:
 
                 if folder in ["loop.bedpe", "ABC.links"]:
                     track_display_data["options"] = {"displayMode": "ARC"}
+
+                if folder in ["enhancers"]:
+                    track_display_data["options"] = {
+                        "category":
+                            {"intergenic": {"name": "Intergenic", "color": "#999999"},
+                             "genic": {"name": "Genic", "color": "#377EB8"},
+                             "promoter": {"name": "Promoter", "color": "#FF7F00"}
+                             }}
+
 
                 line = f"{json.dumps(meta_data)}\t{json.dumps(track_display_data)}\n"
                 f.write(line)
