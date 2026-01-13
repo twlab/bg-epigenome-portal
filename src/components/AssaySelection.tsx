@@ -8,6 +8,7 @@ type AssaySelectionProps = {
   taxonomySelections: Record<string, boolean>;
   taxonomyData: TaxonomyNeighborhood[];
   onTracksUpdate: (tracks: Track[]) => void;
+  onNextStep?: () => void;
 };
 
 const AssaySelection: FC<AssaySelectionProps> = ({ 
@@ -16,6 +17,7 @@ const AssaySelection: FC<AssaySelectionProps> = ({
   taxonomySelections,
   taxonomyData,
   onTracksUpdate,
+  onNextStep,
 }) => {
   // Search query state
   const [searchQuery, setSearchQuery] = useState('');
@@ -424,13 +426,14 @@ const AssaySelection: FC<AssaySelectionProps> = ({
                   return (
                     <tr 
                       key={originalIndex}
-                      className={`transition-colors ${
+                      onClick={() => toggleTrack(originalIndex)}
+                      className={`transition-colors cursor-pointer ${
                         nightMode 
                           ? 'hover:bg-gray-800/50' 
                           : 'hover:bg-gray-50'
                       }`}
                     >
-                      <td className="px-4 py-4 whitespace-nowrap text-center">
+                      <td className="px-4 py-4 whitespace-nowrap text-center" onClick={(e) => e.stopPropagation()}>
                         <input
                           type="checkbox"
                           checked={track.selected || false}
@@ -499,6 +502,41 @@ const AssaySelection: FC<AssaySelectionProps> = ({
               </tbody>
             </table>
           </div>
+        </div>
+      )}
+
+      {/* Next Step Button */}
+      {onNextStep && (
+        <div className="flex justify-center pt-6">
+          <button
+            onClick={onNextStep}
+            className={`group relative px-8 py-4 text-lg font-bold rounded-2xl shadow-2xl transition-all transform hover:scale-105 active:scale-95 ${
+              nightMode
+                ? 'bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white'
+                : 'bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white'
+            }`}
+          >
+            <span className="flex items-center gap-3">
+              <svg 
+                className="w-6 h-6" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+              <span>Next: Visualize Your Tracks on WashU Epigenome Browser</span>
+              <svg 
+                className="w-6 h-6 transition-transform group-hover:translate-x-1" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </span>
+            <div className="absolute inset-0 rounded-2xl bg-white opacity-0 group-hover:opacity-20 transition-opacity" />
+          </button>
         </div>
       )}
     </div>

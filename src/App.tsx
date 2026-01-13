@@ -167,6 +167,7 @@ function App() {
                   nightMode={nightMode} 
                   taxonomyData={taxonomyData}
                   setTaxonomyData={setTaxonomyData}
+                  onNextStep={() => setCurrentTab('assay')}
                 />
               )}
               {currentTab === 'assay' && (
@@ -176,6 +177,7 @@ function App() {
                   taxonomySelections={taxonomySelections}
                   taxonomyData={taxonomyData}
                   onTracksUpdate={handleTracksUpdate}
+                  onNextStep={() => setCurrentTab('browser')}
                 />
               )}
               {currentTab === 'dataset' && <DatasetOverview nightMode={nightMode} />}

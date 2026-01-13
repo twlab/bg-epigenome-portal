@@ -11,9 +11,10 @@ type TaxonomySelectionProps = {
   nightMode: boolean;
   taxonomyData: TaxonomyNeighborhood[];
   setTaxonomyData: React.Dispatch<React.SetStateAction<TaxonomyNeighborhood[]>>;
+  onNextStep?: () => void;
 };
 
-const TaxonomySelection: FC<TaxonomySelectionProps> = ({ nightMode, taxonomyData, setTaxonomyData }) => {
+const TaxonomySelection: FC<TaxonomySelectionProps> = ({ nightMode, taxonomyData, setTaxonomyData, onNextStep }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [assayType, setAssayType] = useState<AssayType>('HMBA');
   const [isAtlasExpanded, setIsAtlasExpanded] = useState(false);
@@ -533,6 +534,33 @@ const TaxonomySelection: FC<TaxonomySelectionProps> = ({ nightMode, taxonomyData
           </div>
         )}
       </div>
+
+      {/* Next Step Button */}
+      {onNextStep && (
+        <div className="flex justify-center pt-4">
+          <button
+            onClick={onNextStep}
+            className={`group relative px-8 py-4 text-lg font-bold rounded-2xl shadow-2xl transition-all transform hover:scale-105 active:scale-95 ${
+              nightMode
+                ? 'bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white'
+                : 'bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white'
+            }`}
+          >
+            <span className="flex items-center gap-3">
+              <span>Next: Select Assays & Tracks</span>
+              <svg 
+                className="w-6 h-6 transition-transform group-hover:translate-x-1" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </span>
+            <div className="absolute inset-0 rounded-2xl bg-white opacity-0 group-hover:opacity-20 transition-opacity" />
+          </button>
+        </div>
+      )}
     </div>
   );
 };
