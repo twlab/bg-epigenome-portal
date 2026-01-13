@@ -13,7 +13,9 @@ npm run build
 cd ../
 rm -rf ./docs
 mv ./src/dist ./docs
+ECHO "basalganglia.epigenomes.net" > docs/CNAME
 
+git add docs
 
 
 

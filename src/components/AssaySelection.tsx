@@ -1,7 +1,6 @@
 import React, { useMemo, useState, useEffect, type FC } from 'react';
 import { filterAndSortTracks, type Track } from '../store/trackStore';
 import type { TaxonomyNeighborhood } from '../store/taxonomyStore';
-import { getSubclassFullName, getGroupFullName } from '../store/nomenclature';
 
 type AssaySelectionProps = {
   nightMode: boolean;
@@ -450,14 +449,14 @@ const AssaySelection: FC<AssaySelectionProps> = ({
                         nightMode ? 'text-gray-300' : 'text-gray-700'
                       }`}>
                         <div className="max-w-xs truncate" title={track.metadata.subclass || '-'}>
-                          {track.metadata.subclass ? getSubclassFullName(track.metadata.subclass) : '-'}
+                          {track.metadata.subclass || '-'}
                         </div>
                       </td>
                       <td className={`px-4 py-4 text-sm ${
                         nightMode ? 'text-gray-300' : 'text-gray-700'
                       }`}>
                         <div className="max-w-xs font-medium whitespace-normal break-words" title={track.metadata.group || '-'}>
-                          {track.metadata.group ? getGroupFullName(track.metadata.group) : '-'}
+                          {track.metadata.group || '-'}
                         </div>
                       </td>
                       <td className={`px-4 py-4 whitespace-nowrap text-sm ${

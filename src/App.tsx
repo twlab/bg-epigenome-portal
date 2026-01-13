@@ -108,35 +108,41 @@ function App() {
           onTabChange={(tab) => setCurrentTab(tab as TabId)}
         />
 
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          {/* Tab content with animations */}
-          <section className="animate-fade-in">
-            {currentTab === 'taxonomy' && (
-              <TaxonomySelection 
-                nightMode={nightMode} 
-                taxonomyData={taxonomyData}
-                setTaxonomyData={setTaxonomyData}
-              />
-            )}
-            {currentTab === 'assay' && (
-              <AssaySelection 
-                nightMode={nightMode} 
-                allTracks={allTracks}
-                taxonomySelections={taxonomySelections}
-                taxonomyData={taxonomyData}
-                onTracksUpdate={handleTracksUpdate}
-              />
-            )}
-            {currentTab === 'browser' && (
+        {/* Browser tab uses full width, other tabs use max-width constraint */}
+        {currentTab === 'browser' ? (
+          <main className="px-4 sm:px-6 lg:px-8 py-8">
+            <section className="animate-fade-in">
               <BrowserPanel 
                 nightMode={nightMode}
                 selectedTracks={selectedTracks}
               />
-            )}
-            {currentTab === 'dataset' && <DatasetOverview nightMode={nightMode} />}
-            {currentTab === 'about' && <AboutSection nightMode={nightMode} />}
-          </section>
-        </main>
+            </section>
+          </main>
+        ) : (
+          <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            {/* Tab content with animations */}
+            <section className="animate-fade-in">
+              {currentTab === 'taxonomy' && (
+                <TaxonomySelection 
+                  nightMode={nightMode} 
+                  taxonomyData={taxonomyData}
+                  setTaxonomyData={setTaxonomyData}
+                />
+              )}
+              {currentTab === 'assay' && (
+                <AssaySelection 
+                  nightMode={nightMode} 
+                  allTracks={allTracks}
+                  taxonomySelections={taxonomySelections}
+                  taxonomyData={taxonomyData}
+                  onTracksUpdate={handleTracksUpdate}
+                />
+              )}
+              {currentTab === 'dataset' && <DatasetOverview nightMode={nightMode} />}
+              {currentTab === 'about' && <AboutSection nightMode={nightMode} />}
+            </section>
+          </main>
+        )}
 
         <footer className={`${
           nightMode 

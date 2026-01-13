@@ -16,19 +16,59 @@ classes = set([])
 subclasses = set([])
 groups = set([])
 
+taxonomy_hierarchy = {}
 
-with open("./taxonomy.tsv") as f:
-    for l in f:
-        n, c, s, g, rd = l.strip().split("\t")
-        neighborhoods.add(n)
-        classes.add(c)
-        subclasses.add(s)
-        groups.add(g)
 
-        region_distributions[g] = eval(rd)
+with open("./taxonomy.tsv", "w") as fout:
+
+
+    for f in os.listdir("./taxonomy/"):
+        if not f.endswith(".tsv"):
+            continue
+
+        # print(f)
+
+        for l in open(os.path.join("./taxonomy/", f)):
+            l = l.strip().split("\t")
+            neighborhoods.add(l[0])
+            classes.add(l[1])
+            subclasses.add(l[2])
+
+            if len(l) >= 5:
+                groups.add(l[3])
+
+            if l[0] not in taxonomy_hierarchy:
+                taxonomy_hierarchy[l[0]] = {}
+            if l[1] not in taxonomy_hierarchy[l[0]]:
+                taxonomy_hierarchy[l[0]][l[1]] = {}
+            if l[2] not in taxonomy_hierarchy[l[0]][l[1]]:
+                taxonomy_hierarchy[l[0]][l[1]][l[2]] = set()
+            if len(l) >= 5:
+                taxonomy_hierarchy[l[0]][l[1]][l[2]].add(l[3])
+
+    for neighborhood in taxonomy_hierarchy:
+        for class_ in taxonomy_hierarchy[neighborhood]:
+            for subclass in taxonomy_hierarchy[neighborhood][class_]:
+                groups_list = list(taxonomy_hierarchy[neighborhood][class_][subclass])
+                assert len(groups_list) > 0
+                for group in sorted(groups_list):
+                    fout.write(f"{neighborhood}\t{class_}\t{subclass}\t{group}\n")
+
+
+
+
+
+
+print(neighborhoods)
+print(classes)
+print(subclasses)
+print(groups)
+print()
+print()
+print()
 
 # print(region_distributions)
-
+# sys.exit()
 
 
 
@@ -133,6 +173,11 @@ def guess_group_from_url(furl):
         if not fn.startswith("bam"):
             result.remove("BAM")
 
+    if len(result) == 2:
+        result = list(sorted(result))
+        if result[1].startswith(result[0]):
+            result.pop(0)
+
     return result
 
 
@@ -200,7 +245,7 @@ with open("./tracks.tsv", "w") as f:
 
         gg = guess_group_from_url(furl)
         if len(gg) != 1:
-            print("Could not uniquely guess group for file:", furl)
+            print("Could not uniquely guess group for file:", furl, gg)
             continue
         gg = gg[0]
 
@@ -325,7 +370,7 @@ with open("./tracks.tsv", "w") as f:
 
             gsc = guess_subclass_from_url(furl)
             if len(gsc) != 1:
-                print("Could not uniquely guess subclass for file:", furl)
+                print("Could not uniquely guess subclass for file:", furl, gsc)
                 continue
             gsc = gsc[0]
 
@@ -403,7 +448,7 @@ with open("./tracks.tsv", "w") as f:
                 else:
                     gsc = guess_subclass_from_url(furl)
                     if len(gsc) != 1:
-                        print("Could not uniquely guess subclass for file:", furl)
+                        print("Could not uniquely guess subclass for file:", furl, gsc)
                         continue
                     guessed_classification = gsc[0]
 
@@ -450,7 +495,7 @@ with open("./tracks.tsv", "w") as f:
 
             gg = guess_group_from_url(furl)
             if len(gg) != 1:
-                print("Could not uniquely guess group for file:", furl)
+                print("Could not uniquely guess group for file:", furl, gg)
                 continue
             gg = gg[0]
 

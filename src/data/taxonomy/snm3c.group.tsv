@@ -1,0 +1,59 @@
+Glut Sero Dopa	F M Glut	F Glut	BF SKOR1 Glut	{'GP': 569, 'NAC': 33, 'CaB': 2, 'GPe': 1, 'Pu': 1, 'STH': 1, 'CaH': 0, 'CaT': 0, 'MGM1': 0}
+Glut Sero Dopa	F M Glut	F Glut	STH PVALB-PITX2 Glut	{'STH': 931, 'MGM1': 328, 'GP': 31, 'CaB': 0, 'CaH': 0, 'CaT': 0, 'GPe': 0, 'NAC': 0, 'Pu': 0}
+Glut Sero Dopa	F M Glut	F M Glut	VTR-HTH Glut	{'MGM1': 4203, 'STH': 1468, 'GP': 312, 'NAC': 44, 'CaB': 32, 'CaH': 0, 'CaT': 0, 'GPe': 0, 'Pu': 0}
+Glut Sero Dopa	M Dopa	M Dopa	SN SOX6 Dopa	{'MGM1': 84, 'STH': 24, 'CaB': 0, 'CaH': 0, 'CaT': 0, 'GP': 0, 'GPe': 0, 'NAC': 0, 'Pu': 0}
+Glut Sero Dopa	M Dopa	M Dopa	SN-VTR CALB1 Dopa	{'MGM1': 302, 'STH': 3, 'CaB': 0, 'CaH': 0, 'CaT': 0, 'GP': 0, 'GPe': 0, 'NAC': 0, 'Pu': 0}
+Glut Sero Dopa	M Dopa	M Dopa	SN-VTR GAD2 Dopa	{'MGM1': 190, 'STH': 71, 'CaB': 0, 'CaH': 0, 'CaT': 0, 'GP': 0, 'GPe': 0, 'NAC': 0, 'Pu': 0}
+Nonneuron	Astro-Epen	Astrocyte	Astrocyte-1	{'GP': 1408, 'GPe': 927, 'MGM1': 501, 'STH': 124, 'NAC': 78, 'CaB': 72, 'Pu': 61, 'CaH': 60, 'CaT': 4}
+Nonneuron	Astro-Epen	Astrocyte	Astrocyte-2	{'NAC': 471, 'CaB': 451, 'CaH': 350, 'GP': 266, 'CaT': 201, 'GPe': 104, 'MGM1': 60, 'Pu': 40, 'STH': 27}
+Nonneuron	Astro-Epen	Astrocyte	Astrocyte-3	{'NAC': 972, 'CaH': 649, 'Pu': 615, 'CaB': 541, 'GPe': 89, 'CaT': 81, 'GP': 58, 'STH': 4, 'MGM1': 1}
+Nonneuron	Astro-Epen	Astrocyte	Astrocyte-4	{'CaH': 164, 'NAC': 137, 'CaB': 134, 'CaT': 100, 'Pu': 40, 'GP': 31, 'GPe': 4, 'MGM1': 3, 'STH': 1}
+Nonneuron	Immune	Lymphocyte	Lymphocyte	{'GPe': 66, 'MGM1': 66, 'GP': 49, 'CaB': 47, 'NAC': 47, 'Pu': 29, 'STH': 16, 'CaH': 10, 'CaT': 4}
+Nonneuron	Immune	Microglia	Microglia-1	{'GPe': 630, 'NAC': 601, 'Pu': 525, 'CaB': 452, 'GP': 292, 'CaH': 166, 'MGM1': 113, 'STH': 25, 'CaT': 6}
+Nonneuron	Immune	Microglia	Microglia-2	{'GP': 552, 'MGM1': 434, 'CaB': 366, 'GPe': 202, 'CaH': 201, 'NAC': 184, 'CaT': 157, 'Pu': 149, 'STH': 144}
+Nonneuron	Immune	Microglia	Microglia-3	{'GPe': 475, 'CaB': 303, 'MGM1': 174, 'Pu': 170, 'GP': 141, 'NAC': 139, 'STH': 121, 'CaH': 51, 'CaT': 23}
+Nonneuron	OPC-Oligo	OPC	OPC	{'CaB': 706, 'GPe': 668, 'NAC': 621, 'Pu': 421, 'MGM1': 348, 'GP': 315, 'CaH': 267, 'STH': 138, 'CaT': 47}
+Nonneuron	OPC-Oligo	Oligodendrocyte	Oligo OPALIN	{'GPe': 10845, 'CaB': 7912, 'Pu': 6810, 'GP': 5899, 'CaH': 4656, 'NAC': 4196, 'MGM1': 3873, 'STH': 1765, 'CaT': 1129}
+Nonneuron	OPC-Oligo	Oligodendrocyte	Oligo PLEKHG1	{'GP': 1577, 'MGM1': 781, 'GPe': 381, 'STH': 376, 'CaB': 274, 'NAC': 225, 'Pu': 162, 'CaH': 48, 'CaT': 41}
+Nonneuron	Vascular	Endo	Endo	{'MGM1': 250, 'GP': 137, 'GPe': 96, 'NAC': 94, 'CaB': 82, 'Pu': 82, 'STH': 20, 'CaT': 8, 'CaH': 7}
+Nonneuron	Vascular	Pericyte	Pericyte	{'MGM1': 297, 'Pu': 99, 'GP': 89, 'GPe': 72, 'CaB': 70, 'NAC': 54, 'CaH': 16, 'CaT': 7, 'STH': 5}
+Nonneuron	Vascular	SMC	SMC	{'MGM1': 73, 'Pu': 16, 'GPe': 14, 'NAC': 11, 'GP': 9, 'CaB': 8, 'CaT': 4, 'CaH': 1, 'STH': 1}
+Nonneuron	Vascular	VLMC	VLMC	{'MGM1': 316, 'GP': 171, 'GPe': 86, 'STH': 70, 'NAC': 46, 'Pu': 41, 'CaB': 36, 'CaT': 10, 'CaH': 9}
+Subpallium GABA	CN CGE GABA	CN LAMP5-CXCL14 GABA	LAMP5-CXCL14 GABA	{'GP': 512, 'CaT': 181, 'MGM1': 144, 'Pu': 128, 'STH': 113, 'CaB': 110, 'NAC': 75, 'CaH': 44, 'GPe': 8}
+Subpallium GABA	CN CGE GABA	CN VIP GABA	VIP GABA	{'GP': 459, 'CaB': 261, 'CaT': 229, 'Pu': 201, 'NAC': 137, 'STH': 116, 'CaH': 86, 'MGM1': 43, 'GPe': 5}
+Subpallium GABA	CN LGE GABA	CN MEIS2 GABA	GPe MEIS2-SOX6 GABA	{'GP': 856, 'NAC': 26, 'Pu': 13, 'CaT': 9, 'GPe': 8, 'CaB': 7, 'CaH': 1, 'MGM1': 0, 'STH': 0}
+Subpallium GABA	CN LGE GABA	OT Granular GABA	OT D1 ICj	{'NAC': 319, 'GP': 293, 'Pu': 7, 'CaB': 4, 'CaT': 3, 'CaH': 2, 'GPe': 2, 'MGM1': 0, 'STH': 0}
+Subpallium GABA	CN LGE GABA	STR D1 MSN	STRd D1 Matrix MSN	{'CaB': 10627, 'Pu': 10308, 'CaT': 4693, 'CaH': 4519, 'GP': 2849, 'NAC': 261, 'GPe': 110, 'MGM1': 5, 'STH': 0}
+Subpallium GABA	CN LGE GABA	STR D1 MSN	STRd D1 Striosome MSN	{'CaB': 3599, 'Pu': 3200, 'NAC': 2468, 'CaH': 1983, 'GP': 1078, 'CaT': 714, 'GPe': 24, 'STH': 2, 'MGM1': 0}
+Subpallium GABA	CN LGE GABA	STR D1 MSN	STRv D1 MSN	{'NAC': 10105, 'GP': 3131, 'CaH': 2775, 'CaB': 2143, 'Pu': 1078, 'GPe': 52, 'CaT': 12, 'STH': 1, 'MGM1': 0}
+Subpallium GABA	CN LGE GABA	STR D2 MSN	STRd D2 Matrix MSN	{'Pu': 12646, 'CaB': 9831, 'CaH': 4211, 'GP': 3637, 'CaT': 3591, 'NAC': 464, 'GPe': 126, 'STH': 5, 'MGM1': 1}
+Subpallium GABA	CN LGE GABA	STR D2 MSN	STRd D2 StrioMat Hybrid MSN	{'Pu': 749, 'NAC': 551, 'CaB': 401, 'CaH': 281, 'GP': 209, 'CaT': 132, 'GPe': 7, 'MGM1': 0, 'STH': 0}
+Subpallium GABA	CN LGE GABA	STR D2 MSN	STRd D2 Striosome MSN	{'Pu': 3262, 'CaB': 2437, 'NAC': 2097, 'CaH': 1352, 'GP': 875, 'CaT': 206, 'GPe': 49, 'STH': 1, 'MGM1': 0}
+Subpallium GABA	CN LGE GABA	STR D2 MSN	STRv D2 MSN	{'NAC': 8772, 'GP': 2218, 'CaH': 2195, 'CaB': 1881, 'Pu': 793, 'CaT': 422, 'GPe': 63, 'MGM1': 0, 'STH': 0}
+Subpallium GABA	CN LGE GABA	STR Hybrid MSN	STR D1D2 Hybrid MSN	{'CaB': 2683, 'Pu': 2056, 'NAC': 1860, 'CaH': 1443, 'GP': 917, 'CaT': 715, 'GPe': 33, 'STH': 3, 'MGM1': 0}
+Subpallium GABA	CN LGE GABA	STR Hybrid MSN	STRv D1 NUDAP MSN	{'GP': 3169, 'NAC': 1547, 'Pu': 263, 'CaB': 246, 'CaT': 104, 'CaH': 76, 'GPe': 39, 'MGM1': 2, 'STH': 2}
+Subpallium GABA	CN MGE GABA	CN Cholinergic GABA	GPin-BF Cholinergic GABA	{'GP': 43, 'NAC': 18, 'Pu': 1, 'CaB': 0, 'CaH': 0, 'CaT': 0, 'GPe': 0, 'MGM1': 0, 'STH': 0}
+Subpallium GABA	CN MGE GABA	CN Cholinergic GABA	STR Cholinergic GABA	{'GP': 132, 'NAC': 40, 'CaT': 1, 'CaB': 0, 'CaH': 0, 'GPe': 0, 'MGM1': 0, 'Pu': 0, 'STH': 0}
+Subpallium GABA	CN MGE GABA	CN Cholinergic GABA	STRd Cholinergic GABA	{'Pu': 68, 'NAC': 31, 'CaH': 13, 'CaB': 8, 'GP': 3, 'CaT': 2, 'GPe': 0, 'MGM1': 0, 'STH': 0}
+Subpallium GABA	CN MGE GABA	CN LAMP5-LHX6 GABA	LAMP5-LHX6 GABA	{'GP': 101, 'NAC': 49, 'Pu': 45, 'STH': 27, 'CaT': 17, 'MGM1': 15, 'CaB': 5, 'CaH': 4, 'GPe': 0}
+Subpallium GABA	CN MGE GABA	CN ST18 GABA	STR FS PTHLH-PVALB GABA	{'CaB': 1765, 'CaH': 1172, 'Pu': 940, 'NAC': 821, 'CaT': 382, 'GP': 301, 'GPe': 13, 'STH': 2, 'MGM1': 0}
+Subpallium GABA	CN MGE GABA	CN ST18 GABA	STR TAC3-PLPP4 GABA	{'CaB': 1394, 'Pu': 973, 'NAC': 679, 'CaH': 676, 'GP': 585, 'CaT': 214, 'GPe': 23, 'STH': 15, 'MGM1': 1}
+Subpallium GABA	CN MGE GABA	CN ST18 GABA	STR-BF TAC3-PLPP4-LHX8 GABA	{'GP': 386, 'NAC': 231, 'Pu': 116, 'CaB': 68, 'CaH': 53, 'CaT': 12, 'GPe': 5, 'MGM1': 1, 'STH': 1}
+Subpallium GABA	CN MGE GABA	STR RSPO2 GABA	STR LYPD6-RSPO2 GABA	{'GP': 62, 'NAC': 54, 'CaT': 49, 'Pu': 43, 'STH': 23, 'CaB': 17, 'CaH': 10, 'MGM1': 4, 'GPe': 0}
+Subpallium GABA	CN MGE GABA	STR RSPO2 GABA	STR SST-RSPO2 GABA	{'GP': 106, 'CaT': 91, 'NAC': 83, 'CaB': 44, 'Pu': 42, 'CaH': 28, 'STH': 16, 'MGM1': 11, 'GPe': 2}
+Subpallium GABA	CN MGE GABA	STR SST-CHODL GABA	STR SST-CHODL GRIN2A GABA	{'CaT': 38, 'CaB': 24, 'NAC': 22, 'GP': 18, 'Pu': 18, 'CaH': 17, 'GPe': 1, 'STH': 1, 'MGM1': 0}
+Subpallium GABA	CN MGE GABA	STR SST-CHODL GABA	STR SST-CHODL NRP2 GABA	{'GP': 327, 'NAC': 76, 'CaH': 8, 'Pu': 8, 'CaB': 5, 'CaT': 2, 'STH': 2, 'GPe': 1, 'MGM1': 0}
+Subpallium GABA	CN MGE GABA	STR SST-CHODL GABA	STR SST-CHODL RORA GABA	{'Pu': 245, 'CaB': 127, 'NAC': 57, 'GP': 50, 'CaH': 41, 'CaT': 26, 'STH': 2, 'GPe': 1, 'MGM1': 0}
+Subpallium GABA	Cx GABA	ACx MEIS2 GABA	ACx MEIS2 GABA	{'NAC': 29, 'CaH': 14, 'CaT': 9, 'CaB': 7, 'Pu': 7, 'GP': 5, 'STH': 1, 'GPe': 0, 'MGM1': 0}
+Subpallium GABA	F M GABA	CN LHX8 GABA	GPe SOX6-CTXND1 GABA	{'GP': 143, 'NAC': 6, 'GPe': 3, 'Pu': 1, 'CaB': 0, 'CaH': 0, 'CaT': 0, 'MGM1': 0, 'STH': 0}
+Subpallium GABA	F M GABA	CN LHX8 GABA	GPe-NDB-SI LHX6-LHX8-GBX1 GABA	{'GP': 494, 'NAC': 237, 'Pu': 5, 'CaB': 1, 'CaH': 1, 'GPe': 1, 'MGM1': 1, 'CaT': 0, 'STH': 0}
+Subpallium GABA	F M GABA	CN ONECUT1 GABA	GPi Core	{'GP': 279, 'STH': 8, 'CaB': 0, 'CaH': 0, 'CaT': 0, 'GPe': 0, 'MGM1': 0, 'NAC': 0, 'Pu': 0}
+Subpallium GABA	F M GABA	F GABA	AMY-SLEA-BNST GABA	{'GP': 1898, 'NAC': 836, 'MGM1': 66, 'Pu': 44, 'CaT': 29, 'STH': 28, 'CaB': 18, 'CaH': 6, 'GPe': 3}
+Subpallium GABA	F M GABA	F GABA	F GABA	{'MGM1': 316, 'GP': 241, 'STH': 196, 'NAC': 63, 'CaB': 16, 'Pu': 5, 'CaT': 4, 'CaH': 1, 'GPe': 1}
+Subpallium GABA	F M GABA	F GABA	ZI-HTH GABA	{'STH': 1428, 'GP': 815, 'MGM1': 276, 'NAC': 119, 'CaB': 21, 'Pu': 1, 'CaH': 0, 'CaT': 0, 'GPe': 0}
+Subpallium GABA	F M GABA	F M GATA3 GABA	F M GATA3 GABA	{'MGM1': 5503, 'STH': 1334, 'GP': 390, 'CaB': 132, 'NAC': 10, 'CaT': 8, 'GPe': 4, 'Pu': 1, 'CaH': 0}
+Subpallium GABA	F M GABA	F M GATA3 GABA	SN GATA3-PVALB GABA	{'MGM1': 199, 'STH': 118, 'CaB': 0, 'CaH': 0, 'CaT': 0, 'GP': 0, 'GPe': 0, 'NAC': 0, 'Pu': 0}
+Subpallium GABA	F M GABA	F M GATA3 GABA	SN-VTR-HTH GATA3-TCF7L2 GABA	{'MGM1': 1489, 'STH': 317, 'GP': 5, 'NAC': 1, 'CaB': 0, 'CaH': 0, 'CaT': 0, 'GPe': 0, 'Pu': 0}
+Subpallium GABA	F M GABA	SN PAX7 GABA	SN EBF2 GABA	{'MGM1': 225, 'GP': 117, 'STH': 8, 'NAC': 5, 'CaB': 0, 'CaH': 0, 'CaT': 0, 'GPe': 0, 'Pu': 0}
+Subpallium GABA	F M GABA	SN PAX7 GABA	SN SEMA5A GABA	{'MGM1': 167, 'CaB': 0, 'CaH': 0, 'CaT': 0, 'GP': 0, 'GPe': 0, 'NAC': 0, 'Pu': 0, 'STH': 0}
+Subpallium GABA-Glut	CN GABA-Glut	CN GABA-Glut	GPi Shell	{'GP': 117, 'STH': 5, 'CaB': 0, 'CaH': 0, 'CaT': 0, 'GPe': 0, 'MGM1': 0, 'NAC': 0, 'Pu': 0}

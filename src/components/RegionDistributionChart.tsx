@@ -11,7 +11,6 @@ import {
   type ChartOptions,
   type ChartConfiguration
 } from 'chart.js';
-import { getRegionFullName } from '../store/nomenclature';
 
 // Register Chart.js components
 ChartJS.register(
@@ -27,11 +26,15 @@ ChartJS.register(
 type RegionDistributionChartProps = {
   regionDistribution: Record<string, number>;
   nightMode: boolean;
+  title?: string;
+  description?: string;
 };
 
 const RegionDistributionChart: FC<RegionDistributionChartProps> = ({ 
   regionDistribution, 
-  nightMode 
+  nightMode,
+  title = 'Region Distribution',
+  description
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const chartRef = useRef<ChartJS | null>(null);
@@ -43,8 +46,8 @@ const RegionDistributionChart: FC<RegionDistributionChartProps> = ({
     return entries;
   }, [regionDistribution]);
 
-  // Use full names for labels, keep original keys for reference
-  const labels = sortedData.map(([region]) => getRegionFullName(region));
+  // Use abbreviations for labels
+  const labels = sortedData.map(([region]) => region);
   const regionKeys = sortedData.map(([region]) => region);
   const data = sortedData.map(([, count]) => count);
   const totalCount = data.reduce((sum, count) => sum + count, 0);
@@ -154,10 +157,10 @@ const RegionDistributionChart: FC<RegionDistributionChartProps> = ({
       }`}>
         <div className={`px-6 py-4 border-b ${nightMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-gray-50'}`}>
           <h3 className={`text-lg font-semibold ${nightMode ? 'text-gray-100' : 'text-gray-900'}`}>
-            Region Distribution
+            {title}
           </h3>
           <p className={`text-sm mt-1 ${nightMode ? 'text-gray-400' : 'text-gray-600'}`}>
-            Cell count distribution across brain regions for selected groups
+            {description || `Cell count distribution across brain regions (Total: ${totalCount.toLocaleString()} cells)`}
           </p>
         </div>
         <div className="p-12 text-center">
@@ -175,7 +178,7 @@ const RegionDistributionChart: FC<RegionDistributionChartProps> = ({
             />
           </svg>
           <p className={`mt-4 text-sm ${nightMode ? 'text-gray-400' : 'text-gray-600'}`}>
-            No groups selected. Select groups above to see region distribution.
+            {description || 'No data selected. Select items above to see region distribution.'}
           </p>
         </div>
       </div>
@@ -187,13 +190,13 @@ const RegionDistributionChart: FC<RegionDistributionChartProps> = ({
       nightMode ? 'bg-gray-900/50 border border-gray-700' : 'bg-white border border-gray-200'
     }`}>
       <div className={`px-6 py-4 border-b ${nightMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-gray-50'}`}>
-        <h3 className={`text-lg font-semibold ${nightMode ? 'text-gray-100' : 'text-gray-900'}`}>
-          Region Distribution
-        </h3>
-        <p className={`text-sm mt-1 ${nightMode ? 'text-gray-400' : 'text-gray-600'}`}>
-          Cell count distribution across brain regions for selected groups (Total: {totalCount.toLocaleString()} cells)
-        </p>
-      </div>
+          <h3 className={`text-lg font-semibold ${nightMode ? 'text-gray-100' : 'text-gray-900'}`}>
+            {title}
+          </h3>
+          <p className={`text-sm mt-1 ${nightMode ? 'text-gray-400' : 'text-gray-600'}`}>
+            {description ? `${description} (Total: ${totalCount.toLocaleString()} cells)` : `Cell count distribution across brain regions (Total: ${totalCount.toLocaleString()} cells)`}
+          </p>
+        </div>
       <div className="p-6">
         <div style={{ height: '400px', position: 'relative' }}>
           <canvas ref={canvasRef}></canvas>
@@ -218,7 +221,7 @@ const RegionDistributionChart: FC<RegionDistributionChartProps> = ({
           <div>
             <p className={`text-xs ${nightMode ? 'text-gray-400' : 'text-gray-600'}`}>Top Region</p>
             <p className={`text-lg font-semibold ${nightMode ? 'text-gray-100' : 'text-gray-900'}`} title={sortedData[0]?.[0] || 'N/A'}>
-              {sortedData[0]?.[0] ? getRegionFullName(sortedData[0][0]) : 'N/A'}
+              {sortedData[0]?.[0] || 'N/A'}
             </p>
           </div>
           <div>

@@ -122,11 +122,9 @@ const BrowserPanel: FC<BrowserPanelProps> = ({ nightMode, selectedTracks }) => {
         </div>
 
         {/* Browser Display */}
-        <div className="p-6">
-          <div className={`rounded-xl overflow-auto border-2 ${
-            nightMode ? 'border-science-700' : 'border-science-200'
-          } h-[100vh] max-w-full`}>
-            <div className="bg-white w-full max-w-full overflow-hidden">
+        <div className="py-6">
+          <div className="overflow-y-auto max-h-[800px]">
+            <div className="relative bg-white w-full">
               <GenomeHub
                 storeConfig={{storeId}}
                 genomeName={activeReference}
@@ -136,7 +134,6 @@ const BrowserPanel: FC<BrowserPanelProps> = ({ nightMode, selectedTracks }) => {
                 showNavBar={false}
                 showToolBar={true}
               />
-              <div className="h-[2000px]"></div>
             </div>
           </div>
         </div>

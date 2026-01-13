@@ -1,7 +1,10 @@
 import React, { type FC, useState, useMemo } from 'react';
-import type { TaxonomyNeighborhood } from '../store/taxonomyStore';
-import { getHierarchyColor, calculateRegionDistribution } from '../store/taxonomyStore';
-import { getSubclassFullName, getGroupFullName } from '../store/nomenclature';
+import type { TaxonomyNeighborhood, AssayType } from '../store/taxonomyStore';
+import { 
+  getHierarchyColor, 
+  calculateGroupRegionDistribution,
+  calculateSubclassRegionDistribution 
+} from '../store/taxonomyStore';
 import RegionDistributionChart from './RegionDistributionChart';
 
 type TaxonomySelectionProps = {
@@ -12,11 +15,17 @@ type TaxonomySelectionProps = {
 
 const TaxonomySelection: FC<TaxonomySelectionProps> = ({ nightMode, taxonomyData, setTaxonomyData }) => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [assayType, setAssayType] = useState<AssayType>('HMBA');
   
   // Calculate region distribution for selected groups
-  const regionDistribution = useMemo(() => {
-    return calculateRegionDistribution(taxonomyData);
-  }, [taxonomyData]);
+  const groupRegionDistribution = useMemo(() => {
+    return calculateGroupRegionDistribution(taxonomyData, assayType);
+  }, [taxonomyData, assayType]);
+  
+  // Calculate region distribution for selected subclasses
+  const subclassRegionDistribution = useMemo(() => {
+    return calculateSubclassRegionDistribution(taxonomyData, assayType);
+  }, [taxonomyData, assayType]);
   
   // Filter taxonomy data based on search query - preserve original indices
   const filteredData = useMemo(() => {
@@ -282,7 +291,7 @@ const TaxonomySelection: FC<TaxonomySelectionProps> = ({ nightMode, taxonomyData
       }`}>
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className={`${nightMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
+            <thead className={`${nightMode ? 'bg-gray-800' : 'bg-gray-200'}`}>
               <tr>
                 <th className={`px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider ${
                   nightMode ? 'text-gray-300' : 'text-gray-700'
@@ -296,7 +305,7 @@ const TaxonomySelection: FC<TaxonomySelectionProps> = ({ nightMode, taxonomyData
                 </th>
               </tr>
             </thead>
-            <tbody className={`${nightMode ? 'divide-gray-700' : 'divide-gray-200'}`}>
+            <tbody className={`${nightMode ? 'divide-gray-700' : 'divide-gray-300'}`}>
               {displayData.map((neighborhood) => {
                 const nIndex = (neighborhood as any).originalIndex;
                 return (
@@ -306,7 +315,7 @@ const TaxonomySelection: FC<TaxonomySelectionProps> = ({ nightMode, taxonomyData
                     className={`cursor-pointer transition-colors border-t-2 ${
                       nightMode 
                         ? 'hover:bg-gray-700/70 ' + getHierarchyColor(neighborhood.neighborhood, 'neighborhood', true) + ' border-gray-600'
-                        : 'hover:brightness-95 ' + getHierarchyColor(neighborhood.neighborhood, 'neighborhood', false) + ' border-gray-300'
+                        : 'hover:brightness-95 ' + getHierarchyColor(neighborhood.neighborhood, 'neighborhood', false) + ' border-gray-400'
                     }`}
                     onClick={() => toggleNeighborhood(nIndex)}
                   >
@@ -358,7 +367,7 @@ const TaxonomySelection: FC<TaxonomySelectionProps> = ({ nightMode, taxonomyData
                               <span className="inline-block w-4 text-center mr-2">
                                 {subclass.isExpanded ? '▼' : '▶'}
                               </span>
-                              <span title={subclass.subclass}>{getSubclassFullName(subclass.subclass)}</span>
+                              <span title={subclass.subclass}>{subclass.subclass}</span>
                             </td>
                             <td className="px-4 py-3">
                               <button
@@ -366,7 +375,7 @@ const TaxonomySelection: FC<TaxonomySelectionProps> = ({ nightMode, taxonomyData
                                   e.stopPropagation();
                                   toggleSubclassSelection(nIndex, cIndex, sIndex);
                                 }}
-                                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                                className={`min-w-[100px] px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                                   subclass.isSelected
                                     ? 'bg-primary-500 text-white shadow-md'
                                     : nightMode
@@ -388,11 +397,11 @@ const TaxonomySelection: FC<TaxonomySelectionProps> = ({ nightMode, taxonomyData
                               className={`transition-colors ${
                                 nightMode 
                                   ? 'hover:bg-gray-700/20 ' + getHierarchyColor(neighborhood.neighborhood, 'group', true)
-                                  : 'hover:bg-gray-50 ' + getHierarchyColor(neighborhood.neighborhood, 'group', false)
+                                  : 'hover:bg-gray-100 ' + getHierarchyColor(neighborhood.neighborhood, 'group', false)
                               }`}
                             >
                               <td className={`px-4 py-3 pl-28 text-sm ${nightMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                                <span title={group.group}>{getGroupFullName(group.group)}</span>
+                                <span title={group.group}>{group.group}</span>
                               </td>
                               <td className="px-4 py-3">
                                 <button
@@ -400,7 +409,7 @@ const TaxonomySelection: FC<TaxonomySelectionProps> = ({ nightMode, taxonomyData
                                     e.stopPropagation();
                                     toggleGroupSelection(nIndex, cIndex, sIndex, gIndex);
                                   }}
-                                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                                  className={`min-w-[100px] px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                                     group.isSelected
                                       ? 'bg-primary-500 text-white shadow-md'
                                       : nightMode
@@ -424,11 +433,49 @@ const TaxonomySelection: FC<TaxonomySelectionProps> = ({ nightMode, taxonomyData
         </div>
       </div>
 
-      {/* Region Distribution Visualization */}
-      <RegionDistributionChart 
-        regionDistribution={regionDistribution}
-        nightMode={nightMode}
-      />
+      {/* Assay Type Selector */}
+      <div className={`rounded-2xl shadow-lg p-4 ${
+        nightMode ? 'bg-gray-900/50 border border-gray-700' : 'bg-white border border-gray-200'
+      }`}>
+        <label className={`block text-sm font-medium mb-2 ${nightMode ? 'text-gray-300' : 'text-gray-700'}`}>
+          Assay Type
+        </label>
+        <p className={`text-xs mb-3 ${nightMode ? 'text-gray-400' : 'text-gray-500'}`}>
+          Select the assay type for region distribution calculation
+        </p>
+        <select
+          value={assayType}
+          onChange={(e) => setAssayType(e.target.value as AssayType)}
+          className={`w-full px-4 py-3 rounded-lg text-sm transition-colors ${
+            nightMode 
+              ? 'bg-gray-800 border-gray-600 text-gray-100 focus:border-blue-500' 
+              : 'bg-gray-50 border-gray-300 text-gray-900 focus:border-blue-500'
+          } border focus:outline-none focus:ring-2 focus:ring-blue-500/50`}
+        >
+          <option value="HMBA">HMBA</option>
+          <option value="PairedTag">PairedTag</option>
+          <option value="snm3c">snm3c</option>
+        </select>
+      </div>
+
+      {/* Region Distribution Visualizations */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Subclass Region Distribution */}
+        <RegionDistributionChart 
+          regionDistribution={subclassRegionDistribution}
+          nightMode={nightMode}
+          title="Subclass Region Distribution"
+          description="Cell count distribution for selected subclasses"
+        />
+        
+        {/* Group Region Distribution */}
+        <RegionDistributionChart 
+          regionDistribution={groupRegionDistribution}
+          nightMode={nightMode}
+          title="Group Region Distribution"
+          description="Cell count distribution for selected groups"
+        />
+      </div>
 
       {/* Allen Brain Atlas Section */}
       <div className={`rounded-2xl shadow-xl overflow-hidden ${

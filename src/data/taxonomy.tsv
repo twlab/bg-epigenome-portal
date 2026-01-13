@@ -1,60 +1,74 @@
-Glut Sero Dopa	F M Glut	F Glut	BF SKOR1 Glut	{'GPi': 1329, 'GPe': 312, 'VeP': 176, 'Eca': 31, 'GPeR': 23, 'PuC': 11, 'SN': 11, 'STH': 5, 'NAC': 4, 'CaT': 2, 'PuPV': 1, 'CaB': 1, 'PuR': 1}
-Glut Sero Dopa	F M Glut	F Glut	STH PVALB-PITX2 Glut	{'STH': 2369, 'GPi': 28, 'SN': 9}
-Glut Sero Dopa	F M Glut	F M Glut	VTR-HTH Glut	{'STH': 1652, 'SN': 449, 'GPi': 142, 'VeP': 15, 'Eca': 12, 'GPe': 8, 'PuC': 4, 'CaB': 3, 'NACs': 3, 'GPeR': 1, 'SN-VTA': 1, 'CaT': 1, 'PuR': 1}
-Glut Sero Dopa	M Dopa	M Dopa	SN SOX6 Dopa	{'SN': 2306, 'STH': 23, 'SN-VTA': 6}
-Glut Sero Dopa	M Dopa	M Dopa	SN-VTR CALB1 Dopa	{'STH': 71, 'SN': 25, 'SN-VTA': 12}
-Glut Sero Dopa	M Dopa	M Dopa	SN-VTR GAD2 Dopa	{'STH': 193, 'SN': 17, 'SN-VTA': 1, 'GPe': 1}
-Nonneuron	Astro-Epen	Astrocyte	Astrocyte	{'GPe': 20156, 'GPi': 18058, 'CaB': 15564, 'PuR': 14045, 'PuC': 10805, 'CaH': 10230, 'NAC': 9583, 'CaT': 5792, 'PuPV': 5007, 'SN': 4404, 'STH': 4322, 'VeP': 4081, 'SN-VTA': 3249, 'Eca': 2733, 'NACc': 2718, 'GPeR': 2678, 'NACs': 1436, 'Pu': 1090, 'GPeC': 733}
-Nonneuron	Astro-Epen	Astrocyte	ImAstro	{'GPi': 877, 'GPe': 745, 'SN': 731, 'CaB': 710, 'GPeC': 506, 'PuR': 502, 'STH': 381, 'PuC': 380, 'CaT': 362, 'NAC': 336, 'CaH': 179, 'PuPV': 176, 'GPeR': 133, 'VeP': 96, 'SN-VTA': 71, 'Eca': 44, 'Pu': 44, 'NACc': 37, 'NACs': 26}
-Nonneuron	Astro-Epen	Ependymal	Ependymal	{'CaB': 3257, 'CaT': 2408, 'CaH': 1466, 'Eca': 1333, 'NACc': 990, 'NAC': 567, 'GPi': 313, 'PuR': 229, 'GPe': 215, 'NACs': 132, 'SN': 127, 'PuC': 14, 'STH': 6, 'VeP': 3, 'PuPV': 2, 'GPeC': 1}
-Nonneuron	Immune	Lymphocyte	B cells	{'GPe': 15, 'CaB': 14, 'GPi': 11, 'STH': 10, 'PuC': 9, 'PuPV': 8, 'SN': 7, 'CaT': 5, 'Pu': 4, 'PuR': 3, 'NAC': 2, 'GPeR': 2, 'SN-VTA': 2, 'CaH': 2}
-Nonneuron	Immune	Lymphocyte	T cells	{'GPi': 482, 'GPe': 435, 'CaB': 280, 'PuC': 242, 'STH': 225, 'PuR': 219, 'SN': 217, 'CaT': 133, 'CaH': 106, 'NAC': 97, 'VeP': 90, 'PuPV': 83, 'SN-VTA': 52, 'GPeR': 42, 'Pu': 20, 'GPeC': 19, 'Eca': 13, 'NACc': 6, 'NACs': 4}
-Nonneuron	Immune	Macrophage	BAM	{'GPi': 596, 'GPe': 487, 'PuR': 341, 'PuC': 329, 'CaB': 305, 'STH': 215, 'CaH': 185, 'SN': 184, 'NAC': 162, 'CaT': 150, 'GPeR': 109, 'PuPV': 97, 'SN-VTA': 79, 'VeP': 77, 'GPeC': 76, 'Pu': 37, 'NACc': 27, 'Eca': 21, 'NACs': 9}
-Nonneuron	Immune	Microglia	Microglia	{'GPi': 14389, 'GPe': 12165, 'CaB': 7451, 'PuR': 7145, 'PuC': 5942, 'SN': 5430, 'CaH': 4657, 'NAC': 4052, 'CaT': 4035, 'STH': 3990, 'VeP': 2826, 'SN-VTA': 2227, 'PuPV': 1722, 'Pu': 1201, 'GPeR': 921, 'GPeC': 726, 'Eca': 705, 'NACc': 594, 'NACs': 415}
-Nonneuron	Immune	Monocyte	Monocyte	{'GPe': 41, 'CaB': 36, 'GPi': 29, 'PuC': 27, 'PuR': 27, 'NAC': 12, 'STH': 12, 'CaH': 11, 'SN-VTA': 10, 'PuPV': 9, 'CaT': 7, 'GPeR': 6, 'SN': 6, 'VeP': 3, 'GPeC': 2, 'Eca': 1, 'NACs': 1, 'NACc': 1, 'Pu': 1}
-Nonneuron	OPC-Oligo	COP	COP	{'GPe': 130, 'PuR': 98, 'CaB': 93, 'GPi': 87, 'CaH': 67, 'PuC': 60, 'NAC': 56, 'VeP': 38, 'SN': 32, 'PuPV': 12, 'STH': 10, 'CaT': 7, 'Eca': 6, 'NACs': 6, 'NACc': 5, 'Pu': 3, 'SN-VTA': 1}
-Nonneuron	OPC-Oligo	OPC	OPC	{'GPi': 6000, 'GPe': 5026, 'PuR': 2920, 'CaB': 2652, 'PuC': 2067, 'SN': 1935, 'CaH': 1889, 'STH': 1734, 'NAC': 1648, 'VeP': 880, 'CaT': 660, 'PuPV': 596, 'NACc': 494, 'NACs': 313, 'Pu': 206, 'Eca': 184, 'SN-VTA': 98, 'GPeR': 27, 'GPeC': 15}
-Nonneuron	OPC-Oligo	Oligodendrocyte	ImOligo	{'CaB': 832, 'GPi': 793, 'PuR': 715, 'GPe': 548, 'SN': 492, 'PuC': 476, 'CaH': 323, 'STH': 213, 'NAC': 177, 'PuPV': 176, 'CaT': 166, 'NACc': 73, 'VeP': 54, 'Eca': 34, 'NACs': 30, 'Pu': 24, 'SN-VTA': 14, 'GPeR': 5, 'GPeC': 1}
-Nonneuron	OPC-Oligo	Oligodendrocyte	Oligo OPALIN	{'GPe': 28777, 'GPi': 24629, 'PuR': 18322, 'CaB': 14150, 'CaH': 13377, 'PuC': 11433, 'STH': 7078, 'NAC': 6589, 'VeP': 5078, 'PuPV': 4209, 'Pu': 3841, 'CaT': 3086, 'SN': 2309, 'NACc': 1156, 'NACs': 569, 'Eca': 284, 'SN-VTA': 257, 'GPeR': 252, 'GPeC': 95}
-Nonneuron	OPC-Oligo	Oligodendrocyte	Oligo PLEKHG1	{'GPi': 14656, 'GPe': 8930, 'SN': 6257, 'STH': 6140, 'CaB': 4889, 'PuC': 3252, 'PuR': 3172, 'CaH': 1969, 'VeP': 1288, 'CaT': 1210, 'NAC': 1097, 'PuPV': 1094, 'Pu': 1015, 'SN-VTA': 426, 'GPeR': 347, 'GPeC': 291, 'NACc': 146, 'Eca': 128, 'NACs': 64}
-Nonneuron	Vascular	Endo	Endo	{'GPe': 1513, 'GPi': 1478, 'CaB': 968, 'PuR': 879, 'PuC': 535, 'SN': 506, 'CaH': 365, 'STH': 360, 'NAC': 243, 'CaT': 204, 'PuPV': 175, 'VeP': 159, 'NACc': 74, 'Pu': 49, 'NACs': 44, 'Eca': 38, 'GPeR': 32, 'SN-VTA': 27, 'GPeC': 22}
-Nonneuron	Vascular	Pericyte	Pericyte	{'GPe': 942, 'PuR': 872, 'GPi': 863, 'CaB': 810, 'PuC': 618, 'SN': 235, 'CaH': 232, 'STH': 224, 'CaT': 195, 'PuPV': 138, 'NAC': 137, 'VeP': 87, 'NACc': 65, 'NACs': 49, 'SN-VTA': 43, 'Pu': 43, 'GPeC': 35, 'GPeR': 30, 'Eca': 7}
-Nonneuron	Vascular	SMC	SMC	{'GPe': 169, 'GPi': 156, 'PuR': 120, 'SN': 73, 'PuC': 59, 'CaB': 57, 'STH': 53, 'NAC': 25, 'VeP': 21, 'CaT': 19, 'CaH': 17, 'NACs': 17, 'NACc': 17, 'GPeR': 11, 'PuPV': 9, 'Pu': 9, 'SN-VTA': 6, 'GPeC': 5, 'Eca': 1}
-Nonneuron	Vascular	VLMC	VLMC	{'GPe': 1471, 'GPi': 1235, 'PuR': 935, 'CaB': 787, 'PuC': 761, 'CaH': 349, 'SN': 347, 'CaT': 313, 'STH': 275, 'PuPV': 218, 'NAC': 186, 'VeP': 115, 'GPeR': 112, 'Pu': 77, 'NACs': 75, 'GPeC': 70, 'SN-VTA': 62, 'NACc': 61, 'Eca': 37}
-Subpallium GABA	CN CGE GABA	CN LAMP5-CXCL14 GABA	LAMP5-CXCL14 GABA	{'GPi': 937, 'GPe': 689, 'CaT': 564, 'CaB': 443, 'PuC': 426, 'PuR': 325, 'PuPV': 249, 'SN': 203, 'CaH': 189, 'NAC': 134, 'NACs': 102, 'VeP': 75, 'Pu': 72, 'STH': 50, 'Eca': 36, 'GPeR': 21, 'NACc': 14, 'GPeC': 6, 'SN-VTA': 1}
-Subpallium GABA	CN CGE GABA	CN VIP GABA	VIP GABA	{'CaB': 1235, 'CaT': 953, 'GPe': 780, 'PuR': 731, 'GPi': 703, 'PuC': 699, 'CaH': 515, 'PuPV': 428, 'NAC': 376, 'SN': 268, 'NACs': 240, 'Pu': 112, 'Eca': 74, 'VeP': 54, 'STH': 28, 'GPeR': 25, 'NACc': 20, 'GPeC': 3}
-Subpallium GABA	CN LGE GABA	CN MEIS2 GABA	GPe MEIS2-SOX6 GABA	{'GPe': 1965, 'GPi': 1649, 'VeP': 203, 'GPeR': 55, 'CaB': 51, 'PuC': 43, 'PuPV': 26, 'CaT': 26, 'Eca': 17, 'NAC': 15, 'PuR': 9, 'NACc': 4, 'SN': 3, 'NACs': 3, 'GPeC': 1, 'STH': 1, 'CaH': 1}
-Subpallium GABA	CN LGE GABA	OT Granular GABA	OT D1 ICj	{'GPe': 649, 'VeP': 610, 'Eca': 449, 'NAC': 336, 'GPi': 212, 'CaB': 96, 'NACc': 86, 'NACs': 52, 'PuR': 23, 'CaH': 18, 'PuC': 12, 'CaT': 12, 'PuPV': 12, 'GPeC': 7, 'Pu': 3, 'GPeR': 1}
-Subpallium GABA	CN LGE GABA	STR D1 MSN	STRd D1 Matrix MSN	{'CaB': 26052, 'PuC': 23286, 'PuR': 22569, 'GPe': 13241, 'CaH': 13151, 'CaT': 9653, 'PuPV': 7961, 'NAC': 2935, 'GPi': 1483, 'Pu': 1033, 'NACc': 476, 'VeP': 203, 'NACs': 162, 'Eca': 64, 'GPeR': 46, 'GPeC': 37, 'STH': 1}
-Subpallium GABA	CN LGE GABA	STR D1 MSN	STRd D1 Striosome MSN	{'CaB': 7521, 'PuR': 5678, 'CaH': 5538, 'PuC': 4756, 'GPe': 4493, 'NAC': 3520, 'Pu': 2142, 'PuPV': 1122, 'NACc': 645, 'CaT': 638, 'GPi': 320, 'NACs': 180, 'VeP': 139, 'Eca': 114, 'GPeC': 6, 'GPeR': 3, 'STH': 1}
-Subpallium GABA	CN LGE GABA	STR D1 MSN	STRv D1 MSN	{'NAC': 18724, 'NACc': 4443, 'GPe': 3547, 'CaH': 3443, 'VeP': 2820, 'PuR': 1921, 'NACs': 1658, 'CaB': 814, 'GPi': 406, 'PuPV': 367, 'Pu': 181, 'CaT': 161, 'PuC': 148, 'Eca': 87, 'GPeR': 18, 'STH': 1}
-Subpallium GABA	CN LGE GABA	STR D2 MSN	STRd D2 Matrix MSN	{'CaB': 25607, 'PuC': 25482, 'PuR': 23978, 'GPe': 14677, 'CaH': 13970, 'PuPV': 9895, 'CaT': 9222, 'NAC': 3137, 'Pu': 2350, 'GPi': 1777, 'NACc': 621, 'VeP': 217, 'NACs': 171, 'GPeR': 64, 'Eca': 56, 'GPeC': 49, 'STH': 3}
-Subpallium GABA	CN LGE GABA	STR D2 MSN	STRd D2 StrioMat Hybrid MSN	{'NAC': 1504, 'PuR': 1332, 'GPe': 1123, 'CaB': 1000, 'PuC': 724, 'CaH': 544, 'NACc': 262, 'PuPV': 249, 'Pu': 247, 'CaT': 200, 'VeP': 195, 'NACs': 144, 'GPi': 89, 'Eca': 9, 'GPeR': 3, 'GPeC': 2}
-Subpallium GABA	CN LGE GABA	STR D2 MSN	STRd D2 Striosome MSN	{'PuR': 7268, 'CaB': 4610, 'PuC': 4514, 'CaH': 3896, 'GPe': 3720, 'NAC': 3438, 'PuPV': 1284, 'Pu': 765, 'NACc': 555, 'CaT': 408, 'GPi': 372, 'NACs': 151, 'VeP': 134, 'Eca': 19, 'GPeC': 8, 'GPeR': 4}
-Subpallium GABA	CN LGE GABA	STR D2 MSN	STRv D2 MSN	{'NAC': 17117, 'NACc': 3758, 'GPe': 3142, 'CaH': 2559, 'VeP': 2064, 'PuR': 1761, 'PuPV': 1499, 'GPi': 1436, 'NACs': 1361, 'CaT': 1018, 'CaB': 908, 'PuC': 522, 'Eca': 325, 'Pu': 82, 'GPeR': 33, 'GPeC': 5, 'STH': 1}
-Subpallium GABA	CN LGE GABA	STR Hybrid MSN	STR D1D2 Hybrid MSN	{'CaB': 5072, 'PuR': 4076, 'NAC': 4041, 'GPe': 3682, 'CaH': 2786, 'PuC': 2428, 'CaT': 1877, 'PuPV': 1110, 'Pu': 643, 'NACc': 628, 'VeP': 390, 'NACs': 387, 'GPi': 310, 'GPeR': 27, 'GPeC': 23, 'Eca': 22, 'STH': 2, 'SN': 1}
-Subpallium GABA	CN LGE GABA	STR Hybrid MSN	STRv D1 NUDAP MSN	{'GPe': 4183, 'NAC': 2533, 'GPi': 1946, 'VeP': 1049, 'CaB': 948, 'PuR': 766, 'CaT': 668, 'PuC': 545, 'Eca': 535, 'NACs': 507, 'PuPV': 468, 'NACc': 432, 'CaH': 286, 'Pu': 55, 'GPeC': 31, 'GPeR': 29, 'SN': 1}
-Subpallium GABA	CN MGE GABA	CN Cholinergic GABA	GPin-BF Cholinergic GABA	{'GPi': 203, 'GPe': 158, 'VeP': 27, 'PuR': 20, 'PuC': 20, 'NAC': 11, 'CaB': 9, 'CaH': 5, 'NACs': 5, 'PuPV': 4, 'NACc': 3, 'CaT': 2, 'STH': 1, 'Pu': 1}
-Subpallium GABA	CN MGE GABA	CN Cholinergic GABA	STR Cholinergic GABA	{'GPi': 78, 'VeP': 36, 'GPe': 21, 'NACs': 10, 'NAC': 6, 'NACc': 2, 'PuC': 2, 'CaB': 1, 'GPeR': 1, 'CaH': 1, 'PuR': 1}
-Subpallium GABA	CN MGE GABA	CN Cholinergic GABA	STRd Cholinergic GABA	{'GPe': 50, 'CaB': 48, 'GPi': 32, 'PuC': 29, 'PuPV': 27, 'PuR': 20, 'NAC': 14, 'CaH': 13, 'NACs': 10, 'VeP': 7, 'CaT': 4, 'NACc': 3, 'GPeR': 1}
-Subpallium GABA	CN MGE GABA	CN LAMP5-LHX6 GABA	LAMP5-LHX6 GABA	{'CaT': 183, 'GPi': 173, 'PuR': 158, 'SN': 145, 'GPe': 116, 'NACs': 100, 'NAC': 86, 'PuC': 82, 'Eca': 57, 'Pu': 54, 'CaB': 38, 'CaH': 35, 'PuPV': 23, 'VeP': 19, 'STH': 4, 'NACc': 4, 'GPeR': 2}
-Subpallium GABA	CN MGE GABA	CN ST18 GABA	STR FS PTHLH-PVALB GABA	{'CaB': 4469, 'NAC': 2231, 'CaH': 1966, 'PuR': 1510, 'GPe': 1131, 'PuC': 1067, 'CaT': 651, 'PuPV': 402, 'NACc': 357, 'VeP': 287, 'NACs': 204, 'Pu': 195, 'GPi': 174, 'Eca': 50, 'STH': 12, 'SN': 9, 'GPeR': 4, 'GPeC': 2}
-Subpallium GABA	CN MGE GABA	CN ST18 GABA	STR TAC3-PLPP4 GABA	{'CaB': 2904, 'GPe': 2004, 'NAC': 1688, 'PuR': 1676, 'CaH': 1607, 'PuC': 1481, 'GPi': 790, 'CaT': 637, 'PuPV': 572, 'VeP': 314, 'NACc': 223, 'Pu': 157, 'NACs': 131, 'GPeR': 89, 'Eca': 40, 'STH': 18, 'GPeC': 6, 'SN': 3}
-Subpallium GABA	CN MGE GABA	CN ST18 GABA	STR-BF TAC3-PLPP4-LHX8 GABA	{'GPe': 628, 'GPi': 436, 'NAC': 397, 'VeP': 333, 'PuR': 210, 'CaB': 198, 'PuC': 112, 'CaH': 91, 'NACc': 67, 'Eca': 59, 'NACs': 40, 'PuPV': 34, 'CaT': 33, 'GPeR': 21, 'Pu': 18, 'STH': 3, 'GPeC': 2, 'SN': 1}
-Subpallium GABA	CN MGE GABA	STR RSPO2 GABA	STR LYPD6-RSPO2 GABA	{'NAC': 246, 'NACs': 244, 'GPe': 240, 'PuR': 198, 'PuC': 171, 'CaB': 163, 'CaH': 148, 'GPi': 106, 'CaT': 65, 'SN': 51, 'Pu': 47, 'PuPV': 39, 'Eca': 4, 'GPeR': 4, 'VeP': 2, 'NACc': 2, 'STH': 1}
-Subpallium GABA	CN MGE GABA	STR RSPO2 GABA	STR SST-RSPO2 GABA	{'CaB': 327, 'GPe': 310, 'PuR': 207, 'NACs': 201, 'NAC': 187, 'CaT': 175, 'CaH': 168, 'PuC': 149, 'GPi': 121, 'Pu': 56, 'PuPV': 54, 'SN': 41, 'VeP': 16, 'Eca': 10, 'GPeR': 5, 'NACc': 4, 'STH': 3}
-Subpallium GABA	CN MGE GABA	STR SST GABA	STR SST-ADARB2 GABA	{'GPi': 148, 'GPe': 43, 'Eca': 31, 'CaT': 24, 'VeP': 17, 'CaB': 6, 'SN': 3, 'STH': 2, 'NAC': 2, 'PuC': 1, 'NACc': 1, 'NACs': 1}
-Subpallium GABA	CN MGE GABA	STR SST-CHODL GABA	STR SST-CHODL GABA	{'CaB': 680, 'GPe': 677, 'PuC': 604, 'PuR': 454, 'CaT': 349, 'PuPV': 335, 'NAC': 283, 'CaH': 255, 'GPi': 208, 'VeP': 183, 'Pu': 98, 'NACs': 78, 'Eca': 70, 'NACc': 60, 'SN': 5, 'GPeR': 3, 'GPeC': 2, 'STH': 1}
-Subpallium GABA	Cx GABA	ACx MEIS2 GABA	OB Dopa-GABA	{'PuR': 20, 'NAC': 15, 'CaH': 9, 'NACc': 5, 'GPe': 4, 'CaB': 3, 'GPi': 2, 'CaT': 1, 'PuPV': 1, 'VeP': 1, 'Eca': 1, 'PuC': 1, 'NACs': 1, 'Pu': 1}
-Subpallium GABA	Cx GABA	ACx MEIS2 GABA	OB FRMD7 GABA	{'NAC': 245, 'PuR': 185, 'CaH': 166, 'GPe': 54, 'CaB': 43, 'Pu': 37, 'GPi': 28, 'NACs': 28, 'NACc': 25, 'PuC': 24, 'Eca': 18, 'CaT': 9, 'VeP': 8, 'STH': 3, 'PuPV': 3, 'GPeR': 2, 'GPeC': 2, 'SN': 1}
-Subpallium GABA	F M GABA	CN LHX8 GABA	GPe SOX6-CTXND1 GABA	{'GPe': 2117, 'GPi': 767, 'GPeR': 253, 'VeP': 147, 'PuPV': 21, 'NAC': 11, 'PuC': 4, 'SN': 3, 'GPeC': 2, 'PuR': 2, 'CaB': 1, 'STH': 1}
-Subpallium GABA	F M GABA	CN LHX8 GABA	GPe-NDB-SI LHX6-LHX8-GBX1 GABA	{'GPe': 1306, 'GPi': 1165, 'VeP': 228, 'GPeR': 54, 'PuPV': 43, 'NAC': 26, 'Eca': 25, 'CaB': 24, 'SN': 19, 'PuC': 17, 'STH': 13, 'PuR': 3, 'NACs': 1, 'NACc': 1, 'Pu': 1, 'CaT': 1}
-Subpallium GABA	F M GABA	CN ONECUT1 GABA	GPi Core	{'GPi': 1827, 'GPe': 97, 'GPeR': 25, 'STH': 15, 'PuC': 14, 'VeP': 10, 'SN': 4, 'SN-VTA': 1}
-Subpallium GABA	F M GABA	F GABA	AMY-SLEA-BNST D1 GABA	{'VeP': 90, 'GPe': 31, 'GPi': 31, 'NAC': 15, 'Eca': 9, 'CaT': 4, 'CaB': 2, 'NACc': 2, 'GPeR': 1, 'NACs': 1, 'PuC': 1, 'SN': 1}
-Subpallium GABA	F M GABA	F GABA	AMY-SLEA-BNST GABA	{'GPi': 633, 'Eca': 521, 'GPe': 512, 'VeP': 338, 'NAC': 47, 'CaB': 39, 'CaT': 27, 'NACc': 23, 'PuC': 16, 'SN': 14, 'NACs': 14, 'STH': 7, 'PuR': 4, 'CaH': 2, 'GPeC': 1, 'PuPV': 1}
-Subpallium GABA	F M GABA	F GABA	ZI-HTH GABA	{'STH': 1176, 'GPi': 453, 'VeP': 111, 'SN': 71, 'Eca': 61, 'GPe': 51, 'CaB': 10, 'NAC': 8, 'PuR': 8, 'CaT': 7, 'GPeR': 3, 'NACs': 3, 'PuC': 2, 'NACc': 2}
-Subpallium GABA	F M GABA	F M GATA3 GABA	SN GATA3-PVALB GABA	{'SN': 26, 'STH': 15, 'GPi': 1}
-Subpallium GABA	F M GABA	F M GATA3 GABA	SN-VTR-HTH GATA3-TCF7L2 GABA	{'SN': 1284, 'STH': 562, 'GPi': 62, 'SN-VTA': 15, 'VeP': 9, 'NAC': 4, 'GPeR': 4, 'CaT': 3, 'GPe': 3, 'CaB': 2, 'NACs': 2, 'Eca': 1}
-Subpallium GABA	F M GABA	SN PAX7 GABA	SN EBF2 GABA	{'SN': 461, 'SN-VTA': 14, 'GPi': 2, 'GPe': 2, 'NAC': 2, 'STH': 1, 'Pu': 1}
-Subpallium GABA	F M GABA	SN PAX7 GABA	SN SEMA5A GABA	{'SN': 393}
-Subpallium GABA-Glut	CN GABA-Glut	CN GABA-Glut	GPi Shell	{'GPi': 296, 'GPe': 75, 'VeP': 32, 'GPeR': 23, 'PuC': 1}
+Glut Sero Dopa	F M Glut	F Glut	BF SKOR1 Glut
+Glut Sero Dopa	F M Glut	F Glut	STH PVALB-PITX2 Glut
+Glut Sero Dopa	F M Glut	F M Glut	VTR-HTH Glut
+Glut Sero Dopa	M Dopa	M Dopa	SN SOX6 Dopa
+Glut Sero Dopa	M Dopa	M Dopa	SN-VTR CALB1 Dopa
+Glut Sero Dopa	M Dopa	M Dopa	SN-VTR GAD2 Dopa
+Nonneuron	Astro-Epen	Astrocyte	Astrocyte
+Nonneuron	Astro-Epen	Astrocyte	Astrocyte-1
+Nonneuron	Astro-Epen	Astrocyte	Astrocyte-2
+Nonneuron	Astro-Epen	Astrocyte	Astrocyte-3
+Nonneuron	Astro-Epen	Astrocyte	Astrocyte-4
+Nonneuron	Astro-Epen	Astrocyte	ImAstro
+Nonneuron	Astro-Epen	Ependymal	Ependymal
+Nonneuron	Immune	Lymphocyte	B cells
+Nonneuron	Immune	Lymphocyte	Lymphocyte
+Nonneuron	Immune	Lymphocyte	T cells
+Nonneuron	Immune	Macrophage	BAM
+Nonneuron	Immune	Microglia	Microglia
+Nonneuron	Immune	Microglia	Microglia-1
+Nonneuron	Immune	Microglia	Microglia-2
+Nonneuron	Immune	Microglia	Microglia-3
+Nonneuron	Immune	Monocyte	Monocyte
+Nonneuron	OPC-Oligo	COP	COP
+Nonneuron	OPC-Oligo	OPC	OPC
+Nonneuron	OPC-Oligo	Oligodendrocyte	ImOligo
+Nonneuron	OPC-Oligo	Oligodendrocyte	Oligo OPALIN
+Nonneuron	OPC-Oligo	Oligodendrocyte	Oligo PLEKHG1
+Nonneuron	Vascular	Endo	Endo
+Nonneuron	Vascular	Pericyte	Pericyte
+Nonneuron	Vascular	SMC	SMC
+Nonneuron	Vascular	VLMC	VLMC
+Subpallium GABA	CN CGE GABA	CN LAMP5-CXCL14 GABA	LAMP5-CXCL14 GABA
+Subpallium GABA	CN CGE GABA	CN VIP GABA	VIP GABA
+Subpallium GABA	CN LGE GABA	CN MEIS2 GABA	GPe MEIS2-SOX6 GABA
+Subpallium GABA	CN LGE GABA	OT Granular GABA	OT D1 ICj
+Subpallium GABA	CN LGE GABA	STR D1 MSN	STRd D1 Matrix MSN
+Subpallium GABA	CN LGE GABA	STR D1 MSN	STRd D1 Striosome MSN
+Subpallium GABA	CN LGE GABA	STR D1 MSN	STRv D1 MSN
+Subpallium GABA	CN LGE GABA	STR D2 MSN	STRd D2 Matrix MSN
+Subpallium GABA	CN LGE GABA	STR D2 MSN	STRd D2 StrioMat Hybrid MSN
+Subpallium GABA	CN LGE GABA	STR D2 MSN	STRd D2 Striosome MSN
+Subpallium GABA	CN LGE GABA	STR D2 MSN	STRv D2 MSN
+Subpallium GABA	CN LGE GABA	STR Hybrid MSN	STR D1D2 Hybrid MSN
+Subpallium GABA	CN LGE GABA	STR Hybrid MSN	STRv D1 NUDAP MSN
+Subpallium GABA	CN MGE GABA	CN Cholinergic GABA	GPin-BF Cholinergic GABA
+Subpallium GABA	CN MGE GABA	CN Cholinergic GABA	STR Cholinergic GABA
+Subpallium GABA	CN MGE GABA	CN Cholinergic GABA	STRd Cholinergic GABA
+Subpallium GABA	CN MGE GABA	CN LAMP5-LHX6 GABA	LAMP5-LHX6 GABA
+Subpallium GABA	CN MGE GABA	CN ST18 GABA	STR FS PTHLH-PVALB GABA
+Subpallium GABA	CN MGE GABA	CN ST18 GABA	STR TAC3-PLPP4 GABA
+Subpallium GABA	CN MGE GABA	CN ST18 GABA	STR-BF TAC3-PLPP4-LHX8 GABA
+Subpallium GABA	CN MGE GABA	STR RSPO2 GABA	STR LYPD6-RSPO2 GABA
+Subpallium GABA	CN MGE GABA	STR RSPO2 GABA	STR SST-RSPO2 GABA
+Subpallium GABA	CN MGE GABA	STR SST GABA	STR SST-ADARB2 GABA
+Subpallium GABA	CN MGE GABA	STR SST-CHODL GABA	STR SST-CHODL GABA
+Subpallium GABA	CN MGE GABA	STR SST-CHODL GABA	STR SST-CHODL GRIN2A GABA
+Subpallium GABA	CN MGE GABA	STR SST-CHODL GABA	STR SST-CHODL NRP2 GABA
+Subpallium GABA	CN MGE GABA	STR SST-CHODL GABA	STR SST-CHODL RORA GABA
+Subpallium GABA	Cx GABA	ACx MEIS2 GABA	ACx MEIS2 GABA
+Subpallium GABA	Cx GABA	ACx MEIS2 GABA	OB Dopa-GABA
+Subpallium GABA	Cx GABA	ACx MEIS2 GABA	OB FRMD7 GABA
+Subpallium GABA	F M GABA	CN LHX8 GABA	GPe SOX6-CTXND1 GABA
+Subpallium GABA	F M GABA	CN LHX8 GABA	GPe-NDB-SI LHX6-LHX8-GBX1 GABA
+Subpallium GABA	F M GABA	CN ONECUT1 GABA	GPi Core
+Subpallium GABA	F M GABA	F GABA	AMY-SLEA-BNST D1 GABA
+Subpallium GABA	F M GABA	F GABA	AMY-SLEA-BNST GABA
+Subpallium GABA	F M GABA	F GABA	F GABA
+Subpallium GABA	F M GABA	F GABA	ZI-HTH GABA
+Subpallium GABA	F M GABA	F M GATA3 GABA	F M GATA3 GABA
+Subpallium GABA	F M GABA	F M GATA3 GABA	SN GATA3-PVALB GABA
+Subpallium GABA	F M GABA	F M GATA3 GABA	SN-VTR-HTH GATA3-TCF7L2 GABA
+Subpallium GABA	F M GABA	SN PAX7 GABA	SN EBF2 GABA
+Subpallium GABA	F M GABA	SN PAX7 GABA	SN SEMA5A GABA
+Subpallium GABA-Glut	CN GABA-Glut	CN GABA-Glut	GPi Shell
