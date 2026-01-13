@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { setCookie } from '../utils/cookieUtils';
 
 interface LandingPageProps {
   onEnter: () => void;
@@ -90,25 +91,40 @@ function LandingPage({ onEnter }: LandingPageProps) {
             </a>
           </p>
 
-          {/* CTA Button */}
-          <button
-            onClick={onEnter}
-            className="group relative px-10 py-4 text-white text-lg font-semibold rounded-xl shadow-2xl transition-all duration-300 transform hover:scale-[1.02] hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
-            style={{ background: 'linear-gradient(135deg, #0072b2 0%, #005f94 100%)' }}
-          >
-            <span className="relative z-10 flex items-center gap-3">
-              Enter Portal
-              <svg 
-                className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <button
+              onClick={onEnter}
+              className="group relative px-10 py-4 text-white text-lg font-semibold rounded-xl shadow-2xl transition-all duration-300 transform hover:scale-[1.02] hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
+              style={{ background: 'linear-gradient(135deg, #0072b2 0%, #005f94 100%)' }}
+            >
+              <span className="relative z-10 flex items-center gap-3">
+                Enter Portal
+                <svg 
+                  className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </span>
+              <div className="absolute inset-0 rounded-xl bg-white opacity-0 group-hover:opacity-10 transition-opacity" />
+            </button>
+            
+            <button
+              onClick={() => {
+                setCookie('bge_skip_landing', 'true', 365);
+                onEnter();
+              }}
+              className="px-6 py-3 text-gray-300 text-sm font-medium rounded-lg border border-white/20 hover:bg-white/10 transition-all duration-300 flex items-center gap-2"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-            </span>
-            <div className="absolute inset-0 rounded-xl bg-white opacity-0 group-hover:opacity-10 transition-opacity" />
-          </button>
+              Don't show again
+            </button>
+          </div>
 
           {/* Feature highlights */}
           <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">

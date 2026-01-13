@@ -7,14 +7,18 @@ import BrowserPanel from './components/BrowserPanel';
 import DatasetOverview from './components/DatasetOverview';
 import AboutSection from './components/AboutSection';
 import LandingPage from './components/LandingPage';
+import InteractiveGuide from './components/InteractiveGuide';
+import SessionTab from './components/SessionTab';
+import CookieBanner from './components/CookieBanner';
 import { parseTaxonomyData, type TaxonomyNeighborhood, serializeTaxonomyStore } from './store/taxonomyStore';
 import { parseTracksData, type Track } from './store/trackStore';
+import { getCookie, setCookie } from './utils/cookieUtils';
 import './style.css';
 
-type TabId = 'taxonomy' | 'assay' | 'browser' | 'dataset' | 'about';
+type TabId = 'taxonomy' | 'assay' | 'browser' | 'dataset' | 'about' | 'session';
 
 // Valid tab IDs
-const validTabIds: TabId[] = ['taxonomy', 'assay', 'browser', 'dataset', 'about'];
+const validTabIds: TabId[] = ['taxonomy', 'assay', 'browser', 'dataset', 'about', 'session'];
 
 // Get initial tab from URL params
 function getInitialTabFromURL(): TabId {
@@ -27,9 +31,12 @@ function getInitialTabFromURL(): TabId {
 }
 
 function App() {
-  const [showLanding, setShowLanding] = useState(true);
+  // Check if user wants to skip landing page
+  const skipLanding = getCookie('bge_skip_landing') === 'true';
+  const [showLanding, setShowLanding] = useState(!skipLanding);
   const [nightMode, setNightMode] = useState(false); // Default to light mode
   const [currentTab, setCurrentTab] = useState<TabId>(() => getInitialTabFromURL());
+  const [showGuide, setShowGuide] = useState(false);
   
   // Centralized taxonomy data store
   const [taxonomyData, setTaxonomyData] = useState<TaxonomyNeighborhood[]>(() => parseTaxonomyData());
@@ -41,12 +48,34 @@ function App() {
   const [selectedTracks, setSelectedTracks] = useState<Track[]>([]);
   
   // Access serialized selections for debugging or passing to other components
-  const taxonomySelections = useMemo(() => serializeTaxonomyStore(taxonomyData), [taxonomyData]);
+  // Convert to flat format for backward compatibility with existing components
+  const taxonomySelections = useMemo(() => {
+    const serialized = serializeTaxonomyStore(taxonomyData);
+    // Merge groups and subclasses into a flat structure for components that expect it
+    return { ...serialized.groups, ...serialized.subclasses };
+  }, [taxonomyData]);
 
   // Callback to update selected tracks from AssaySelection
   const handleTracksUpdate = useCallback((tracks: Track[]) => {
     setSelectedTracks(tracks);
   }, []);
+
+
+  // Check if this is first visit and show guide
+  useEffect(() => {
+    if (!showLanding) {
+      // User has entered the portal - check if they've seen the guide
+      const hasSeenGuide = getCookie('bge_has_seen_guide') === 'true';
+      if (!hasSeenGuide) {
+        // First time user - show guide after a short delay
+        const timer = setTimeout(() => {
+          setShowGuide(true);
+          setCookie('bge_has_seen_guide', 'true', 365);
+        }, 1000);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [showLanding]);
 
   // Update URL when tab changes
   useEffect(() => {
@@ -72,6 +101,7 @@ function App() {
       { id: 'taxonomy', label: 'Taxonomy Selection' },
       { id: 'assay', label: 'Assay Selection' },
       { id: 'browser', label: 'Browser' },
+      { id: 'session', label: 'Session' },
       { id: 'dataset', label: 'Dataset' },
       { id: 'about', label: 'About' },
     ],
@@ -100,6 +130,16 @@ function App() {
       )}
 
       <div className="relative z-10">
+        {/* Interactive Guide Overlay */}
+        {showGuide && (
+          <InteractiveGuide
+            nightMode={nightMode}
+            onComplete={() => setShowGuide(false)}
+            onSkip={() => setShowGuide(false)}
+            onTabChange={(tab) => setCurrentTab(tab as TabId)}
+          />
+        )}
+
         <Header 
           nightMode={nightMode} 
           onToggleNightMode={() => setNightMode(!nightMode)}
@@ -140,6 +180,13 @@ function App() {
               )}
               {currentTab === 'dataset' && <DatasetOverview nightMode={nightMode} />}
               {currentTab === 'about' && <AboutSection nightMode={nightMode} />}
+              {currentTab === 'session' && (
+                <SessionTab 
+                  nightMode={nightMode} 
+                  onShowLanding={() => setShowLanding(true)}
+                  onStartGuide={() => setShowGuide(true)}
+                />
+              )}
             </section>
           </main>
         )}
@@ -180,6 +227,9 @@ function App() {
             </div>
           </div>
         </footer>
+
+        {/* Cookie Banner */}
+        <CookieBanner nightMode={nightMode} />
       </div>
     </div>
   );

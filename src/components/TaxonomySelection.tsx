@@ -16,6 +16,7 @@ type TaxonomySelectionProps = {
 const TaxonomySelection: FC<TaxonomySelectionProps> = ({ nightMode, taxonomyData, setTaxonomyData }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [assayType, setAssayType] = useState<AssayType>('HMBA');
+  const [isAtlasExpanded, setIsAtlasExpanded] = useState(false);
   
   // Calculate region distribution for selected groups
   const groupRegionDistribution = useMemo(() => {
@@ -481,32 +482,56 @@ const TaxonomySelection: FC<TaxonomySelectionProps> = ({ nightMode, taxonomyData
       <div className={`rounded-2xl shadow-xl overflow-hidden ${
         nightMode ? 'bg-gray-900/50 border border-gray-700' : 'bg-white border border-gray-200'
       }`}>
-        <div className={`px-6 py-4 border-b ${nightMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-gray-50'}`}>
-          <h3 className={`text-lg font-semibold ${nightMode ? 'text-gray-100' : 'text-gray-900'}`}>
-            Allen Brain Atlas
-          </h3>
-          <p className={`text-sm mt-1 ${nightMode ? 'text-gray-400' : 'text-gray-600'}`}>
-            Interactive 3D reference atlas from the{' '}
-            <a 
-              href="https://atlas.brain-map.org/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-blue-500 hover:text-blue-600 underline"
+        <div className={`px-6 py-4 border-b flex items-center justify-between ${
+          nightMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-gray-50'
+        }`}>
+          <div>
+            <h3 className={`text-lg font-semibold ${nightMode ? 'text-gray-100' : 'text-gray-900'}`}>
+              Allen Brain Atlas
+            </h3>
+            <p className={`text-sm mt-1 ${nightMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              Interactive 3D reference atlas from the{' '}
+              <a 
+                href="https://atlas.brain-map.org/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:text-blue-600 underline"
+              >
+                Allen Institute for Brain Science
+              </a>
+            </p>
+          </div>
+          <button
+            onClick={() => setIsAtlasExpanded(!isAtlasExpanded)}
+            className={`p-2 rounded-lg transition-all ${
+              nightMode
+                ? 'bg-gray-700 hover:bg-gray-600 text-gray-200'
+                : 'bg-gray-200 hover:bg-gray-300 text-gray-700'
+            }`}
+            aria-label={isAtlasExpanded ? 'Collapse atlas' : 'Expand atlas'}
+          >
+            <svg 
+              className={`w-5 h-5 transition-transform ${isAtlasExpanded ? 'rotate-180' : ''}`} 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
             >
-              Allen Institute for Brain Science
-            </a>
-          </p>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
         </div>
-        <div className="relative w-full" style={{ height: '800px' }}>
-          <iframe
-            src="https://atlas.brain-map.org/atlas?atlas=265297126#atlas=265297126&plate=112282815&structure=10338&x=53996.08258928572&y=57561.14397321429&zoom=-7&resolution=176.55&z=3"
-            className="w-full h-full border-0"
-            title="Allen Brain Atlas"
-            allow="fullscreen"
-            loading="lazy"
-            tabIndex={-1}
-          />
-        </div>
+        {isAtlasExpanded && (
+          <div className="relative w-full" style={{ height: '800px' }}>
+            <iframe
+              src="https://atlas.brain-map.org/atlas?atlas=265297126#atlas=265297126&plate=112282815&structure=10338&x=53996.08258928572&y=57561.14397321429&zoom=-7&resolution=176.55&z=3"
+              className="w-full h-full border-0"
+              title="Allen Brain Atlas"
+              allow="fullscreen"
+              loading="lazy"
+              tabIndex={-1}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

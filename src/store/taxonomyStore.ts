@@ -169,27 +169,32 @@ export function loadSubclassRegionDistribution(assayType: AssayType): Map<string
 }
 
 // Helper to serialize the store (for saving state)
-export function serializeTaxonomyStore(neighborhoods: TaxonomyNeighborhood[]): Record<string, boolean> {
-  const selections: Record<string, boolean> = {};
+// Returns an object with separate groups and subclasses to distinguish between them
+export function serializeTaxonomyStore(neighborhoods: TaxonomyNeighborhood[]): {
+  groups: Record<string, boolean>;
+  subclasses: Record<string, boolean>;
+} {
+  const groups: Record<string, boolean> = {};
+  const subclasses: Record<string, boolean> = {};
   
   neighborhoods.forEach(neighborhood => {
     neighborhood.classes.forEach(classObj => {
       classObj.subclasses.forEach(subclass => {
         // Include subclass selections
         if (subclass.isSelected) {
-          selections[subclass.subclass] = true;
+          subclasses[subclass.subclass] = true;
         }
         // Include group selections
         subclass.groups.forEach(group => {
           if (group.isSelected) {
-            selections[group.group] = true;
+            groups[group.group] = true;
           }
         });
       });
     });
   });
   
-  return selections;
+  return { groups, subclasses };
 }
 
 // Get color for a specific level in the hierarchy using colorblind-friendly palette

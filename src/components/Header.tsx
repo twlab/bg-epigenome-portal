@@ -15,6 +15,20 @@ function Header({ nightMode, onToggleNightMode, tabs, currentTab, onTabChange }:
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-4">
+            {/* Logo */}
+            <div className={`w-12 h-12 rounded-xl flex items-center justify-center overflow-hidden shrink-0 ${
+              nightMode ? 'bg-science-800 border-science-700' : 'bg-white border-science-200'
+            } border shadow-sm`}>
+              <img 
+                src="/logo.png" 
+                alt="BICAN Basal Ganglia Epigenome" 
+                className="w-full h-full object-contain"
+                onError={(e) => {
+                  // Fallback: hide broken image
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
+            </div>
             {/* Title area */}
             <div>
               <div className="flex items-center gap-2">

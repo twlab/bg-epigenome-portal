@@ -15,7 +15,7 @@ const AssaySelection: FC<AssaySelectionProps> = ({
   allTracks, 
   taxonomySelections,
   taxonomyData,
-  onTracksUpdate
+  onTracksUpdate,
 }) => {
   // Search query state
   const [searchQuery, setSearchQuery] = useState('');
@@ -29,7 +29,7 @@ const AssaySelection: FC<AssaySelectionProps> = ({
   const [trackStates, setTrackStates] = useState<Track[]>([]);
 
   // Update local state when sorted tracks change
-  useMemo(() => {
+  useEffect(() => {
     setTrackStates(sortedTracks);
   }, [sortedTracks]);
 

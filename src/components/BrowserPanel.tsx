@@ -26,6 +26,7 @@ const BrowserPanel: FC<BrowserPanelProps> = ({ nightMode, selectedTracks }) => {
   }, [selectedTracks]);
 
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showNavBar, setShowNavBar] = useState(false);
   const browserContainerRef = useRef<HTMLDivElement>(null);
 
   // Toggle fullscreen function
@@ -70,11 +71,11 @@ const BrowserPanel: FC<BrowserPanelProps> = ({ nightMode, selectedTracks }) => {
   }, []);
 
   return (
-    <div className={`space-y-6 ${nightMode ? 'text-gray-200' : 'text-gray-800'}`}>
+    <div className={`${isFullscreen ? 'h-screen' : 'space-y-6'} ${nightMode ? 'text-gray-200' : 'text-gray-800'}`}>
       {/* Browser Container */}
       <div 
         ref={browserContainerRef}
-        className={`rounded-2xl shadow-xl overflow-hidden ${
+        className={`${isFullscreen ? 'h-full rounded-none' : 'rounded-2xl'} shadow-xl overflow-hidden flex flex-col ${
           nightMode ? 'card-science-dark' : 'card-science'
         } ${isFullscreen ? 'fullscreen-browser' : ''}`}
       >
@@ -99,6 +100,32 @@ const BrowserPanel: FC<BrowserPanelProps> = ({ nightMode, selectedTracks }) => {
               Interactive genomic data visualization
             </p>
           </div>
+          {/* Nav Bar Toggle Button */}
+          <button
+            onClick={() => setShowNavBar(!showNavBar)}
+            className={`p-2.5 rounded-lg transition-all ${
+              nightMode
+                ? showNavBar
+                  ? 'bg-science-600 hover:bg-science-500 text-science-100'
+                  : 'bg-science-700 hover:bg-science-600 text-science-200'
+                : showNavBar
+                  ? 'bg-science-200 hover:bg-science-300 text-science-800'
+                  : 'bg-science-100 hover:bg-science-200 text-science-700'
+            } hover:shadow-md`}
+            title={showNavBar ? 'Hide Navigation Bar' : 'Show Navigation Bar'}
+          >
+            {showNavBar ? (
+              // Close/X icon when nav bar is visible
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              // Hamburger menu icon when nav bar is hidden
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </button>
           {/* Fullscreen Button */}
           <button
             onClick={toggleFullscreen}
@@ -122,23 +149,24 @@ const BrowserPanel: FC<BrowserPanelProps> = ({ nightMode, selectedTracks }) => {
         </div>
 
         {/* Browser Display */}
-        <div className="py-6">
-          <div className="overflow-y-auto max-h-[800px]">
-            <div className="relative bg-white w-full">
+        <div className={`flex-1 flex flex-col ${isFullscreen ? 'min-h-0' : 'py-6'}`}>
+          <div className={`flex-1 overflow-y-auto ${isFullscreen ? '' : 'max-h-[800px]'}`}>
+            <div className="relative bg-white w-full h-full">
               <GenomeHub
                 storeConfig={{storeId}}
                 genomeName={activeReference}
                 tracks={browserTracks}
                 viewRegion="chr7:27053397-27373765"
                 showGenomeNavigator={true}
-                showNavBar={false}
+                showNavBar={showNavBar}
                 showToolBar={true}
               />
             </div>
           </div>
         </div>
 
-        {/* Documentation Hint */}
+        {/* Documentation Hint - hidden in fullscreen */}
+        {!isFullscreen && (
         <div className="p-6 pt-0 space-y-2">
           <div className={`p-3 rounded-lg ${
             nightMode ? 'bg-sky-500/10 border-sky-500/30' : 'bg-sky-50 border-sky-200'
@@ -175,6 +203,7 @@ const BrowserPanel: FC<BrowserPanelProps> = ({ nightMode, selectedTracks }) => {
             </p>
           </div>
         </div>
+        )}
       </div>
     </div>
   );
