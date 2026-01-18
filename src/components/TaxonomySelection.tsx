@@ -435,15 +435,15 @@ const TaxonomySelection: FC<TaxonomySelectionProps> = ({ nightMode, taxonomyData
         </div>
       </div>
 
-      {/* Assay Type Selector */}
+      {/* Dataset Selector */}
       <div className={`rounded-2xl shadow-lg p-4 ${
         nightMode ? 'bg-gray-900/50 border border-gray-700' : 'bg-white border border-gray-200'
       }`}>
         <label className={`block text-sm font-medium mb-2 ${nightMode ? 'text-gray-300' : 'text-gray-700'}`}>
-          Assay Type
+          Dataset
         </label>
         <p className={`text-xs mb-3 ${nightMode ? 'text-gray-400' : 'text-gray-500'}`}>
-          Select the assay type for region distribution calculation
+          Select the dataset for region distribution calculation
         </p>
         <select
           value={assayType}
@@ -454,9 +454,9 @@ const TaxonomySelection: FC<TaxonomySelectionProps> = ({ nightMode, taxonomyData
               : 'bg-gray-50 border-gray-300 text-gray-900 focus:border-blue-500'
           } border focus:outline-none focus:ring-2 focus:ring-blue-500/50`}
         >
-          <option value="HMBA">HMBA</option>
-          <option value="PairedTag">PairedTag</option>
-          <option value="snm3c">snm3c</option>
+          <option value="HMBA">HMBA 10xMultiome</option>
+          <option value="PairedTag">BG_PairedTag</option>
+          <option value="snm3c">BG_snm3C-seq</option>
         </select>
       </div>
 
