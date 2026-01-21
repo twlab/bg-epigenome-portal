@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { useMemo, useState } from 'react';
 import { parseTaxonomyData, type TaxonomyNeighborhood } from '../store/taxonomyStore';
-import { parseTracksData, type Track } from '../store/trackStore';
+import { parseTracksData, type Track, getUniqueAssays } from '../store/trackStore';
 
 type DatasetOverviewProps = {
   nightMode: boolean;
@@ -190,6 +190,19 @@ const VerticalHeader: FC<{ text: string; nightMode: boolean }> = ({ text, nightM
   </th>
 );
 
+// Export CSV helper function
+const exportToCSV = (filename: string, csvContent: string) => {
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  const url = URL.createObjectURL(blob);
+  link.setAttribute('href', url);
+  link.setAttribute('download', filename);
+  link.style.visibility = 'hidden';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
 // Collapsible section component
 const CollapsibleSection: FC<{
   title: string;
@@ -198,22 +211,30 @@ const CollapsibleSection: FC<{
   nightMode: boolean;
   defaultOpen?: boolean;
   maxHeight?: string;
-}> = ({ title, count, children, nightMode, defaultOpen = true, maxHeight = '2000px' }) => {
+  onExport?: () => void;
+}> = ({ title, count, children, nightMode, defaultOpen = true, maxHeight = '2000px', onExport }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
+
+  const handleExportClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (onExport) {
+      onExport();
+    }
+  };
 
   return (
     <div className={`rounded-xl overflow-hidden ${
       nightMode ? 'card-science-dark' : 'card-science'
     }`}>
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className={`w-full px-6 py-4 flex items-center justify-between gap-4 transition-colors ${
-          nightMode 
-            ? 'hover:bg-science-700/30' 
-            : 'hover:bg-science-50'
-        }`}
-      >
-        <div className="flex items-center gap-3">
+      <div className={`w-full px-6 py-4 flex items-center justify-between gap-4 ${
+        nightMode 
+          ? 'hover:bg-science-700/30' 
+          : 'hover:bg-science-50'
+      } transition-colors`}>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="flex items-center gap-3 flex-1 text-left"
+        >
           <h3 className={`text-lg font-semibold ${nightMode ? 'text-white' : 'text-science-900'}`}>
             {title}
           </h3>
@@ -222,18 +243,41 @@ const CollapsibleSection: FC<{
           }`}>
             {count} items
           </span>
+        </button>
+        <div className="flex items-center gap-2">
+          {onExport && (
+            <button
+              onClick={handleExportClick}
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-2 ${
+                nightMode
+                  ? 'bg-primary-500/20 text-primary-400 hover:bg-primary-500/30'
+                  : 'bg-primary-100 text-primary-700 hover:bg-primary-200'
+              }`}
+              title="Export to CSV"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Export
+            </button>
+          )}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="p-1"
+          >
+            <svg 
+              className={`w-5 h-5 transition-transform duration-300 ${
+                nightMode ? 'text-science-400' : 'text-science-500'
+              } ${isOpen ? 'rotate-180' : ''}`}
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
         </div>
-        <svg 
-          className={`w-5 h-5 transition-transform duration-300 ${
-            nightMode ? 'text-science-400' : 'text-science-500'
-          } ${isOpen ? 'rotate-180' : ''}`}
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
+      </div>
       
       <div 
         className={`transition-all duration-300 ease-out overflow-hidden ${
@@ -300,6 +344,70 @@ const DatasetOverview: FC<DatasetOverviewProps> = ({ nightMode }) => {
   const subclassesWithData = subclassRows.filter(r => r.assaySpecies.size > 0).length;
   const groupsWithData = groupRows.filter(r => r.assaySpecies.size > 0).length;
   const uniqueAssaySpecies = assaySpeciesCombos.length;
+  const uniqueAssayTypes = getUniqueAssays(tracks).length;
+
+  // Export functions
+  const exportSubclassData = () => {
+    const headers = [
+      'Neighborhood',
+      'Class',
+      'Subclass',
+      ...assaySpeciesCombos.map(combo => 
+        `${assayDisplayNames[combo.assay] || combo.assay} (${speciesDisplayNames[combo.species] || combo.species})`
+      )
+    ];
+    
+    const rows = subclassRows.map(row => {
+      const data = [
+        row.neighborhood,
+        row.class,
+        row.subclass,
+        ...assaySpeciesCombos.map(combo => 
+          row.assaySpecies.has(combo.key) ? 'Y' : 'N'
+        )
+      ];
+      return data.map(cell => `"${cell}"`).join(',');
+    });
+    
+    const csvContent = [
+      headers.map(h => `"${h}"`).join(','),
+      ...rows
+    ].join('\n');
+    
+    exportToCSV('subclass_data_availability.csv', csvContent);
+  };
+
+  const exportGroupData = () => {
+    const headers = [
+      'Neighborhood',
+      'Class',
+      'Subclass',
+      'Group',
+      ...assaySpeciesCombos.map(combo => 
+        `${assayDisplayNames[combo.assay] || combo.assay} (${speciesDisplayNames[combo.species] || combo.species})`
+      )
+    ];
+    
+    const rows = groupRows.map(row => {
+      const data = [
+        row.neighborhood,
+        row.class,
+        row.subclass,
+        row.group,
+        ...assaySpeciesCombos.map(combo => 
+          row.assaySpecies.has(combo.key) ? 'Y' : 'N'
+        )
+      ];
+      return data.map(cell => `"${cell}"`).join(',');
+    });
+    
+    const csvContent = [
+      headers.map(h => `"${h}"`).join(','),
+      ...rows
+    ].join('\n');
+    
+    exportToCSV('group_data_availability.csv', csvContent);
+  };
 
   return (
     <div className={`space-y-8 ${nightMode ? 'text-gray-200' : 'text-gray-800'}`}>
@@ -353,6 +461,18 @@ const DatasetOverview: FC<DatasetOverviewProps> = ({ nightMode }) => {
               <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} 
+                        d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+              </div>
+              <div>
+                <div className="text-2xl font-bold">{uniqueAssayTypes}</div>
+                <div className="text-sm text-white/70">Assay Types</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} 
                         d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                 </svg>
               </div>
@@ -398,6 +518,7 @@ const DatasetOverview: FC<DatasetOverviewProps> = ({ nightMode }) => {
         count={subclassRows.length}
         nightMode={nightMode}
         defaultOpen={true}
+        onExport={exportSubclassData}
       >
         <div className="overflow-x-auto">
           <table className={`w-full text-sm ${nightMode ? 'text-science-300' : 'text-science-700'}`}>
@@ -527,6 +648,7 @@ const DatasetOverview: FC<DatasetOverviewProps> = ({ nightMode }) => {
         nightMode={nightMode}
         defaultOpen={true}
         maxHeight="3000px"
+        onExport={exportGroupData}
       >
         <div className="overflow-x-auto">
           <table className={`w-full text-sm ${nightMode ? 'text-science-300' : 'text-science-700'}`}>
