@@ -100,11 +100,16 @@ export const rheMac10_default_tracks = [
 export const mCalJa12_default_tracks = [
   mCalJa12_genome_align_track,
   {
-    type: "geneAnnotation",
-    name: "refGene",
-    genome: "mCalJa1.2",
-    metadata: {"genome": "mCalJa1.2"}
+    name: "xenoRefGene",
+    label: "xenoRefGene",
+    type: "refbed",
+    url: "https://vizhub.wustl.edu/public/mCalJa1.2.pat.X/refbed.gz",
+    metadata: {"genome": "mCalJa1.2"},
+    options: {
+      "color1": "blue"
+    }
   }
+
 ];
 
 
