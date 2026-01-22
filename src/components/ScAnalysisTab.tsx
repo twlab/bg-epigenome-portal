@@ -45,7 +45,7 @@ const ScAnalysisTab: FC<ScAnalysisTabProps> = ({ nightMode }) => {
       <div className={`rounded-2xl overflow-hidden ${nightMode ? 'card-science-dark' : 'card-science'}`}>
         <div className="relative w-full" style={{ height: '800px', minHeight: '600px' }}>
           <iframe
-            src="http://neomorph.salk.edu:8000/SCMDAP/BGE"
+            src="https://neomorph.salk.edu:8000/SCMDAP/BGE"
             className="w-full h-full border-0"
             title="Single-Cell Analysis Dashboard"
             allow="fullscreen"

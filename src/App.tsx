@@ -102,9 +102,9 @@ function App() {
       { id: 'taxonomy', label: 'Taxonomy Selection' },
       { id: 'assay', label: 'Assay Selection' },
       { id: 'browser', label: 'Browser' },
+      { id: 'scAnalysis', label: 'scAnalysis' },
       { id: 'session', label: 'Session' },
       { id: 'dataset', label: 'Dataset' },
-      { id: 'scAnalysis', label: 'scAnalysis' },
       { id: 'about', label: 'About' },
     ],
     []
