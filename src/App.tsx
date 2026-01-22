@@ -9,16 +9,17 @@ import AboutSection from './components/AboutSection';
 import LandingPage from './components/LandingPage';
 import InteractiveGuide from './components/InteractiveGuide';
 import SessionTab from './components/SessionTab';
+import ScAnalysisTab from './components/ScAnalysisTab';
 import CookieBanner from './components/CookieBanner';
 import { parseTaxonomyData, type TaxonomyNeighborhood, serializeTaxonomyStore } from './store/taxonomyStore';
 import { parseTracksData, type Track } from './store/trackStore';
 import { getCookie, setCookie } from './utils/cookieUtils';
 import './style.css';
 
-type TabId = 'taxonomy' | 'assay' | 'browser' | 'dataset' | 'about' | 'session';
+type TabId = 'taxonomy' | 'assay' | 'browser' | 'dataset' | 'about' | 'session' | 'scAnalysis';
 
 // Valid tab IDs
-const validTabIds: TabId[] = ['taxonomy', 'assay', 'browser', 'dataset', 'about', 'session'];
+const validTabIds: TabId[] = ['taxonomy', 'assay', 'browser', 'dataset', 'about', 'session', 'scAnalysis'];
 
 // Get initial tab from URL params
 function getInitialTabFromURL(): TabId {
@@ -103,6 +104,7 @@ function App() {
       { id: 'browser', label: 'Browser' },
       { id: 'session', label: 'Session' },
       { id: 'dataset', label: 'Dataset' },
+      { id: 'scAnalysis', label: 'scAnalysis' },
       { id: 'about', label: 'About' },
     ],
     []
@@ -189,6 +191,7 @@ function App() {
                   onStartGuide={() => setShowGuide(true)}
                 />
               )}
+              {currentTab === 'scAnalysis' && <ScAnalysisTab nightMode={nightMode} />}
             </section>
           </main>
         )}
