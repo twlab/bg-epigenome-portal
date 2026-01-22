@@ -71,7 +71,7 @@ export const mCalJa12_genome_align_track = {
   "name": "hg38 vs mCalJa1.2",
   "querygenome": "mCalJa1.2", 
   "type": "genomealign", 
-  "url": "https://wangcluster.wustl.edu/~wzhang/projects/bge/data/mCalJa1/genome.gz", 
+  "url": "https://wangcluster.wustl.edu/~wzhang/projects/bge/data/mCalJa1/asm20/genome.gz",
 }
 
 
