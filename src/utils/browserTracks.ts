@@ -92,7 +92,8 @@ export const rheMac10_default_tracks = [
   rheMac10_genome_align_track,
   {
     type: "geneAnnotation",
-    name: "NCBI genes",
+    name: "ncbiGene",
+    label: "NCBI genes",
     genome: "rheMac10",
     metadata: {"genome": "rheMac10"}
   }
