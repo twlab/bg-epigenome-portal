@@ -16,6 +16,7 @@ mv ./src/dist ./docs
 ECHO "basalganglia.epigenomes.net" > docs/CNAME
 
 git add docs
+git add src
 
 
 
