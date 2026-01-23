@@ -120,7 +120,7 @@ function App() {
       nightMode 
         ? 'bg-science-900' 
         : 'bg-gradient-to-br from-science-50 via-primary-50/30 to-science-100'
-    }`}>
+    }`} style={currentTab === 'browser' || currentTab === 'scAnalysis' ? { height: '100vh', display: 'flex', flexDirection: 'column' } : {}}>
       {/* Subtle background pattern */}
       <div className={`fixed inset-0 pointer-events-none ${nightMode ? 'opacity-30' : 'opacity-50'}`}>
         <div className="absolute inset-0 pattern-neural" />
@@ -131,7 +131,7 @@ function App() {
         <div className="fixed inset-0 pointer-events-none gradient-mesh opacity-50" />
       )}
 
-      <div className="relative z-10">
+      <div className={`relative z-10 ${currentTab === 'browser' || currentTab === 'scAnalysis' ? 'flex flex-col flex-1' : ''}`} style={currentTab === 'browser' || currentTab === 'scAnalysis' ? { minHeight: 0, overflow: 'hidden' } : {}}>
         {/* Interactive Guide Overlay */}
         {showGuide && (
           <InteractiveGuide
@@ -150,14 +150,19 @@ function App() {
           onTabChange={(tab) => setCurrentTab(tab as TabId)}
         />
 
-        {/* Browser tab uses full width, other tabs use max-width constraint */}
-        {currentTab === 'browser' ? (
-          <main className="px-4 sm:px-6 lg:px-8 py-8">
-            <section className="animate-fade-in">
-              <BrowserPanel 
-                nightMode={nightMode}
-                selectedTracks={selectedTracks}
-              />
+        {/* Browser and scAnalysis tabs use full width and maximize vertical space */}
+        {currentTab === 'browser' || currentTab === 'scAnalysis' ? (
+          <main className="flex-1 flex flex-col px-4 sm:px-6 lg:px-8 py-4" style={{ minHeight: 0, overflow: 'hidden' }}>
+            <section className="animate-fade-in flex-1 flex flex-col" style={{ minHeight: 0, overflow: 'hidden' }}>
+              {currentTab === 'browser' && (
+                <BrowserPanel 
+                  nightMode={nightMode}
+                  selectedTracks={selectedTracks}
+                />
+              )}
+              {currentTab === 'scAnalysis' && (
+                <ScAnalysisTab nightMode={nightMode} />
+              )}
             </section>
           </main>
         ) : (
@@ -191,12 +196,11 @@ function App() {
                   onStartGuide={() => setShowGuide(true)}
                 />
               )}
-              {currentTab === 'scAnalysis' && <ScAnalysisTab nightMode={nightMode} />}
             </section>
           </main>
         )}
 
-        <footer className={`${
+        <footer className={`shrink-0 ${
           nightMode 
             ? 'bg-science-900/80 border-science-800' 
             : 'bg-white/80 border-science-200'

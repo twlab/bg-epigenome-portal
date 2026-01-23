@@ -14,10 +14,10 @@ type ScAnalysisTabProps = {
 
 const ScAnalysisTab: FC<ScAnalysisTabProps> = ({ nightMode }) => {
   return (
-    <div className={`space-y-6 ${nightMode ? 'text-gray-200' : 'text-gray-800'}`}>
+    <div className={`flex flex-col h-full ${nightMode ? 'text-gray-200' : 'text-gray-800'}`} style={{ minHeight: 0, height: '100%' }}>
       {/* Header Section */}
-      <div className={`rounded-2xl p-8 ${nightMode ? 'card-science-dark' : 'card-science'}`}>
-        <div className="flex items-start gap-4 mb-6">
+      <div className={`rounded-2xl p-6 mb-4 shrink-0 ${nightMode ? 'card-science-dark' : 'card-science'}`}>
+        <div className="flex items-start gap-4">
           <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${
             nightMode ? 'bg-primary-500/20' : 'bg-primary-100'
           }`}>
@@ -41,9 +41,9 @@ const ScAnalysisTab: FC<ScAnalysisTabProps> = ({ nightMode }) => {
         </div>
       </div>
 
-      {/* Embedded Analysis Tool */}
-      <div className={`rounded-2xl overflow-hidden ${nightMode ? 'card-science-dark' : 'card-science'}`}>
-        <div className="relative w-full" style={{ height: '800px', minHeight: '600px' }}>
+      {/* Embedded Analysis Tool - fills remaining space */}
+      <div className={`flex-1 rounded-2xl overflow-hidden ${nightMode ? 'card-science-dark' : 'card-science'}`} style={{ minHeight: 0, flex: '1 1 0%' }}>
+        <div className="relative w-full h-full" style={{ height: '100%' }}>
           <iframe
             src="https://neomorph.salk.edu/SCMDAP/BGE"
             className="w-full h-full border-0"
@@ -51,6 +51,7 @@ const ScAnalysisTab: FC<ScAnalysisTabProps> = ({ nightMode }) => {
             allow="fullscreen"
             loading="lazy"
             tabIndex={-1}
+            style={{ height: '100%', width: '100%' }}
           />
         </div>
       </div>

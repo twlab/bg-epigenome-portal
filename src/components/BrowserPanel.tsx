@@ -71,13 +71,14 @@ const BrowserPanel: FC<BrowserPanelProps> = ({ nightMode, selectedTracks }) => {
   }, []);
 
   return (
-    <div className={`${isFullscreen ? 'h-screen' : 'space-y-6'} ${nightMode ? 'text-gray-200' : 'text-gray-800'}`}>
+    <div className={`${isFullscreen ? 'h-screen' : 'h-full flex flex-col'} ${nightMode ? 'text-gray-200' : 'text-gray-800'}`} style={{ minHeight: 0 }}>
       {/* Browser Container */}
       <div 
         ref={browserContainerRef}
-        className={`${isFullscreen ? 'h-full rounded-none' : 'rounded-2xl'} shadow-xl overflow-hidden flex flex-col ${
+        className={`${isFullscreen ? 'h-full rounded-none' : 'rounded-2xl flex-1'} shadow-xl overflow-hidden flex flex-col ${
           nightMode ? 'card-science-dark' : 'card-science'
         } ${isFullscreen ? 'fullscreen-browser' : ''}`}
+        style={!isFullscreen ? { minHeight: 0 } : {}}
       >
         {/* Browser Header */}
         <div className={`px-6 py-4 border-b flex items-center gap-3 ${
@@ -149,8 +150,8 @@ const BrowserPanel: FC<BrowserPanelProps> = ({ nightMode, selectedTracks }) => {
         </div>
 
         {/* Browser Display */}
-        <div className={`flex-1 flex flex-col ${isFullscreen ? 'min-h-0' : 'py-6'}`}>
-          <div className={`flex-1 overflow-y-auto ${isFullscreen ? '' : 'max-h-[800px]'}`}>
+        <div className={`flex-1 flex flex-col ${isFullscreen ? 'min-h-0' : 'py-6'}`} style={{ minHeight: 0 }}>
+          <div className={`flex-1 overflow-y-auto ${isFullscreen ? '' : ''}`} style={{ minHeight: 0 }}>
             <div className="relative bg-white w-full h-full">
               <GenomeHub
                 storeConfig={{storeId}}
