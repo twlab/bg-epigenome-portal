@@ -4,6 +4,7 @@ import type { TaxonomyNeighborhood } from './taxonomyStore';
 export interface TrackMetadata {
   source?: string;
   assay?: string;
+  modality?: string;
   description?: string;
   reference?: string;
   group?: string;

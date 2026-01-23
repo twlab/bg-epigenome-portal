@@ -45,6 +45,7 @@ const AssaySelection: FC<AssaySelectionProps> = ({
         track.metadata.subclass,
         track.metadata.group,
         track.metadata.assay,
+        track.metadata.modality,
         track.metadata.source,
         track.metadata.description,
         track.metadata.reference,
@@ -66,6 +67,7 @@ const AssaySelection: FC<AssaySelectionProps> = ({
         track.metadata.subclass,
         track.metadata.group,
         track.metadata.assay,
+        track.metadata.modality,
         track.metadata.source,
         track.metadata.description,
         track.metadata.reference,
@@ -129,6 +131,53 @@ const AssaySelection: FC<AssaySelectionProps> = ({
       )
     );
   };
+
+  // Batch select by assay
+  const selectByAssay = (assay: string) => {
+    setTrackStates(prev => 
+      prev.map(track => 
+        track.metadata.assay === assay ? { ...track, selected: true } : track
+      )
+    );
+  };
+
+  // Batch select by modality
+  const selectByModality = (modality: string) => {
+    setTrackStates(prev => 
+      prev.map(track => 
+        track.metadata.modality === modality ? { ...track, selected: true } : track
+      )
+    );
+  };
+
+  // Batch select by species (reference)
+  const selectBySpecies = (reference: string) => {
+    setTrackStates(prev => 
+      prev.map(track => 
+        track.metadata.reference === reference ? { ...track, selected: true } : track
+      )
+    );
+  };
+
+  // Get unique values for batch selection
+  const uniqueAssays = useMemo(() => {
+    const assays = new Set(trackStates.map(t => t.metadata.assay).filter(Boolean));
+    return Array.from(assays).sort();
+  }, [trackStates]);
+
+  const uniqueModalities = useMemo(() => {
+    const modalities = new Set(trackStates.map(t => t.metadata.modality).filter(Boolean));
+    return Array.from(modalities).sort();
+  }, [trackStates]);
+
+  const uniqueSpecies = useMemo(() => {
+    const species = new Set(trackStates.map(t => t.metadata.reference).filter(Boolean));
+    return Array.from(species).sort((a, b) => {
+      // Sort by species order: hg38, mm10, rheMac10, mCalJa1.2
+      const order = ['hg38', 'mm10', 'rheMac10', 'mCalJa1.2'];
+      return order.indexOf(a) - order.indexOf(b);
+    });
+  }, [trackStates]);
 
   // Update parent component whenever track states change
   useEffect(() => {
@@ -222,7 +271,7 @@ const AssaySelection: FC<AssaySelectionProps> = ({
           <div className="relative">
             <input
               type="text"
-              placeholder="Search tracks by subclass, group, assay, source, description..."
+              placeholder="Search tracks by subclass, group, assay, modality, source, description..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className={`w-full px-4 py-3 pl-11 rounded-xl border transition-all ${
@@ -256,6 +305,91 @@ const AssaySelection: FC<AssaySelectionProps> = ({
                 </svg>
               </button>
             )}
+          </div>
+
+          {/* Batch Add Panel */}
+          <div className={`p-4 rounded-xl border ${
+            nightMode ? 'bg-science-800/50 border-science-700' : 'bg-science-50 border-science-200'
+          }`}>
+            <div className="flex items-center gap-2 mb-3">
+              <svg className={`w-5 h-5 ${nightMode ? 'text-primary-400' : 'text-primary-600'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+              </svg>
+              <span className={`text-sm font-semibold ${nightMode ? 'text-white' : 'text-science-900'}`}>
+                Batch Add by Category
+              </span>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {/* By Assay */}
+              <div className="space-y-2">
+                <label className={`text-xs font-medium ${nightMode ? 'text-science-400' : 'text-science-600'}`}>
+                  By Assay:
+                </label>
+                <div className="flex flex-wrap gap-1.5">
+                  {uniqueAssays.map(assay => (
+                    <button
+                      key={assay}
+                      onClick={() => selectByAssay(assay)}
+                      className={`px-2.5 py-1.5 text-xs font-medium rounded-lg transition-all ${
+                        nightMode 
+                          ? 'bg-primary-500/20 text-primary-300 hover:bg-primary-500/30 border border-primary-500/30' 
+                          : 'bg-primary-100 text-primary-700 hover:bg-primary-200 border border-primary-200'
+                      }`}
+                      title={`Select all ${assay} tracks`}
+                    >
+                      {assay}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* By Modality */}
+              <div className="space-y-2">
+                <label className={`text-xs font-medium ${nightMode ? 'text-science-400' : 'text-science-600'}`}>
+                  By Modality:
+                </label>
+                <div className="flex flex-wrap gap-1.5">
+                  {uniqueModalities.map(modality => (
+                    <button
+                      key={modality}
+                      onClick={() => selectByModality(modality)}
+                      className={`px-2.5 py-1.5 text-xs font-medium rounded-lg transition-all ${
+                        nightMode 
+                          ? 'bg-accent-500/20 text-accent-300 hover:bg-accent-500/30 border border-accent-500/30' 
+                          : 'bg-accent-100 text-accent-700 hover:bg-accent-200 border border-accent-200'
+                      }`}
+                      title={`Select all ${modality} tracks`}
+                    >
+                      {modality}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* By Species */}
+              <div className="space-y-2">
+                <label className={`text-xs font-medium ${nightMode ? 'text-science-400' : 'text-science-600'}`}>
+                  By Species:
+                </label>
+                <div className="flex flex-wrap gap-1.5">
+                  {uniqueSpecies.map(species => (
+                    <button
+                      key={species}
+                      onClick={() => selectBySpecies(species)}
+                      className={`px-2.5 py-1.5 text-xs font-medium rounded-lg transition-all ${
+                        nightMode 
+                          ? 'bg-success-500/20 text-success-300 hover:bg-success-500/30 border border-success-500/30' 
+                          : 'bg-success-100 text-success-700 hover:bg-success-200 border border-success-200'
+                      }`}
+                      title={`Select all ${getReferenceLabel(species)} tracks`}
+                    >
+                      {getReferenceLabel(species)}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Bulk Selection Controls */}
