@@ -291,7 +291,7 @@ const TaxonomySelection: FC<TaxonomySelectionProps> = ({ nightMode, taxonomyData
       <div className={`rounded-2xl shadow-xl overflow-hidden ${
         nightMode ? 'bg-gray-900/50 border border-gray-700' : 'bg-white border border-gray-200'
       }`}>
-        <div className="overflow-x-auto">
+        <div>
           <table className="w-full">
             <thead className={`${nightMode ? 'bg-gray-800' : 'bg-gray-200'}`}>
               <tr>
