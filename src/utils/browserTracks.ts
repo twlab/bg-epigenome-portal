@@ -108,7 +108,13 @@ export const mCalJa12_default_tracks = [
     url: "https://vizhub.wustl.edu/public/mCalJa1.2.pat.X/refbed.gz",
     metadata: {"genome": "mCalJa1.2"},
     options: {
-      "color1": "blue"
+      categoryColors: {
+        coding: "blue",
+        nonCoding: "rgb(1,193,75)",
+        pseudo: "rgb(230,0,172)",
+        problem: "rgb(224,2,2)",
+        other: "rgb(128,128,128)",
+      }
     }
   }
 
