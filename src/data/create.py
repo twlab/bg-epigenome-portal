@@ -252,9 +252,9 @@ with open("./tracks.tsv", "w") as f:
 
         meta_data = {
             "source": "Allen Institute",
-            "assay": "10X multiome",
+            "assay": "10X Multiome",
             "modality": "accessibility",
-            "description": "10X multiome ATAC-seq",
+            "description": "10X Multiome ATAC-seq",
             "reference": "hg38",
             "group": gg,
         }
@@ -289,9 +289,9 @@ with open("./tracks.tsv", "w") as f:
 
         meta_data = {
             "source": "Allen Institute",
-            "assay": "10X multiome",
+            "assay": "10X Multiome",
             "modality": "accessibility",
-            "description": "10X multiome ATAC-seq",
+            "description": "10X Multiome ATAC-seq",
             "reference": "hg38",
             "subclass": gsc,
         }
@@ -367,8 +367,10 @@ with open("./tracks.tsv", "w") as f:
             line = f"{json.dumps(meta_data)}\t{json.dumps(track_display_data)}\n"
             f.write(line)
 
-
-        files = ftp_url_to_list(f"https://epigenome.wustl.edu/basal-ganglia-epigenome/tracks/renlab/Subclass/BGC_paired-tag_{xna}_bw_file/", file_types=allowed_file_types)
+        urlx = f"https://epigenome.wustl.edu/basal-ganglia-epigenome/tracks/renlab/Subclass/BGC_paired-tag_{xna}_bw_file/"
+        if xna == "DNA":
+            urlx = f"https://epigenome.wustl.edu/basal-ganglia-epigenome/tracks/renlab/Subclass/BGC_paired-Tag_DNA_500bp_bw_file/"
+        files = ftp_url_to_list(urlx, file_types=allowed_file_types)
         for furl in files:
 
             ft = file_type_from_url(furl)
@@ -501,8 +503,8 @@ with open("./tracks.tsv", "w") as f:
     files_urls = {
         "https://epigenome.wustl.edu/basal-ganglia-epigenome/tracks/mouse/renlab/Mous_MSN_Histone_bw/":   ["mm10", "Paired Tag", "", "Ren Lab", "Paired Tag histone"],
         "https://epigenome.wustl.edu/basal-ganglia-epigenome/tracks/mouse/renlab/Mouse_MSN_RNA_bw_file/": ["mm10", "Paired Tag", "expression", "Ren Lab", "Paired Tag RNA expression"],
-        "https://epigenome.wustl.edu/basal-ganglia-epigenome/tracks/marmoset/ATAC/": ["mCalJa1.2", "10X multiome", "accessibility", "Allen Institute", "10X multiome ATAC-seq"],
-        "https://epigenome.wustl.edu/basal-ganglia-epigenome/tracks/macaque/ATAC/":   ["rheMac10", "10X multiome", "accessibility", "Allen Institute", "10X multiome ATAC-seq"],
+        "https://epigenome.wustl.edu/basal-ganglia-epigenome/tracks/marmoset/ATAC/": ["mCalJa1.2", "10X Multiome", "accessibility", "Allen Institute", "10X Multiome ATAC-seq"],
+        "https://epigenome.wustl.edu/basal-ganglia-epigenome/tracks/macaque/ATAC/":   ["rheMac10", "10X Multiome", "accessibility", "Allen Institute", "10X Multiome ATAC-seq"],
     }
 
 

@@ -454,7 +454,7 @@ const TaxonomySelection: FC<TaxonomySelectionProps> = ({ nightMode, taxonomyData
               : 'bg-gray-50 border-gray-300 text-gray-900 focus:border-blue-500'
           } border focus:outline-none focus:ring-2 focus:ring-blue-500/50`}
         >
-          <option value="HMBA">HMBA 10xMultiome</option>
+          <option value="HMBA">HMBA 10X Multiome</option>
           <option value="PairedTag">BG_PairedTag</option>
           <option value="snm3c">BG_snm3C-seq</option>
         </select>
