@@ -38,7 +38,6 @@ setUseViewRegion
   }, [selectedTracks]);
 
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [showNavBar, setShowNavBar] = useState(false);
   const browserContainerRef = useRef<HTMLDivElement>(null);
 
   // Toggle fullscreen function
@@ -158,52 +157,6 @@ setUseViewRegion
               Interactive genomic data visualization
             </p>
           </div>
-          {/* Nav Bar Toggle Button */}
-          <button
-            onClick={() => setShowNavBar(!showNavBar)}
-            className={`p-2.5 rounded-lg transition-all ${
-              nightMode
-                ? showNavBar
-                  ? "bg-science-600 hover:bg-science-500 text-science-100"
-                  : "bg-science-700 hover:bg-science-600 text-science-200"
-                : showNavBar
-                  ? "bg-science-200 hover:bg-science-300 text-science-800"
-                  : "bg-science-100 hover:bg-science-200 text-science-700"
-            } hover:shadow-md`}
-            title={showNavBar ? "Hide Navigation Bar" : "Show Navigation Bar"}
-          >
-            {showNavBar ? (
-              // Close/X icon when nav bar is visible
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            ) : (
-              // Hamburger menu icon when nav bar is hidden
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            )}
-          </button>
           {/* Fullscreen Button */}
           <button
             onClick={toggleFullscreen}
@@ -249,9 +202,6 @@ setUseViewRegion
         </div>
 
         {/* Browser Display */}
-        <>
-          {storeId} {viewRegion}
-        </>
         <div
           className={`flex-1 flex flex-col ${isFullscreen ? "min-h-0" : "py-6"}`}
           style={{ minHeight: 0 }}
@@ -267,11 +217,13 @@ setUseViewRegion
                 genomeName={activeReference}
                 tracks={browserTracks}
                 onSessionUpdate={onSessionUpdate}
+
                 showGenomeNavigator={true}
-                showNavBar={showNavBar}
+                showNavBar={true}
                 showToolBar={true}
+
                 showDisclosure={false}
-                   darkMode={nightMode}
+                darkMode={nightMode}
 
               />
             </div>

@@ -426,8 +426,8 @@ with open("./tracks.tsv", "w") as f:
 
         # skip methylation.bigwig
         folder_des = {
-            "enhancers": ["snm3C-seq", "chromatin conformation", "Activity by contacts annotation"],
-            "ABC.links": ["snm3C-seq", "chromatin conformation", "Activity by contacts from snm3C-seq"],
+            "enhancers": ["snm3C-seq", "accessibility", "Activity by contacts annotation"],
+            "ABC.links": ["snm3C-seq", "accessibility", "Activity by contacts from snm3C-seq"],
             # "atac": ["snm3C-seq", "", "Chromatin accessibility from snm3C-seq"],
             "domain": ["snm3C-seq", "chromatin conformation", "The topologically associating domains from snm3C-seq"],
             "hic": ["snm3C-seq", "chromatin conformation", "Chromatin interactions from snm3C-seq"],

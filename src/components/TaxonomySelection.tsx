@@ -1086,7 +1086,7 @@ const TaxonomySelection: FC<TaxonomySelectionProps> = ({ nightMode, taxonomyData
         </div>
       </div>
 
-      {/* 3D Brain Structure Explorer Section */}
+      {/* Brain Anatomical Structure Explorer Section */}
       <div className={`rounded-2xl shadow-xl overflow-hidden ${
         nightMode ? 'bg-gray-900/50 border border-gray-700' : 'bg-white border border-gray-200'
       }`}>
@@ -1095,10 +1095,10 @@ const TaxonomySelection: FC<TaxonomySelectionProps> = ({ nightMode, taxonomyData
         }`}>
           <div>
             <h3 className={`text-lg font-semibold ${nightMode ? 'text-gray-100' : 'text-gray-900'}`}>
-              3D Brain Structure Explorer
+              Brain anatomical structure explorer
             </h3>
             <p className={`text-sm mt-1 ${nightMode ? 'text-gray-400' : 'text-gray-600'}`}>
-              Interactive 3D reference atlas — select a species to explore brain structures
+              Select a species to explore brain structures
             </p>
           </div>
           <button
@@ -1158,7 +1158,7 @@ const TaxonomySelection: FC<TaxonomySelectionProps> = ({ nightMode, taxonomyData
                     macaque: 'https://scalablebrainatlas.incf.org/main/coronal3d.php?template=CBCetal15',
                   }[atlasSpecies]}
                   className="w-full h-full border-0"
-                  title={`3D Brain Structure Explorer — ${atlasSpecies.charAt(0).toUpperCase() + atlasSpecies.slice(1)}`}
+                  title={`Brain anatomical structure explorer — ${atlasSpecies.charAt(0).toUpperCase() + atlasSpecies.slice(1)}`}
                   allow="fullscreen"
                   loading="lazy"
                   tabIndex={-1}
