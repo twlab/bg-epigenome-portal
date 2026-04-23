@@ -51,10 +51,7 @@ function App() {
 
   // Browser view region state
   const DEFAULT_VIEW_REGION = 'chr7:27053397-27373765';
-
-  // CHADS NOTE: initialize setCurrentViewRegion to DEFAULT_VIEW_REGION for old functionality, 
-  // setting it to "" will allow the browser to load previous sessions data on refresh 
-  const [currentViewRegion, setCurrentViewRegion] = useState<string>("");
+  const [currentViewRegion, setCurrentViewRegion] = useState<string>(DEFAULT_VIEW_REGION);
 
   // Access serialized selections for debugging or passing to other components
   // Keep groups and subclasses separated to distinguish between them

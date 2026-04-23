@@ -117,6 +117,45 @@ setUseViewRegion
       className={`${isFullscreen ? "h-screen" : "h-full flex flex-col"} ${nightMode ? "text-gray-200" : "text-gray-800"}`}
       style={{ minHeight: 0 }}
     >
+      {/* DEBUG: browserTracks */}
+      <details className="mb-2 rounded-xl border border-amber-300 bg-amber-50 shadow-sm text-xs overflow-hidden">
+        <summary className="cursor-pointer select-none px-3 py-2 font-semibold text-amber-800 flex items-center gap-2 hover:bg-amber-100 transition-colors">
+          <svg className="w-3.5 h-3.5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" />
+          </svg>
+          <span>Debug: browserTracks</span>
+          <span className="ml-1 px-1.5 py-0.5 rounded-full bg-amber-200 text-amber-900 font-bold">{browserTracks.length}</span>
+        </summary>
+        <div className="overflow-x-auto max-h-56 border-t border-amber-200">
+          <table className="w-full text-left font-mono">
+            <thead className="sticky top-0 bg-amber-100 text-amber-900 uppercase tracking-wide text-[10px]">
+              <tr>
+                <th className="px-3 py-1.5 border-b border-amber-200">#</th>
+                <th className="px-3 py-1.5 border-b border-amber-200">type</th>
+                <th className="px-3 py-1.5 border-b border-amber-200">name</th>
+                <th className="px-3 py-1.5 border-b border-amber-200">label</th>
+                <th className="px-3 py-1.5 border-b border-amber-200">genome</th>
+                <th className="px-3 py-1.5 border-b border-amber-200">url</th>
+              </tr>
+            </thead>
+            <tbody>
+              {browserTracks.map((track: any, i: number) => (
+                <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-amber-50"}>
+                  <td className="px-3 py-1 text-amber-500 border-b border-amber-100">{i}</td>
+                  <td className="px-3 py-1 border-b border-amber-100">
+                    <span className="px-1.5 py-0.5 rounded bg-amber-200 text-amber-900 text-[10px] font-bold">{track.type ?? "—"}</span>
+                  </td>
+                  <td className="px-3 py-1 border-b border-amber-100 text-gray-800">{track.name ?? "—"}</td>
+                  <td className="px-3 py-1 border-b border-amber-100 text-gray-600">{track.label ?? "—"}</td>
+                  <td className="px-3 py-1 border-b border-amber-100 text-gray-600">{track.genome ?? track.querygenome ?? "—"}</td>
+                  <td className="px-3 py-1 border-b border-amber-100 text-blue-600 max-w-xs truncate" title={track.url}>{track.url ?? "—"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </details>
+
       {/* Browser Container */}
            {/* ${ nightMode ? "card-science-dark" : "card-science"} CHADS NOTE: these styles causes issues with hover alignment and hover*/}
       <div

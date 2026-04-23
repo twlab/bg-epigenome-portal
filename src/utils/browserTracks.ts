@@ -45,11 +45,6 @@ export const hg38_default_tracks = [
     name: "refGene",
     genome: "hg38",
   },
-  {
-    name: "AAV Enhancers",
-    type: "categorical",
-    url: "https://epigenome.wustl.edu/basal-ganglia-epigenome/tracks/allen/AAV_enhancer_hg38.bed.gz",
-  }
 ];
 
 
