@@ -1,4 +1,4 @@
-import { type FC, useState } from 'react';
+import React, { type FC, useState, useEffect } from 'react';
 
 type AboutSectionProps = {
   nightMode: boolean;
@@ -11,8 +11,39 @@ const CITATION_TEXT =
   'An Integrated Single-Cell and Epigenomic Resource for Comparative Analysis of the Basal Ganglia. ' +
   'bioRxiv. 2026. doi:10.64898/2026.01.29.702575';
 
+function timeAgo(date: Date): string {
+  const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
+  if (seconds < 60) return `${seconds} second${seconds !== 1 ? 's' : ''} ago`;
+  const minutes = Math.floor(seconds / 60);
+  if (minutes < 60) return `${minutes} minute${minutes !== 1 ? 's' : ''} ago`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours} hour${hours !== 1 ? 's' : ''} ago`;
+  const days = Math.floor(hours / 24);
+  if (days < 30) return `${days} day${days !== 1 ? 's' : ''} ago`;
+  const months = Math.floor(days / 30);
+  if (months < 12) return `${months} month${months !== 1 ? 's' : ''} ago`;
+  const years = Math.floor(months / 12);
+  return `${years} year${years !== 1 ? 's' : ''} ago`;
+}
+
 const AboutSection: FC<AboutSectionProps> = ({ nightMode }) => {
   const [copied, setCopied] = useState(false);
+  const [lastModified, setLastModified] = useState<Date | null>(null);
+  const [lastModifiedError, setLastModifiedError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const url = window.location.origin;
+    fetch(url, { method: 'HEAD' })
+      .then((res) => {
+        const header = res.headers.get('last-modified');
+        if (header) {
+          setLastModified(new Date(header));
+        } else {
+          setLastModifiedError('Last-Modified header not available');
+        }
+      })
+      .catch(() => setLastModifiedError('Could not reach the server'));
+  }, []);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(CITATION_TEXT).then(() => {
@@ -336,6 +367,34 @@ const AboutSection: FC<AboutSectionProps> = ({ nightMode }) => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
           </svg>
         </a>
+      </div>
+    </div>
+    {/* Last Updated */}
+    <div className={`rounded-xl p-5 flex items-center gap-4 ${nightMode ? 'bg-science-900/50 border border-science-700' : 'bg-science-50 border border-science-200'}`}>
+      <div className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${nightMode ? 'bg-science-800' : 'bg-white border border-science-200'}`}>
+        <svg className={`w-4.5 h-4.5 ${nightMode ? 'text-science-400' : 'text-science-500'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <div className="min-w-0">
+        <p className={`text-xs font-semibold uppercase tracking-wider mb-0.5 ${nightMode ? 'text-science-500' : 'text-science-400'}`}>
+          Site Last Updated
+        </p>
+        {lastModified ? (
+          <p className={`text-sm ${nightMode ? 'text-science-200' : 'text-science-800'}`}>
+            <span className="font-medium">{lastModified.toLocaleString()}</span>
+            <span className={`ml-2 ${nightMode ? 'text-science-400' : 'text-science-500'}`}>
+              — {timeAgo(lastModified)}
+            </span>
+          </p>
+        ) : lastModifiedError ? (
+          <p className={`text-sm italic ${nightMode ? 'text-science-500' : 'text-science-400'}`}>{lastModifiedError}</p>
+        ) : (
+          <p className={`text-sm italic ${nightMode ? 'text-science-500' : 'text-science-400'}`}>Checking…</p>
+        )}
+        <p className={`text-xs mt-0.5 ${nightMode ? 'text-science-500' : 'text-science-400'}`}>
+          {window.location.origin}
+        </p>
       </div>
     </div>
   </div>

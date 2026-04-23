@@ -24,8 +24,10 @@ setUseViewRegion
     return `genome-browser`;
   }, []);
 
-  console.log("I am passing this view region to the browser:", viewRegion);
-  console.log("Store ID:", storeId);
+  const showTrackList = false;
+
+  // console.log("I am passing this view region to the browser:", viewRegion);
+  // console.log("Store ID:", storeId);
 
   // Standard reference is always hg38 - other species use genome align tracks
   const activeReference = "hg38";
@@ -263,6 +265,7 @@ setUseViewRegion
 
                 showDisclosure={false}
                 darkMode={nightMode}
+                showTrackList={showTrackList}
 
               />
             </div>
