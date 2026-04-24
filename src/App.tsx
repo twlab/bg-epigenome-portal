@@ -253,7 +253,7 @@ function App() {
         {/* Browser and scAnalysis tabs use full width and maximize vertical space */}
         {currentTab === 'browser' || currentTab === 'scAnalysis' ? (
           // CHADS NOTE: padding here causes issues with Genomehub causes it to rerender twice px-4 sm:px-6 lg:px-8 py-4
-          <main className="flex flex-col " style={{ minHeight: 0, overflow: 'hidden' }}>
+          <main className="flex flex-col flex-1" style={{ minHeight: 0, overflow: 'hidden' }}>
             <section className="animate-fade-in flex-1 flex flex-col" style={{ minHeight: 0, overflow: 'hidden' }}>
               {currentTab === 'browser' && (
                 <BrowserPanel 
@@ -317,7 +317,7 @@ function App() {
           </main>
         )}
 
-        <footer className={`shrink-0 ${
+        {currentTab !== 'scAnalysis' && <footer className={`shrink-0 ${
           nightMode 
             ? 'bg-science-900/80 border-science-800' 
             : 'bg-white/80 border-science-200'
@@ -352,7 +352,7 @@ function App() {
               </div>
             </div>
           </div>
-        </footer>
+        </footer>}
 
         {/* Cookie Banner */}
         <CookieBanner nightMode={nightMode} />
