@@ -426,13 +426,13 @@ with open("./tracks.tsv", "w") as f:
 
         # skip methylation.bigwig
         folder_des = {
-            "enhancers": ["annotation", "annotation", "Activity by contacts annotation"],
-            "ABC.links": ["annotation", "annotation", "Activity by contacts from snm3C-seq"],
+            "enhancers": ["annotation", "Activity by contacts", "Activity by contacts annotation"],
+            "ABC.links": ["annotation", "Activity by contacts", "Activity by contacts from snm3C-seq"],
             # "atac": ["snm3C-seq", "", "Chromatin accessibility from snm3C-seq"],
-            "domain": ["snm3C-seq", "chromatin conformation", "The topologically associating domains from snm3C-seq"],
+            "domain": ["annotation", "domain", "The topologically associating domains from snm3C-seq"],
             "hic": ["snm3C-seq", "chromatin conformation", "Chromatin interactions from snm3C-seq"],
-            "hypo-DMR": ["snm3C-seq", "DNA methylation", "Differentially methylated regions from snm3C-seq"],
-            "loop.bedpe": ["snm3C-seq", "chromatin conformation", "The loop call from snm3C-seq"],
+            "hypo-DMR": ["annotation", "DMR", "Differentially methylated regions from snm3C-seq"],
+            "loop.bedpe": ["annotation", "chromatin loop", "The loop call from snm3C-seq"],
             # "methylation.bigwig": ["snm3C-seq", "", ""],
             "methylc": ["snm3C-seq", "DNA methylation", "Methylation from snm3C-seq"],
         }
