@@ -334,7 +334,7 @@ with open("./tracks.tsv", "w") as f:
 
             assay = "Paired-Tag"
             description = "Paired-Tag, RNA expression"
-            modality = "expression"
+            modality = "Expression"
             if xna == "DNA":
                 assay = "Paired-Tag"
                 description = f"Paired-Tag, {histone[0]} histone modification"
@@ -389,7 +389,7 @@ with open("./tracks.tsv", "w") as f:
 
             assay = "Paired-Tag"
             description = "Paired-Tag, RNA expression"
-            modality = "expression"
+            modality = "Expression"
             if xna == "DNA":
                 assay = "Paired-Tag"
                 description = f"Paired-Tag, {histone[0]} histone modification"
