@@ -253,7 +253,7 @@ with open("./tracks.tsv", "w") as f:
         meta_data = {
             "source": "Allen Institute",
             "assay": "10X Multiome",
-            "modality": "accessibility",
+            "modality": "Accessibility",
             "description": "10X Multiome ATAC-seq",
             "reference": "hg38",
             "group": gg,
@@ -290,7 +290,7 @@ with open("./tracks.tsv", "w") as f:
         meta_data = {
             "source": "Allen Institute",
             "assay": "10X Multiome",
-            "modality": "accessibility",
+            "modality": "Accessibility",
             "description": "10X Multiome ATAC-seq",
             "reference": "hg38",
             "subclass": gsc,
@@ -332,12 +332,12 @@ with open("./tracks.tsv", "w") as f:
                 print("Could not uniquely guess assay for file:", furl, assay)
                 continue
 
-            assay = "Paired Tag"
-            description = "Paired Tag, RNA expression"
+            assay = "Paired-Tag"
+            description = "Paired-Tag, RNA expression"
             modality = "expression"
             if xna == "DNA":
-                assay = "Paired Tag"
-                description = f"Paired Tag, {histone[0]} histone modification"
+                assay = "Paired-Tag"
+                description = f"Paired-Tag, {histone[0]} histone modification"
                 modality = f"{histone[0]} modification"
 
 
@@ -387,12 +387,12 @@ with open("./tracks.tsv", "w") as f:
                 print("Could not uniquely guess assay for file:", furl, assay)
                 continue
 
-            assay = "Paired Tag"
-            description = "Paired Tag, RNA expression"
+            assay = "Paired-Tag"
+            description = "Paired-Tag, RNA expression"
             modality = "expression"
             if xna == "DNA":
-                assay = "Paired Tag"
-                description = f"Paired Tag, {histone[0]} histone modification"
+                assay = "Paired-Tag"
+                description = f"Paired-Tag, {histone[0]} histone modification"
                 modality = f"{histone[0]} modification"
 
             meta_data = {
@@ -426,13 +426,13 @@ with open("./tracks.tsv", "w") as f:
 
         # skip methylation.bigwig
         folder_des = {
-            "enhancers": ["annotation", "Activity by contacts", "Activity by contacts annotation"],
-            "ABC.links": ["annotation", "Activity by contacts", "Activity by contacts from snm3C-seq"],
+            "enhancers": ["Annotation", "Activity by contacts", "Activity by contacts annotation"],
+            "ABC.links": ["Annotation", "Activity by contacts", "Activity by contacts from snm3C-seq"],
             # "atac": ["snm3C-seq", "", "Chromatin accessibility from snm3C-seq"],
-            "domain": ["annotation", "domain", "The topologically associating domains from snm3C-seq"],
-            "hic": ["snm3C-seq", "chromatin conformation", "Chromatin interactions from snm3C-seq"],
-            "hypo-DMR": ["annotation", "DMR", "Differentially methylated regions from snm3C-seq"],
-            "loop.bedpe": ["annotation", "chromatin loop", "The loop call from snm3C-seq"],
+            "domain": ["Annotation", "Domain", "The topologically associating domains from snm3C-seq"],
+            "hic": ["snm3C-seq", "Chromatin conformation", "Chromatin interactions from snm3C-seq"],
+            "hypo-DMR": ["Annotation", "DMR", "Differentially methylated regions from snm3C-seq"],
+            "loop.bedpe": ["Annotation", "Chromatin loop", "The loop call from snm3C-seq"],
             # "methylation.bigwig": ["snm3C-seq", "", ""],
             "methylc": ["snm3C-seq", "DNA methylation", "Methylation from snm3C-seq"],
         }
@@ -501,10 +501,10 @@ with open("./tracks.tsv", "w") as f:
 
 
     files_urls = {
-        "https://epigenome.wustl.edu/basal-ganglia-epigenome/tracks/mouse/renlab/Mous_MSN_Histone_bw/":   ["mm10", "Paired Tag", "", "Ren Lab", "Paired Tag histone"],
-        "https://epigenome.wustl.edu/basal-ganglia-epigenome/tracks/mouse/renlab/Mouse_MSN_RNA_bw_file/": ["mm10", "Paired Tag", "expression", "Ren Lab", "Paired Tag RNA expression"],
-        "https://epigenome.wustl.edu/basal-ganglia-epigenome/tracks/marmoset/ATAC/": ["mCalJa1.2", "10X Multiome", "accessibility", "Allen Institute", "10X Multiome ATAC-seq"],
-        "https://epigenome.wustl.edu/basal-ganglia-epigenome/tracks/macaque/ATAC/":   ["rheMac10", "10X Multiome", "accessibility", "Allen Institute", "10X Multiome ATAC-seq"],
+        "https://epigenome.wustl.edu/basal-ganglia-epigenome/tracks/mouse/renlab/Mous_MSN_Histone_bw/":   ["mm10", "Paired-Tag", "", "Ren Lab", "Paired-Tag histone"],
+        "https://epigenome.wustl.edu/basal-ganglia-epigenome/tracks/mouse/renlab/Mouse_MSN_RNA_bw_file/": ["mm10", "Paired-Tag", "Expression", "Ren Lab", "Paired-Tag RNA expression"],
+        "https://epigenome.wustl.edu/basal-ganglia-epigenome/tracks/marmoset/ATAC/": ["mCalJa1.2", "10X Multiome", "Accessibility", "Allen Institute", "10X Multiome ATAC-seq"],
+        "https://epigenome.wustl.edu/basal-ganglia-epigenome/tracks/macaque/ATAC/":   ["rheMac10", "10X Multiome", "Accessibility", "Allen Institute", "10X Multiome ATAC-seq"],
     }
 
 
@@ -528,7 +528,7 @@ with open("./tracks.tsv", "w") as f:
                     print("Could not uniquely guess assay for file:", furl, assay)
                     continue
                 track_name += f" {histone[0]}"
-                description = f"Paired Tag {histone[0]} histone"
+                description = f"Paired-Tag {histone[0]} histone"
                 modality = f"{histone[0]} modification"
             track_name += f" ({reference})"
 
