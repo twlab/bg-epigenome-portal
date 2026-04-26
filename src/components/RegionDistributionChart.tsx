@@ -46,9 +46,7 @@ const RegionDistributionChart: FC<RegionDistributionChartProps> = ({
     return entries;
   }, [regionDistribution]);
 
-  // Use abbreviations for labels
   const labels = sortedData.map(([region]) => region);
-  const regionKeys = sortedData.map(([region]) => region);
   const data = sortedData.map(([, count]) => count);
   const totalCount = data.reduce((sum, count) => sum + count, 0);
 

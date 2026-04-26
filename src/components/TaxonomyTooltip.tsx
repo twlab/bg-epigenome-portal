@@ -27,6 +27,13 @@ const TaxonomyTooltip: FC<TaxonomyTooltipProps> = ({ name, type, text, children 
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const spanRef = useRef<HTMLSpanElement>(null);
 
+  useEffect(() => {
+    if (!pos) return;
+    const dismiss = () => setPos(null);
+    window.addEventListener('scroll', dismiss, true);
+    return () => window.removeEventListener('scroll', dismiss, true);
+  }, [pos]);
+
   if (!resolved) return <>{children}</>;
 
   const show = () => {
@@ -44,14 +51,6 @@ const TaxonomyTooltip: FC<TaxonomyTooltipProps> = ({ name, type, text, children 
     if (timerRef.current) clearTimeout(timerRef.current);
     setPos(null);
   };
-
-  // Dismiss on scroll so the tooltip doesn't float away from the text
-  useEffect(() => {
-    if (!pos) return;
-    const dismiss = () => setPos(null);
-    window.addEventListener('scroll', dismiss, true);
-    return () => window.removeEventListener('scroll', dismiss, true);
-  }, [pos]);
 
   const tooltip = pos && createPortal(
     <div

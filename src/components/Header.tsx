@@ -244,6 +244,7 @@ function Header({ nightMode, onToggleNightMode, onReset, tabs, currentTab, onTab
               return (
                 <button
                   key={tab.id}
+                  data-tab-id={tab.id}
                   onClick={() => onTabChange(tab.id)}
                   role="tab"
                   aria-selected={isActive}

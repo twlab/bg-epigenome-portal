@@ -148,7 +148,6 @@ const SessionTab: FC<SessionTabProps> = ({
   
   // Dialog state
   const [dialog, setDialog] = useState<DialogState>(initialDialogState);
-  const pendingActionRef = useRef<(() => void) | null>(null);
 
   // Load sessions on mount
   useEffect(() => {

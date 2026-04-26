@@ -69,19 +69,6 @@ export function deleteSession(sessionId: string): void {
   localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(filtered));
 }
 
-export function getSession(sessionId: string): Session | null {
-  const sessions = getAllSessions();
-  return sessions.find(s => s.id === sessionId) || null;
-}
-
-export function updateSession(sessionId: string, updates: Partial<Session>): void {
-  const sessions = getAllSessions();
-  const index = sessions.findIndex(s => s.id === sessionId);
-  if (index !== -1) {
-    sessions[index] = { ...sessions[index], ...updates };
-    localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(sessions));
-  }
-}
 
 // ============================================================================
 // Session Metadata
@@ -124,7 +111,7 @@ function countSelectedTaxonomy(taxonomyData: TaxonomyNeighborhood[]): number {
 // Import/Export
 // ============================================================================
 
-export function exportSessionToJSON(session: Session): string {
+function exportSessionToJSON(session: Session): string {
   return JSON.stringify(session, null, 2);
 }
 
@@ -141,7 +128,7 @@ export function downloadSessionAsJSON(session: Session): void {
   URL.revokeObjectURL(url);
 }
 
-export function importSessionFromJSON(jsonString: string): Session {
+function importSessionFromJSON(jsonString: string): Session {
   try {
     const session = JSON.parse(jsonString) as Session;
     

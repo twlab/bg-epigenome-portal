@@ -10,7 +10,7 @@ import snm3cSubclassData from '../data/taxonomy/snm3c.subclass.tsv?raw';
 
 export type AssayType = 'HMBA' | 'PairedTag' | 'snm3c';
 
-export interface TaxonomyGroup {
+interface TaxonomyGroup {
   group: string;
   isSelected: boolean;  // Whether this group is selected for visualization
 }
@@ -32,10 +32,6 @@ export interface TaxonomyNeighborhood {
   neighborhood: string;
   classes: TaxonomyClass[];
   isExpanded: boolean;
-}
-
-export interface TaxonomyStore {
-  neighborhoods: TaxonomyNeighborhood[];
 }
 
 // Parse TSV and build hierarchical structure (only hierarchy, no region distribution)
@@ -299,26 +295,3 @@ export function calculateSubclassRegionDistribution(
   return summedDistribution;
 }
 
-// Legacy function for backward compatibility (now uses groups only)
-export function calculateRegionDistribution(neighborhoods: TaxonomyNeighborhood[]): Record<string, number> {
-  return calculateGroupRegionDistribution(neighborhoods, 'HMBA');
-}
-
-// Get list of selected groups
-export function getSelectedGroups(neighborhoods: TaxonomyNeighborhood[]): TaxonomyGroup[] {
-  const selectedGroups: TaxonomyGroup[] = [];
-  
-  neighborhoods.forEach(neighborhood => {
-    neighborhood.classes.forEach(classObj => {
-      classObj.subclasses.forEach(subclass => {
-        subclass.groups.forEach(group => {
-          if (group.isSelected) {
-            selectedGroups.push(group);
-          }
-        });
-      });
-    });
-  });
-  
-  return selectedGroups;
-}

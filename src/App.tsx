@@ -1,6 +1,6 @@
 import { useMemo, useState, useCallback, useEffect, useRef } from 'react';
 import Header from './components/Header';
-import TabNavigation, { TabDefinition } from './components/TabNavigation';
+import { type TabDefinition } from './components/TabNavigation';
 import TaxonomySelection from './components/TaxonomySelection';
 import AssaySelection from './components/AssaySelection';
 import BrowserPanel from './components/BrowserPanel';
@@ -39,6 +39,10 @@ function App() {
   const [nightMode, setNightMode] = useState(false); // Default to light mode
   const [currentTab, setCurrentTab] = useState<TabId>(() => getInitialTabFromURL());
   const [showGuide, setShowGuide] = useState(false);
+
+  // Tabs visited at least once -- heavy tabs (browser, scAnalysis) stay mounted
+  // after first visit so their iframes / GenomeHub don't reload on every tab switch.
+  const [visitedTabs, setVisitedTabs] = useState<Set<TabId>>(() => new Set([getInitialTabFromURL()]));
   
   // Centralized taxonomy data store
   const [taxonomyData, setTaxonomyData] = useState<TaxonomyNeighborhood[]>(() => parseTaxonomyData());
@@ -176,6 +180,14 @@ function App() {
     }
   }, [showLanding]);
 
+  // Mark tab as visited on first open
+  useEffect(() => {
+    setVisitedTabs(prev => {
+      if (prev.has(currentTab)) return prev;
+      return new Set(prev).add(currentTab);
+    });
+  }, [currentTab]);
+
   // Update URL when tab changes
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -250,72 +262,83 @@ function App() {
           onTabChange={handleTabChange}
         />
 
-        {/* Browser and scAnalysis tabs use full width and maximize vertical space */}
-        {currentTab === 'browser' || currentTab === 'scAnalysis' ? (
-          // CHADS NOTE: padding here causes issues with Genomehub causes it to rerender twice px-4 sm:px-6 lg:px-8 py-4
-          <main className="flex flex-col flex-1" style={{ minHeight: 0, overflow: 'hidden' }}>
-            <section className="animate-fade-in flex-1 flex flex-col" style={{ minHeight: 0, overflow: 'hidden' }}>
-              {currentTab === 'browser' && (
-                <BrowserPanel 
-                  nightMode={nightMode}
-                  selectedTracks={selectedTracks}
-                  viewRegion={currentViewRegion}
-                  onViewRegionChange={setCurrentViewRegion}
-   
-                />
-              )}
-              {currentTab === 'scAnalysis' && (
-                <ScAnalysisTab nightMode={nightMode} />
-              )}
+        {/* Full-height tabs (browser, scAnalysis) -- kept alive once first visited */}
+        <main
+          className="flex flex-col flex-1"
+          style={{
+            minHeight: 0,
+            overflow: 'hidden',
+            display: currentTab === 'browser' || currentTab === 'scAnalysis' ? undefined : 'none',
+          }}
+        >
+          {visitedTabs.has('browser') && (
+            <section
+              className="flex-1 flex flex-col"
+              style={{ minHeight: 0, overflow: 'hidden', display: currentTab === 'browser' ? undefined : 'none' }}
+            >
+              <BrowserPanel
+                nightMode={nightMode}
+                selectedTracks={selectedTracks}
+                viewRegion={currentViewRegion}
+                onViewRegionChange={setCurrentViewRegion}
+              />
             </section>
-          </main>
-        ) : (
-          <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            {/* Tab content with animations */}
-            <section className="animate-fade-in">
-              {currentTab === 'tutorial' && (
-                <TutorialTab 
-                  nightMode={nightMode}
-                  onNavigate={(tab) => setCurrentTab(tab as TabId)}
-                />
-              )}
-              {currentTab === 'taxonomy' && (
-                <TaxonomySelection 
-                  nightMode={nightMode} 
-                  taxonomyData={taxonomyData}
-                  setTaxonomyData={setTaxonomyData}
-                  onNextStep={() => setCurrentTab('assay')}
-                />
-              )}
-              {currentTab === 'assay' && (
-                <AssaySelection 
-                  nightMode={nightMode} 
-                  trackStates={trackStates}
-                  setTrackStates={setTrackStates}
-                  onNextStep={() => {
-                    // CHADS NOTE: when we select new tracks to view, we reset the view region back to default 
-                    // so it doesn't inheret stale view region data from prev session. 
-                    setCurrentViewRegion(DEFAULT_VIEW_REGION)
-                    handleTabChange('browser')}}
-              
-                />
-              )}
-              {currentTab === 'dataset' && <DatasetOverview nightMode={nightMode} />}
-              {currentTab === 'about' && <AboutSection nightMode={nightMode} />}
-              {currentTab === 'session' && (
-                <SessionTab 
-                  nightMode={nightMode}
-                  taxonomyData={taxonomyData}
-                  trackStates={trackStates}
-                  currentViewRegion={currentViewRegion}
-                  onLoadSession={handleLoadSession}
-                  onShowLanding={() => setShowLanding(true)}
-                  onStartGuide={() => setShowGuide(true)}
-                />
-              )}
+          )}
+          {visitedTabs.has('scAnalysis') && (
+            <section
+              className="flex-1 flex flex-col"
+              style={{ minHeight: 0, overflow: 'hidden', display: currentTab === 'scAnalysis' ? undefined : 'none' }}
+            >
+              <ScAnalysisTab nightMode={nightMode} />
             </section>
-          </main>
-        )}
+          )}
+        </main>
+
+        {/* Constrained-width tabs */}
+        <main
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
+          style={{ display: currentTab === 'browser' || currentTab === 'scAnalysis' ? 'none' : undefined }}
+        >
+          <section className="animate-fade-in">
+            {currentTab === 'tutorial' && (
+              <TutorialTab
+                nightMode={nightMode}
+                onNavigate={(tab) => setCurrentTab(tab as TabId)}
+              />
+            )}
+            {currentTab === 'taxonomy' && (
+              <TaxonomySelection
+                nightMode={nightMode}
+                taxonomyData={taxonomyData}
+                setTaxonomyData={setTaxonomyData}
+                onNextStep={() => setCurrentTab('assay')}
+              />
+            )}
+            {currentTab === 'assay' && (
+              <AssaySelection
+                nightMode={nightMode}
+                trackStates={trackStates}
+                setTrackStates={setTrackStates}
+                onNextStep={() => {
+                  setCurrentViewRegion(DEFAULT_VIEW_REGION)
+                  handleTabChange('browser')}}
+              />
+            )}
+            {currentTab === 'dataset' && <DatasetOverview nightMode={nightMode} />}
+            {currentTab === 'about' && <AboutSection nightMode={nightMode} />}
+            {currentTab === 'session' && (
+              <SessionTab
+                nightMode={nightMode}
+                taxonomyData={taxonomyData}
+                trackStates={trackStates}
+                currentViewRegion={currentViewRegion}
+                onLoadSession={handleLoadSession}
+                onShowLanding={() => setShowLanding(true)}
+                onStartGuide={() => setShowGuide(true)}
+              />
+            )}
+          </section>
+        </main>
 
         {currentTab !== 'scAnalysis' && <footer className={`shrink-0 ${
           nightMode 

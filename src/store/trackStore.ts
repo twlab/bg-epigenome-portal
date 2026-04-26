@@ -215,24 +215,3 @@ export function getUniqueAssays(tracks: Track[]): string[] {
   return Array.from(assays).sort();
 }
 
-// Get unique sources from tracks
-export function getUniqueSources(tracks: Track[]): string[] {
-  const sources = new Set<string>();
-  tracks.forEach((track) => {
-    if (track.metadata.source) {
-      sources.add(track.metadata.source);
-    }
-  });
-  return Array.from(sources).sort();
-}
-
-// Get unique references from tracks
-export function getUniqueReferences(tracks: Track[]): string[] {
-  const references = new Set<string>();
-  tracks.forEach((track) => {
-    if (track.metadata.reference) {
-      references.add(track.metadata.reference);
-    }
-  });
-  return Array.from(references).sort();
-}

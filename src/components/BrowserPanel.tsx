@@ -99,7 +99,7 @@ setUseViewRegion
         onViewRegionChange(currentViewRegion.userViewRegion);
       }
     },
-    [onViewRegionChange, viewRegion],
+    [onViewRegionChange],
   );
   // CHADS NOTE: stop recreating the objects on every render, when placing objects as props in component
   // don't need randomize storeid, just one same storeId is fine for this app

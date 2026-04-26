@@ -1,6 +1,6 @@
 import abbr2fnData from '../data/abbr2fn.tsv?raw';
 
-export interface AbbreviationEntry {
+interface AbbreviationEntry {
   abbreviation: string;
   type: 'neighborhood' | 'class' | 'subclass' | 'group';
   fullName: string;
@@ -77,30 +77,3 @@ export function getFullName(
   return entries[0].fullName;
 }
 
-/**
- * Get all entries for an abbreviation
- */
-export function getEntries(abbreviation: string): AbbreviationEntry[] {
-  const map = getLookupMap();
-  return map.get(abbreviation) || [];
-}
-
-/**
- * Check if an abbreviation exists in the lookup table
- */
-export function hasAbbreviation(abbreviation: string): boolean {
-  const map = getLookupMap();
-  return map.has(abbreviation);
-}
-
-/**
- * Get formatted tooltip text for an abbreviation
- * Returns the abbreviation itself if not found in lookup table
- */
-export function getTooltipText(
-  abbreviation: string,
-  type?: 'neighborhood' | 'class' | 'subclass' | 'group'
-): string {
-  const fullName = getFullName(abbreviation, type);
-  return fullName || abbreviation;
-}

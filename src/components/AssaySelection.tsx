@@ -375,16 +375,6 @@ const AssaySelection: FC<AssaySelectionProps> = ({
     );
   };
 
-  const toggleAllFiltered = () => {
-    const allFilteredSelected = filteredIndices.every(i => trackStates[i].selected);
-    const filteredSet = new Set(filteredIndices);
-    setTrackStates(prev =>
-      prev.map((track, i) =>
-        filteredSet.has(i) ? { ...track, selected: !allFilteredSelected } : track
-      )
-    );
-  };
-
   const selectedCount = trackStates.filter(t => t.selected).length;
   const filteredSelectedCount = filteredIndices.filter(i => trackStates[i].selected).length;
 

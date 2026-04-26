@@ -53,7 +53,7 @@ export default function InteractiveGuide({
     {
       title: "1. Taxonomy Selection",
       description: "Start here! Select cell types and regions from the basal ganglia taxonomy. Choose from different assays (HMBA, PairedTag, snm3C) and filter by group or subclass.",
-      targetSelector: "nav button[role='tab']:nth-child(1)",
+      targetSelector: "button[data-tab-id='taxonomy']",
       position: "bottom",
       highlightPadding: 10,
       action: () => onTabChange?.('taxonomy'),
@@ -61,7 +61,7 @@ export default function InteractiveGuide({
     {
       title: "2. Assay Selection",
       description: "Configure your tracks here. Select which tracks to display in the browser, search for specific tracks, and organize your data visualization.",
-      targetSelector: "nav button[role='tab']:nth-child(2)",
+      targetSelector: "button[data-tab-id='assay']",
       position: "bottom",
       highlightPadding: 10,
       action: () => onTabChange?.('assay'),
@@ -69,7 +69,7 @@ export default function InteractiveGuide({
     {
       title: "3. Browser",
       description: "Visualize your selected data in the interactive genome browser. Zoom, pan, search for genes, and explore epigenetic marks. Press 'F' for fullscreen mode!",
-      targetSelector: "nav button[role='tab']:nth-child(3)",
+      targetSelector: "button[data-tab-id='browser']",
       position: "bottom",
       highlightPadding: 10,
       action: () => onTabChange?.('browser'),
@@ -77,7 +77,7 @@ export default function InteractiveGuide({
     {
       title: "4. Dataset Overview",
       description: "View comprehensive information about the datasets, including statistics, data sources, and metadata.",
-      targetSelector: "nav button[role='tab']:nth-child(4)",
+      targetSelector: "button[data-tab-id='dataset']",
       position: "bottom",
       highlightPadding: 10,
       action: () => onTabChange?.('dataset'),
@@ -85,7 +85,7 @@ export default function InteractiveGuide({
     {
       title: "5. About",
       description: "Learn more about the BICAN project, data sources, and find links to related resources and documentation.",
-      targetSelector: "nav button[role='tab']:nth-child(5)",
+      targetSelector: "button[data-tab-id='about']",
       position: "bottom",
       highlightPadding: 10,
       action: () => onTabChange?.('about'),

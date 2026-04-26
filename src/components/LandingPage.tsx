@@ -138,7 +138,6 @@ function LandingPage({ onEnter }: LandingPageProps) {
                 ),
                 title: 'Interactive Browser',
                 description: 'Navigate chromatin accessibility and histone modifications across basal ganglia regions',
-                delay: 'delay-200',
                 color: '#0072b2'
               },
               {
@@ -150,7 +149,6 @@ function LandingPage({ onEnter }: LandingPageProps) {
                 ),
                 title: 'Cell Type Taxonomy',
                 description: 'Hierarchical classification of neuronal and non-neuronal cell types with regional annotation',
-                delay: 'delay-400',
                 color: '#009e73'
               },
               {
@@ -162,7 +160,6 @@ function LandingPage({ onEnter }: LandingPageProps) {
                 ),
                 title: 'Multi-Modal Data',
                 description: 'Integrated single-cell ATAC-seq and CUT&Tag profiles with comprehensive QC metrics',
-                delay: 'delay-600',
                 color: '#e69f00'
               }
             ].map((feature, idx) => (
