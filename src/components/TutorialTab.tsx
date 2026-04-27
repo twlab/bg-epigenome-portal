@@ -95,6 +95,65 @@ const TutorialTab: FC<TutorialTabProps> = ({ nightMode, onNavigate }) => {
             </div>
           </div>
         </div>
+
+        {/* Video Tutorial */}
+        <div className={`mt-6 rounded-xl overflow-hidden ${
+          nightMode ? 'bg-science-800/50 border border-science-700' : 'bg-science-50 border border-science-200'
+        }`}>
+          <div className="aspect-video">
+            <iframe
+              src="https://www.youtube.com/embed/ejnXlnOvU7I"
+              title="BGE Navigator Tutorial"
+              className="w-full h-full border-0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* More Video Tutorials */}
+      <div className={`rounded-2xl shadow-xl overflow-hidden ${
+        nightMode ? 'card-science-dark' : 'card-science'
+      }`}>
+        <div className="p-6">
+          <h4 className={`text-xl font-bold mb-2 ${nightMode ? 'text-white' : 'text-science-900'}`}>
+            🎬 More Video Tutorials
+          </h4>
+          <p className={`text-sm mb-4 ${nightMode ? 'text-science-300' : 'text-science-700'}`}>
+            Explore our full collection of tutorials covering different features and workflows.
+          </p>
+        </div>
+        <a
+          href="https://www.youtube.com/playlist?list=PLE0UMwf5se6luQ8T8IFfbkvDf0dHvweUL"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`flex items-center gap-4 px-6 py-5 transition-all ${
+            nightMode
+              ? 'bg-red-900/30 hover:bg-red-900/50 border-t border-science-700'
+              : 'bg-red-50 hover:bg-red-100 border-t border-science-200'
+          }`}
+        >
+          <div className={`flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center ${
+            nightMode ? 'bg-red-500/20' : 'bg-red-100'
+          }`}>
+            <svg className={`w-8 h-8 ${nightMode ? 'text-red-400' : 'text-red-600'}`} viewBox="0 0 24 24" fill="currentColor">
+              <path d="M21.582 6.186a2.506 2.506 0 00-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418A2.506 2.506 0 002.418 6.186C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 001.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 001.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15.464V8.536L16 12l-6 3.464z"/>
+            </svg>
+          </div>
+          <div className="flex-1">
+            <span className={`text-lg font-bold ${nightMode ? 'text-white' : 'text-science-900'}`}>
+              Browse Full Tutorial Playlist
+            </span>
+            <p className={`text-sm ${nightMode ? 'text-science-400' : 'text-science-600'}`}>
+              Watch on YouTube
+            </p>
+          </div>
+          <svg className={`w-6 h-6 flex-shrink-0 ${nightMode ? 'text-science-400' : 'text-science-500'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </a>
       </div>
 
       {/* Tab Descriptions */}
