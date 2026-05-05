@@ -11,7 +11,7 @@ type AssaySelectionProps = {
 
 type PageSize = 10 | 25 | 100 | 'all';
 
-type SortableColumn = 'subclass' | 'group' | 'assay' | 'modality' | 'source' | 'trackType' | 'description';
+type SortableColumn = 'species' | 'subclass' | 'group' | 'assay' | 'modality' | 'source' | 'trackType' | 'description';
 type SortDirection = 'asc' | 'desc';
 type SortState = { column: SortableColumn; direction: SortDirection } | null;
 
@@ -24,6 +24,7 @@ const SPECIES_ORDER: Record<string, number> = {
 
 function getTrackSortValue(track: Track, column: SortableColumn): string {
   switch (column) {
+    case 'species': return track.metadata.reference || '';
     case 'subclass': return track.metadata.subclass || '';
     case 'group': return track.metadata.group || '';
     case 'assay': return track.metadata.assay || '';
@@ -315,7 +316,6 @@ const AssaySelection: FC<AssaySelectionProps> = ({
     }, []);
   }, [trackStates, filters]);
 
-  // Sort filtered indices: always species-first, then by chosen column
   const sortedFilteredIndices = useMemo(() => {
     if (!sort) return filteredIndices;
 
@@ -323,12 +323,12 @@ const AssaySelection: FC<AssaySelectionProps> = ({
       const ta = trackStates[a];
       const tb = trackStates[b];
 
-      // Primary: species order (always ascending to keep species blocks together)
-      const specA = SPECIES_ORDER[ta.metadata.reference || ''] ?? 9999;
-      const specB = SPECIES_ORDER[tb.metadata.reference || ''] ?? 9999;
-      if (specA !== specB) return specA - specB;
+      if (sort.column === 'species') {
+        const specA = SPECIES_ORDER[ta.metadata.reference || ''] ?? 9999;
+        const specB = SPECIES_ORDER[tb.metadata.reference || ''] ?? 9999;
+        return sort.direction === 'asc' ? specA - specB : specB - specA;
+      }
 
-      // Secondary: the selected column
       const valA = getTrackSortValue(ta, sort.column).toLowerCase();
       const valB = getTrackSortValue(tb, sort.column).toLowerCase();
       const cmp = valA.localeCompare(valB);
@@ -747,12 +747,8 @@ const AssaySelection: FC<AssaySelectionProps> = ({
                   }`}>
                     Select
                   </th>
-                  {/* Species: not sortable */}
-                  <th className={`px-4 py-3 text-left text-xs font-medium uppercase tracking-wider ${nightMode ? 'text-gray-300' : 'text-gray-500'}`}>
-                    Species
-                  </th>
-                  {/* Sortable columns */}
                   {([
+                    ['species', 'Species'],
                     ['subclass', 'Subclass'],
                     ['group', 'Group'],
                     ['assay', 'Assay'],
