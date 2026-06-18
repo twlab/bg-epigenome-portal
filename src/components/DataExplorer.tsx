@@ -4,6 +4,7 @@ import {
   loadGroupRegionDistribution,
   loadSubclassRegionDistribution,
   parseRegionDistribution,
+  toPreprintName,
   type TaxonomyNeighborhood,
   type AssayType,
 } from '../store/taxonomyStore';
@@ -159,13 +160,14 @@ function getRegionDistributions(
 
   assayTypes.forEach((at) => {
     let distStr = '';
+    // Translate final names -> pre-print names to match the data file keys
     if (selected.level === 'subclass') {
       const map = loadSubclassRegionDistribution(at);
-      const key = `${selected.neighborhood}|${selected.class}|${selected.subclass}`;
+      const key = `${toPreprintName('Neighborhood', selected.neighborhood)}|${toPreprintName('Class', selected.class)}|${toPreprintName('Subclass', selected.subclass)}`;
       distStr = map.get(key) || '';
     } else {
       const map = loadGroupRegionDistribution(at);
-      const key = `${selected.neighborhood}|${selected.class}|${selected.subclass}|${selected.group}`;
+      const key = `${toPreprintName('Neighborhood', selected.neighborhood)}|${toPreprintName('Class', selected.class)}|${toPreprintName('Subclass', selected.subclass)}|${toPreprintName('Group', selected.group ?? '')}`;
       distStr = map.get(key) || '';
     }
     const distribution = parseRegionDistribution(distStr);

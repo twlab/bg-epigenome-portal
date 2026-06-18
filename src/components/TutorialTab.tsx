@@ -198,6 +198,19 @@ const TutorialTab: FC<TutorialTabProps> = ({ nightMode, onNavigate }) => {
               <span>View region distribution charts for selected cells</span>
             </li>
           </ul>
+          {/* Select All tip */}
+          <div className={`mt-4 flex items-start gap-2 px-3 py-2.5 rounded-lg text-xs ${
+            nightMode
+              ? 'bg-primary-900/40 border border-primary-700/50 text-primary-300'
+              : 'bg-primary-50 border border-primary-200 text-primary-700'
+          }`}>
+            <svg className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>
+              <strong>Tip:</strong> Use <em>Select All</em> to start — you can do fine-grained filtering in the next step (Assay Selection).
+            </span>
+          </div>
         </div>
 
         {/* Assay Selection Tab */}
@@ -468,7 +481,7 @@ const TutorialTab: FC<TutorialTabProps> = ({ nightMode, onNavigate }) => {
               Start Broad, Then Narrow
             </h5>
             <p className={`text-sm ${nightMode ? 'text-science-300' : 'text-science-700'}`}>
-              Begin by selecting subclasses to see a broader range of cell types, then refine your selection to specific groups as needed.
+              Use <strong>Select All</strong> in Taxonomy Selection to include everything, then do fine-grained filtering in the Assay Selection step — no need to hand-pick every cell type upfront.
             </p>
           </div>
           

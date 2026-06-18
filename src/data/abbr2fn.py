@@ -132,7 +132,12 @@ StrioMat	striosome matrix
 GRIN2A	GRIN2A
 NRP2	NRP2
 RORA	RORA
-NUDAP	NUDAP"""
+NUDAP	NUDAP
+IP	interpeduncular
+SPN	spiny projection neuron
+eSPN	eccentric spiny projection neuron
+Eccentric	eccentric
+Granule	granule"""
 
 
 token_abrevations_to_fullnames = {}

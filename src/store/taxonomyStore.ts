@@ -8,7 +8,49 @@ import pairedTagSubclassData from '../data/taxonomy/PairedTag.subclass.tsv?raw';
 import snm3cGroupData from '../data/taxonomy/snm3c.group.tsv?raw';
 import snm3cSubclassData from '../data/taxonomy/snm3c.subclass.tsv?raw';
 
+// Nomenclature lookup table (final -> pre-print). taxonomy.tsv uses the final
+// nomenclature, but the region-distribution data files still use the pre-print
+// names. We translate final names to pre-print names at lookup time so the keys
+// match, without modifying any data files.
+import nomenclatureLookupData from '../data/taxonomy/annotation_lookup_table_final.csv?raw';
+
 export type AssayType = 'HMBA' | 'PairedTag' | 'snm3c';
+
+type TaxonomyLevel = 'Neighborhood' | 'Class' | 'Subclass' | 'Group';
+
+// Build a per-level dictionary mapping the final nomenclature back to the
+// pre-print nomenclature used in the distribution data files.
+function buildFinalToPreprintMap(): Record<TaxonomyLevel, Record<string, string>> {
+  const map: Record<TaxonomyLevel, Record<string, string>> = {
+    Neighborhood: {},
+    Class: {},
+    Subclass: {},
+    Group: {},
+  };
+
+  const lines = nomenclatureLookupData.trim().split('\n');
+  // Skip the header row (taxonomy_level,final_nomenclature,pre-print_nomenclature,ID)
+  lines.slice(1).forEach((line) => {
+    const cols = line.split(',');
+    if (cols.length < 3) return;
+    const level = cols[0].trim() as TaxonomyLevel;
+    const finalName = cols[1].trim();
+    const preprintName = cols[2].trim();
+    if (level in map) {
+      map[level][finalName] = preprintName;
+    }
+  });
+
+  return map;
+}
+
+const FINAL_TO_PREPRINT = buildFinalToPreprintMap();
+
+// Translate a final-nomenclature name to the pre-print name for a given level.
+// Returns the original name when there is no mapping (i.e. the name is unchanged).
+export function toPreprintName(level: TaxonomyLevel, name: string): string {
+  return FINAL_TO_PREPRINT[level][name] ?? name;
+}
 
 interface TaxonomyGroup {
   group: string;
@@ -249,7 +291,8 @@ export function calculateGroupRegionDistribution(
         subclass.groups.forEach(group => {
           // Only include groups that are selected
           if (group.isSelected) {
-            const key = `${neighborhood.neighborhood}|${classObj.class}|${subclass.subclass}|${group.group}`;
+            // Translate final names -> pre-print names to match the data file keys
+            const key = `${toPreprintName('Neighborhood', neighborhood.neighborhood)}|${toPreprintName('Class', classObj.class)}|${toPreprintName('Subclass', subclass.subclass)}|${toPreprintName('Group', group.group)}`;
             const regionDistStr = groupDistributionMap.get(key) || '';
             const distribution = parseRegionDistribution(regionDistStr);
             
@@ -279,7 +322,8 @@ export function calculateSubclassRegionDistribution(
       classObj.subclasses.forEach(subclass => {
         // Only include subclasses that are selected
         if (subclass.isSelected) {
-          const key = `${neighborhood.neighborhood}|${classObj.class}|${subclass.subclass}`;
+          // Translate final names -> pre-print names to match the data file keys
+          const key = `${toPreprintName('Neighborhood', neighborhood.neighborhood)}|${toPreprintName('Class', classObj.class)}|${toPreprintName('Subclass', subclass.subclass)}`;
           const regionDistStr = subclassDistributionMap.get(key) || '';
           const distribution = parseRegionDistribution(regionDistStr);
           

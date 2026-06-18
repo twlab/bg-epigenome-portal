@@ -460,6 +460,72 @@ const TaxonomySelection: FC<TaxonomySelectionProps> = ({ nightMode, taxonomyData
     });
   };
 
+  // Determine the selection state of everything below a set of classes
+  // (all subclasses + groups). Used by the neighborhood/class bulk buttons.
+  const getSelectionState = (classes: TaxonomyClass[]) => {
+    let total = 0;
+    let selected = 0;
+    classes.forEach(c =>
+      c.subclasses.forEach(s => {
+        total++;
+        if (s.isSelected) selected++;
+        s.groups.forEach(g => {
+          total++;
+          if (g.isSelected) selected++;
+        });
+      })
+    );
+    return { all: total > 0 && selected === total, total };
+  };
+
+  // Select (or deselect) every subclass and group below a neighborhood
+  const toggleAllInNeighborhood = (neighborhoodIndex: number) => {
+    setTaxonomyData(prev => {
+      const newData = [...prev];
+      const neighborhood = newData[neighborhoodIndex];
+      const nextSelected = !getSelectionState(neighborhood.classes).all;
+
+      newData[neighborhoodIndex] = {
+        ...neighborhood,
+        classes: neighborhood.classes.map(c => ({
+          ...c,
+          subclasses: c.subclasses.map(s => ({
+            ...s,
+            isSelected: nextSelected,
+            groups: s.groups.map(g => ({ ...g, isSelected: nextSelected })),
+          })),
+        })),
+      };
+      return newData;
+    });
+  };
+
+  // Select (or deselect) every subclass and group below a class
+  const toggleAllInClass = (neighborhoodIndex: number, classIndex: number) => {
+    setTaxonomyData(prev => {
+      const newData = [...prev];
+      const neighborhood = newData[neighborhoodIndex];
+      const nextSelected = !getSelectionState([neighborhood.classes[classIndex]]).all;
+
+      newData[neighborhoodIndex] = {
+        ...neighborhood,
+        classes: neighborhood.classes.map((c, ci) =>
+          ci === classIndex
+            ? {
+                ...c,
+                subclasses: c.subclasses.map(s => ({
+                  ...s,
+                  isSelected: nextSelected,
+                  groups: s.groups.map(g => ({ ...g, isSelected: nextSelected })),
+                })),
+              }
+            : c
+        ),
+      };
+      return newData;
+    });
+  };
+
   // Count all selected subclasses and groups
   const selectionCounts = useMemo(() => {
     let subclasses = 0;
@@ -667,6 +733,19 @@ const TaxonomySelection: FC<TaxonomySelectionProps> = ({ nightMode, taxonomyData
               Clear All
             </button>
           </div>
+          {/* Tip banner */}
+          <div className={`flex items-start gap-2 px-3 py-2 rounded-lg text-xs ${
+            nightMode
+              ? 'bg-primary-900/40 border border-primary-700/50 text-primary-300'
+              : 'bg-primary-50 border border-primary-200 text-primary-700'
+          }`}>
+            <svg className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>
+              <strong>Tip:</strong> Use <em>Select All</em> to start — you can do fine-grained filtering in the next step.
+            </span>
+          </div>
         </div>
 
         {/* Assay legend */}
@@ -796,7 +875,33 @@ const TaxonomySelection: FC<TaxonomySelectionProps> = ({ nightMode, taxonomyData
                         {neighborhood.neighborhood}
                       </TaxonomyTooltip>
                     </td>
-                    <td className="px-4 py-3"></td>
+                    <td className="px-4 py-3">
+                      {(() => {
+                        const allSelected = getSelectionState(neighborhood.classes).all;
+                        return (
+                          <div className="flex items-center gap-2">
+                            <span className="min-w-[100px]" aria-hidden="true" />
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                toggleAllInNeighborhood(nIndex);
+                              }}
+                              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap ${
+                                allSelected
+                                  ? nightMode
+                                    ? 'bg-amber-700 hover:bg-amber-600 text-white shadow-md'
+                                    : 'bg-amber-500 hover:bg-amber-600 text-white shadow-md'
+                                  : nightMode
+                                  ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                              }`}
+                            >
+                              {allSelected ? 'Deselect All Below' : 'Select All Below'}
+                            </button>
+                          </div>
+                        );
+                      })()}
+                    </td>
                     <td className="px-2 py-3"></td>
                   </tr>
 
@@ -821,7 +926,33 @@ const TaxonomySelection: FC<TaxonomySelectionProps> = ({ nightMode, taxonomyData
                             {classObj.class}
                           </TaxonomyTooltip>
                         </td>
-                        <td className="px-4 py-3"></td>
+                        <td className="px-4 py-3">
+                          {(() => {
+                            const allSelected = getSelectionState([classObj]).all;
+                            return (
+                              <div className="flex items-center gap-2">
+                                <span className="min-w-[100px]" aria-hidden="true" />
+                                <button
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    toggleAllInClass(nIndex, cIndex);
+                                  }}
+                                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap ${
+                                    allSelected
+                                      ? nightMode
+                                        ? 'bg-amber-700 hover:bg-amber-600 text-white shadow-md'
+                                        : 'bg-amber-500 hover:bg-amber-600 text-white shadow-md'
+                                      : nightMode
+                                      ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                                  }`}
+                                >
+                                  {allSelected ? 'Deselect All Below' : 'Select All Below'}
+                                </button>
+                              </div>
+                            );
+                          })()}
+                        </td>
                         <td className="px-2 py-3"></td>
                       </tr>
 

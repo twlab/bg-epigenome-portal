@@ -9,6 +9,8 @@ import requests
 from bs4 import BeautifulSoup
 
 
+name_mapping_fixes = {}
+
 
 region_distributions = {}
 neighborhoods = set([])
@@ -17,6 +19,27 @@ subclasses = set([])
 groups = set([])
 
 taxonomy_hierarchy = {}
+
+
+with open("./taxonomy/annotation_lookup_table_final.csv") as fin:
+    init = True
+    for l in fin:
+        if init:
+            init = False
+            continue
+
+        l = l.strip().split(",")
+        taxonomy_level, final_nomenclature, old_nomenclature, xxxID = l
+
+        if taxonomy_level not in name_mapping_fixes:
+            name_mapping_fixes[taxonomy_level] = {}
+
+        if old_nomenclature == final_nomenclature:
+            continue
+
+        # print(taxonomy_level, final_nomenclature, old_nomenclature)
+        name_mapping_fixes[taxonomy_level][old_nomenclature] = final_nomenclature
+
 
 
 with open("./taxonomy.tsv", "w") as fout:
@@ -52,7 +75,13 @@ with open("./taxonomy.tsv", "w") as fout:
                 groups_list = list(taxonomy_hierarchy[neighborhood][class_][subclass])
                 assert len(groups_list) > 0
                 for group in sorted(groups_list):
-                    fout.write(f"{neighborhood}\t{class_}\t{subclass}\t{group}\n")
+
+                    new_neighborhood = name_mapping_fixes["Neighborhood"][neighborhood] if neighborhood in name_mapping_fixes["Neighborhood"] else neighborhood
+                    new_class_ = name_mapping_fixes["Class"][class_] if class_ in name_mapping_fixes["Class"] else class_
+                    new_subclass = name_mapping_fixes["Subclass"][subclass] if subclass in name_mapping_fixes["Subclass"] else subclass
+                    new_group = name_mapping_fixes["Group"][group] if group in name_mapping_fixes["Group"] else group
+
+                    fout.write(f"{new_neighborhood}\t{new_class_}\t{new_subclass}\t{new_group}\n")
 
 
 
@@ -249,6 +278,8 @@ with open("./tracks.tsv", "w") as f:
             print("Could not uniquely guess group for file:", furl, gg)
             continue
         gg = gg[0]
+        if gg in name_mapping_fixes["Group"]:
+            gg = name_mapping_fixes["Group"][gg]
 
         meta_data = {
             "source": "Allen Institute",
@@ -286,6 +317,8 @@ with open("./tracks.tsv", "w") as f:
             print("Could not uniquely guess group for file:", furl, gsc)
             continue
         gsc = gsc[0]
+        if gsc in name_mapping_fixes["Subclass"]:
+            gsc = name_mapping_fixes["Subclass"][gsc]
 
         meta_data = {
             "source": "Allen Institute",
@@ -326,6 +359,8 @@ with open("./tracks.tsv", "w") as f:
                 print("Could not uniquely guess group for file:", furl, gg)
                 continue
             gg = gg[0]
+            if gg in name_mapping_fixes["Group"]:
+                gg = name_mapping_fixes["Group"][gg]
 
             histone = guess_histone_assay_from_url(furl)
             if xna == "DNA" and len(histone) != 1:
@@ -381,6 +416,8 @@ with open("./tracks.tsv", "w") as f:
                 print("Could not uniquely guess subclass for file:", furl, gsc)
                 continue
             gsc = gsc[0]
+            if gsc in name_mapping_fixes["Subclass"]:
+                gsc = name_mapping_fixes["Subclass"][gsc]
 
             histone = guess_histone_assay_from_url(furl)
             if xna == "DNA" and len(histone) != 1:
@@ -457,12 +494,16 @@ with open("./tracks.tsv", "w") as f:
                         print("Could not uniquely guess group for file:", furl, gg)
                         continue
                     guessed_classification = gg[0]
+                    if guessed_classification in name_mapping_fixes["Group"]:
+                        guessed_classification = name_mapping_fixes["Group"][guessed_classification]
                 else:
                     gsc = guess_subclass_from_url(furl)
                     if len(gsc) != 1:
                         print("Could not uniquely guess subclass for file:", furl, gsc)
                         continue
                     guessed_classification = gsc[0]
+                    if guessed_classification in name_mapping_fixes["Subclass"]:
+                        guessed_classification = name_mapping_fixes["Subclass"][guessed_classification]
 
 
                 meta_data = {
@@ -520,6 +561,8 @@ with open("./tracks.tsv", "w") as f:
                 print("Could not uniquely guess group for file:", furl, gg)
                 continue
             gg = gg[0]
+            if gg in name_mapping_fixes["Group"]:
+                gg = name_mapping_fixes["Group"][gg]
 
             track_name = f"{gg} {assay}"
             if url == "https://epigenome.wustl.edu/basal-ganglia-epigenome/tracks/mouse/renlab/Mous_MSN_Histone_bw/":

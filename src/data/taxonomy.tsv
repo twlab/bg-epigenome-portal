@@ -11,9 +11,9 @@ Nonneuron	Astro-Epen	Astrocyte	Astrocyte-3
 Nonneuron	Astro-Epen	Astrocyte	Astrocyte-4
 Nonneuron	Astro-Epen	Astrocyte	ImAstro
 Nonneuron	Astro-Epen	Ependymal	Ependymal
-Nonneuron	Immune	Lymphocyte	B cells
+Nonneuron	Immune	Lymphocyte	B cell
 Nonneuron	Immune	Lymphocyte	Lymphocyte
-Nonneuron	Immune	Lymphocyte	T cells
+Nonneuron	Immune	Lymphocyte	T cell
 Nonneuron	Immune	Macrophage	BAM
 Nonneuron	Immune	Microglia	Microglia
 Nonneuron	Immune	Microglia	Microglia-1
@@ -32,16 +32,16 @@ Nonneuron	Vascular	VLMC	VLMC
 Subpallium GABA	CN CGE GABA	CN LAMP5-CXCL14 GABA	LAMP5-CXCL14 GABA
 Subpallium GABA	CN CGE GABA	CN VIP GABA	VIP GABA
 Subpallium GABA	CN LGE GABA	CN MEIS2 GABA	GPe MEIS2-SOX6 GABA
-Subpallium GABA	CN LGE GABA	OT Granular GABA	OT D1 ICj
-Subpallium GABA	CN LGE GABA	STR D1 MSN	STRd D1 Matrix MSN
-Subpallium GABA	CN LGE GABA	STR D1 MSN	STRd D1 Striosome MSN
-Subpallium GABA	CN LGE GABA	STR D1 MSN	STRv D1 MSN
-Subpallium GABA	CN LGE GABA	STR D2 MSN	STRd D2 Matrix MSN
-Subpallium GABA	CN LGE GABA	STR D2 MSN	STRd D2 StrioMat Hybrid MSN
-Subpallium GABA	CN LGE GABA	STR D2 MSN	STRd D2 Striosome MSN
-Subpallium GABA	CN LGE GABA	STR D2 MSN	STRv D2 MSN
-Subpallium GABA	CN LGE GABA	STR Hybrid MSN	STR D1D2 Hybrid MSN
-Subpallium GABA	CN LGE GABA	STR Hybrid MSN	STRv D1 NUDAP MSN
+Subpallium GABA	CN LGE GABA	OT Granule GABA	OT ICj Granule
+Subpallium GABA	CN LGE GABA	STR D1 SPN	STRd D1 Matrix SPN
+Subpallium GABA	CN LGE GABA	STR D1 SPN	STRd D1 Striosome SPN
+Subpallium GABA	CN LGE GABA	STR D1 SPN	STRv D1 SPN
+Subpallium GABA	CN LGE GABA	STR D2 SPN	STRd D2 Matrix SPN
+Subpallium GABA	CN LGE GABA	STR D2 SPN	STR D2 SMYD2-HTR7 SPN
+Subpallium GABA	CN LGE GABA	STR D2 SPN	STRd D2 Striosome SPN
+Subpallium GABA	CN LGE GABA	STR D2 SPN	STRv D2 SPN
+Subpallium GABA	CN LGE GABA	STR Eccentric SPN	STR D1D2 eSPN
+Subpallium GABA	CN LGE GABA	STR Eccentric SPN	STRv D1 NUDAP eSPN
 Subpallium GABA	CN MGE GABA	CN Cholinergic GABA	GPin-BF Cholinergic GABA
 Subpallium GABA	CN MGE GABA	CN Cholinergic GABA	STR Cholinergic GABA
 Subpallium GABA	CN MGE GABA	CN Cholinergic GABA	STRd Cholinergic GABA
@@ -56,12 +56,12 @@ Subpallium GABA	CN MGE GABA	STR SST-CHODL GABA	STR SST-CHODL GABA
 Subpallium GABA	CN MGE GABA	STR SST-CHODL GABA	STR SST-CHODL GRIN2A GABA
 Subpallium GABA	CN MGE GABA	STR SST-CHODL GABA	STR SST-CHODL NRP2 GABA
 Subpallium GABA	CN MGE GABA	STR SST-CHODL GABA	STR SST-CHODL RORA GABA
-Subpallium GABA	Cx GABA	ACx MEIS2 GABA	ACx MEIS2 GABA
-Subpallium GABA	Cx GABA	ACx MEIS2 GABA	OB Dopa-GABA
-Subpallium GABA	Cx GABA	ACx MEIS2 GABA	OB FRMD7 GABA
+Subpallium GABA	Cx GABA	OB MEIS2 GABA	ACx MEIS2 GABA
+Subpallium GABA	Cx GABA	OB MEIS2 GABA	OB Dopa-GABA
+Subpallium GABA	Cx GABA	OB MEIS2 GABA	OB FRMD7 GABA
 Subpallium GABA	F M GABA	CN LHX8 GABA	GPe SOX6-CTXND1 GABA
 Subpallium GABA	F M GABA	CN LHX8 GABA	GPe-NDB-SI LHX6-LHX8-GBX1 GABA
-Subpallium GABA	F M GABA	CN ONECUT1 GABA	GPi Core
+Subpallium GABA	F M GABA	CN ONECUT1 GABA	GPi Core GABA
 Subpallium GABA	F M GABA	F GABA	AMY-SLEA-BNST D1 GABA
 Subpallium GABA	F M GABA	F GABA	AMY-SLEA-BNST GABA
 Subpallium GABA	F M GABA	F GABA	F GABA
@@ -69,6 +69,6 @@ Subpallium GABA	F M GABA	F GABA	ZI-HTH GABA
 Subpallium GABA	F M GABA	F M GATA3 GABA	F M GATA3 GABA
 Subpallium GABA	F M GABA	F M GATA3 GABA	SN GATA3-PVALB GABA
 Subpallium GABA	F M GABA	F M GATA3 GABA	SN-VTR-HTH GATA3-TCF7L2 GABA
-Subpallium GABA	F M GABA	SN PAX7 GABA	SN EBF2 GABA
-Subpallium GABA	F M GABA	SN PAX7 GABA	SN SEMA5A GABA
-Subpallium GABA-Glut	CN GABA-Glut	CN GABA-Glut	GPi Shell
+Subpallium GABA	F M GABA	IP PAX7 GABA	IP EBF2 GABA
+Subpallium GABA	F M GABA	IP PAX7 GABA	IP SEMA5A GABA
+Subpallium GABA-Glut	CN GABA-Glut	CN GABA-Glut	GPi Shell GABA-Glut
