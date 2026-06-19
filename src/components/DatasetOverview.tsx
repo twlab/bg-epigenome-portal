@@ -833,24 +833,42 @@ const DatasetOverview: FC<DatasetOverviewProps> = ({ nightMode }) => {
         nightMode ? 'card-science-dark' : 'card-science'
       }`}>
         <p className={`text-sm mb-4 ${nightMode ? 'text-science-400' : 'text-science-600'}`}>
-          For more datasets and download options, visit the BICAN Data Portal.
+          For more datasets and download options, visit the BICAN Data Portal or the HMBA Basal Ganglia release page.
         </p>
-        <a 
-          href="https://www.portal.brain-bican.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium transition-all ${
-            nightMode 
-              ? 'bg-primary-500 text-white hover:bg-primary-400' 
-              : 'bg-primary-600 text-white hover:bg-primary-700'
-          }`}
-        >
-          <span>Browse BICAN Catalog</span>
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
-                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-          </svg>
-        </a>
+        <div className="flex flex-wrap justify-center gap-3">
+          <a 
+            href="https://www.portal.brain-bican.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium transition-all ${
+              nightMode 
+                ? 'bg-primary-500 text-white hover:bg-primary-400' 
+                : 'bg-primary-600 text-white hover:bg-primary-700'
+            }`}
+          >
+            <span>Browse BICAN Catalog</span>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+          <a 
+            href="https://brain-map.org/consortia/hmba/hmba-release-basal-ganglia"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium transition-all ${
+              nightMode 
+                ? 'bg-science-700 text-science-200 hover:bg-science-600 border border-science-600' 
+                : 'bg-science-100 text-science-700 hover:bg-science-200 border border-science-300'
+            }`}
+          >
+            <span>HMBA Basal Ganglia Release</span>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   );

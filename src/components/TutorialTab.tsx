@@ -19,7 +19,7 @@ const TutorialTab: FC<TutorialTabProps> = ({ nightMode, onNavigate }) => {
           </div>
           <h3 className="text-2xl md:text-3xl font-bold tracking-tight">Tutorial & Workflow Guide</h3>
           <p className="text-base text-white/80 mt-2 leading-relaxed max-w-3xl">
-            Learn how to navigate the BGE Navigator portal and explore brain cell epigenome data effectively.
+            Learn how to navigate the BGE Browser portal and explore brain cell epigenome data effectively.
           </p>
         </div>
       </div>
@@ -103,7 +103,7 @@ const TutorialTab: FC<TutorialTabProps> = ({ nightMode, onNavigate }) => {
           <div className="aspect-video">
             <iframe
               src="https://www.youtube.com/embed/ejnXlnOvU7I"
-              title="BGE Navigator Tutorial"
+              title="BGE Browser Tutorial"
               className="w-full h-full border-0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

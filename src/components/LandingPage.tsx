@@ -77,7 +77,7 @@ function LandingPage({ onEnter }: LandingPageProps) {
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text'
             }}>
-              Epigenome Navigator
+              Epigenome Browser
             </span>
           </h1>
 

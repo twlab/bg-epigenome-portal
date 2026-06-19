@@ -31,7 +31,7 @@ export default function InteractiveGuide({
   const steps: GuideStep[] = [
     {
       title: "Welcome! 🎉",
-      description: "Welcome to the BICAN Basal Ganglia Epigenome Navigator! This interactive guide will walk you through the key features.",
+      description: "Welcome to the BICAN Basal Ganglia Epigenome Browser! This interactive guide will walk you through the key features.",
       targetSelector: "header",
       position: "bottom",
       highlightPadding: 10,

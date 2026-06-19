@@ -349,7 +349,7 @@ function App() {
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
               <div className="flex items-center gap-4">
                 <span className={`text-sm font-medium ${nightMode ? 'text-science-300' : 'text-science-700'}`}>
-                  BGE Navigator
+                  BGE Browser
                 </span>
                 <span className={`text-sm ${nightMode ? 'text-science-500' : 'text-science-400'}`}>
                   © {new Date().getFullYear()}

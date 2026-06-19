@@ -67,7 +67,7 @@ const AboutSection: FC<AboutSectionProps> = ({ nightMode }) => {
         </div>
         
         <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
-          BICAN Basal Ganglia Epigenome Navigator
+          BICAN Basal Ganglia Epigenome Browser
         </h2>
         
         <p className="text-lg text-white/90 leading-relaxed max-w-3xl">
@@ -221,6 +221,7 @@ const AboutSection: FC<AboutSectionProps> = ({ nightMode }) => {
       
       <div className="flex flex-wrap gap-3">
         {[
+          { label: 'HMBA Basal Ganglia Release', href: 'https://brain-map.org/consortia/hmba/hmba-release-basal-ganglia' },
           { label: 'BICAN Data Catalog', href: 'https://www.portal.brain-bican.org/' },
           { label: 'Allen Brain Atlas', href: 'https://atlas.brain-map.org/' },
           { label: 'Scalable Brain Atlas', href: 'https://scalablebrainatlas.incf.org/' },
