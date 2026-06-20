@@ -128,6 +128,40 @@ const AboutSection: FC<AboutSectionProps> = ({ nightMode }) => {
       </a>
     </div>
 
+    {/* Resources & Links */}
+    <div className={`rounded-2xl p-6 ${nightMode ? 'card-science-dark' : 'card-science'}`}>
+      <h3 className={`text-lg font-semibold mb-4 ${nightMode ? 'text-white' : 'text-science-900'}`}>
+        Related Resources
+      </h3>
+      
+      <div className="flex flex-wrap gap-3">
+        {[
+          { label: 'HMBA Basal Ganglia Release', href: 'https://brain-map.org/consortia/hmba/hmba-release-basal-ganglia' },
+          { label: 'BICAN Data Catalog', href: 'https://www.portal.brain-bican.org/' },
+          { label: 'Allen Brain Atlas', href: 'https://atlas.brain-map.org/' },
+          { label: 'Scalable Brain Atlas', href: 'https://scalablebrainatlas.incf.org/' },
+          { label: 'NIH BRAIN Initiative', href: 'https://braininitiative.nih.gov/' }
+        ].map((link, idx) => (
+          <a
+            key={idx}
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+              nightMode 
+                ? 'bg-science-800 text-science-300 hover:bg-science-700 hover:text-white border border-science-700' 
+                : 'bg-science-100 text-science-700 hover:bg-science-200 border border-science-200'
+            }`}
+          >
+            <span>{link.label}</span>
+            <svg className="w-3.5 h-3.5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        ))}
+      </div>
+    </div>
+
     {/* Project Overview Grid */}
     <div className="grid gap-6 md:grid-cols-2">
       {/* What is BGE */}
@@ -209,40 +243,6 @@ const AboutSection: FC<AboutSectionProps> = ({ nightMode }) => {
               {feature.description}
             </p>
           </div>
-        ))}
-      </div>
-    </div>
-
-    {/* Resources & Links */}
-    <div className={`rounded-2xl p-6 ${nightMode ? 'card-science-dark' : 'card-science'}`}>
-      <h3 className={`text-lg font-semibold mb-4 ${nightMode ? 'text-white' : 'text-science-900'}`}>
-        Related Resources
-      </h3>
-      
-      <div className="flex flex-wrap gap-3">
-        {[
-          { label: 'HMBA Basal Ganglia Release', href: 'https://brain-map.org/consortia/hmba/hmba-release-basal-ganglia' },
-          { label: 'BICAN Data Catalog', href: 'https://www.portal.brain-bican.org/' },
-          { label: 'Allen Brain Atlas', href: 'https://atlas.brain-map.org/' },
-          { label: 'Scalable Brain Atlas', href: 'https://scalablebrainatlas.incf.org/' },
-          { label: 'NIH BRAIN Initiative', href: 'https://braininitiative.nih.gov/' }
-        ].map((link, idx) => (
-          <a
-            key={idx}
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-              nightMode 
-                ? 'bg-science-800 text-science-300 hover:bg-science-700 hover:text-white border border-science-700' 
-                : 'bg-science-100 text-science-700 hover:bg-science-200 border border-science-200'
-            }`}
-          >
-            <span>{link.label}</span>
-            <svg className="w-3.5 h-3.5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-          </a>
         ))}
       </div>
     </div>
